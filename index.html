@@ -603,6 +603,11 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       <circle cx=".5" cy=".5" r=".5" fill="#fff"/>
       <circle cx=".5" cy=".5" r=".024" fill="#000"/>
     </mask>
+  <mask id="m-aperture" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <circle cx="50" cy="50" r="50" fill="#fff"/>
+      <path d="M50.00 33.00 L64.72 41.50 L64.72 58.50 L50.00 67.00 L35.28 58.50 L35.28 41.50Z" fill="#000"/>
+      <path d="M64.72 41.50 L100.66 62.25 M64.72 58.50 L64.72 100.00 M50.00 67.00 L14.06 87.75 M35.28 58.50 L-0.66 37.75 M35.28 41.50 L35.28 0.00 M50.00 33.00 L85.94 12.25" stroke="#000" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    </mask>
   </defs>
   <symbol id="reel" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-reel)"/></symbol>
   <symbol id="record" viewBox="0 0 100 100">
@@ -620,6 +625,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <circle cx="128.5" cy="128.5" r="128.5" fill="#111111"/>
     <g clip-path="url(#tsb-clip)"><circle class="mv" cx="250" cy="128.5" r="128.5" fill="#100000"/></g>
   </symbol>
+  <symbol id="aperture" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-aperture)"/></symbol>
   <symbol id="seat" viewBox="0 0 100 100"><circle class="dash" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="9 9"/></symbol>
 </svg>
 
@@ -913,14 +919,15 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 
   <section>
     <div class="wrap count">
-      <div class="big num" id="member-count" aria-hidden="true">02</div>
+      <div class="big num" id="member-count" aria-hidden="true">03</div>
       <div>
         <div class="seats" aria-hidden="true">
           <svg><use href="#reel"/></svg>
           <svg><use href="#record"/></svg>
+          <svg><use href="#aperture"/></svg>
           <svg class="seat"><use href="#seat"/></svg>
         </div>
-        <h2><span id="member-words">Two members</span> today. The next number is yours.</h2>
+        <h2><span id="member-words">Three members</span> today. The next number is yours.</h2>
         <p>Every person who joins gets the next number. It is how we will watch this grow from two barrels into a movement.</p>
       </div>
     </div>
@@ -935,9 +942,13 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="m-top"><span class="m-num num">02</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#record"/></svg></div>
           <div class="m-name"><strong>Ricky Reji</strong><span>Composer · Founder</span></div>
         </li>
+        <li class="member">
+          <div class="m-top"><span class="m-num num">03</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#aperture"/></svg></div>
+          <div class="m-name"><strong>Alan Jose</strong><span>Photographer</span></div>
+        </li>
         <li class="member open">
           <a href="#collaborate">
-            <div class="m-top"><span class="m-num num" id="member-next">03</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
+            <div class="m-top"><span class="m-num num" id="member-next">04</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
             <div class="m-name"><strong>Your name here</strong><span>Any craft · Join us →</span></div>
           </a>
         </li>
@@ -984,7 +995,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     </div>
   </section>
 </main>
-<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">03</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
+<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">04</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
 <div class="cur" id="cur" aria-hidden="true"><div class="cur-dot"><span id="cur-txt"></span></div></div>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="close-poster">Close ✕</button><button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous still" data-cursor="Prev" hidden>←</button><button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next still" data-cursor="Next" hidden>→</button><figure><img id="lb-img" src="dirt-poster.jpg" alt="" width="1333" height="2000"><figcaption id="lb-cap"></figcaption></figure></div>
 
@@ -998,7 +1009,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         <div class="lockup-label">Film and Music Atelier</div>
       </div>
     </div>
-    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 02</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
+    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 03</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
   </div>
 </footer>
 
