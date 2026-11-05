@@ -291,6 +291,11 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .dirt-stage:hover .peek,.dirt-stage:focus-within .peek{opacity:1;transform:translateY(-58%) scale(1.15) rotate(6deg)}
 .dirt-stage:hover .pop-tag,.dirt-stage:focus-within .pop-tag{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
 .work-card.dirt .filmstrip{margin-top:-4px}
+.work-status{display:flex;align-items:baseline;gap:10px;margin:2px 0 4px;font-size:15px;line-height:1.4}
+.work-status i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--red);transform:translateY(-1px);box-shadow:0 0 0 0 rgba(226,35,26,.5);animation:ws-pulse 2.2s ease-out infinite}
+.work-status b{font-weight:700}
+@keyframes ws-pulse{0%{box-shadow:0 0 0 0 rgba(226,35,26,.45)}70%,100%{box-shadow:0 0 0 9px rgba(226,35,26,0)}}
+@media (prefers-reduced-motion:reduce){ .work-status i{animation:none} }
 .credits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin:10px 0 0;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
 .credits div{min-width:0}
 .credits dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -804,6 +809,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             <p class="label work-kicker">Film · A film by Roddick Vincent · Music by Ricky Reji</p>
             <h3>DIRT</h3>
             <p>In rural Wayanad, a young boy pushed down one too many times fights back with a fistful of dirt.</p>
+            <p class="work-status"><i aria-hidden="true"></i><span><b>Now on the festival circuit.</b> Public release in 2027.</span></p>
             <dl class="credits">
               <div><dt>Produced by</dt><dd>Malayil Foundations</dd></div>
               <div><dt>Music</dt><dd>Ricky Reji</dd></div>
