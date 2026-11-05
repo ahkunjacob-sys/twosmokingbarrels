@@ -611,11 +611,12 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       <path d="M50.00 33.00 L64.72 41.50 L64.72 58.50 L50.00 67.00 L35.28 58.50 L35.28 41.50Z" fill="#000"/>
       <path d="M64.72 41.50 L100.66 62.25 M64.72 58.50 L64.72 100.00 M50.00 67.00 L14.06 87.75 M35.28 58.50 L-0.66 37.75 M35.28 41.50 L35.28 0.00 M50.00 33.00 L85.94 12.25" stroke="#000" stroke-width="2.8" stroke-linecap="round" fill="none"/>
     </mask>
-  <mask id="m-frame" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+  <mask id="m-camera" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
       <circle cx="50" cy="50" r="50" fill="#fff"/>
-      <rect x="21" y="35" width="58" height="30" rx="2.5" fill="#000"/>
-      <path d="M14 27v-6h8M86 27v-6h-8M14 73v6h8M86 73v6h-8" stroke="#000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <circle cx="73" cy="27" r="3.4" fill="#000"/>
+      <rect x="20" y="46" width="42" height="26" rx="3" fill="#000"/>
+      <circle cx="31" cy="35" r="10" fill="#000"/><circle cx="53" cy="35" r="10" fill="#000"/>
+      <circle cx="31" cy="35" r="3" fill="#fff"/><circle cx="53" cy="35" r="3" fill="#fff"/>
+      <path d="M62 52 L80 44 L80 74 L62 66 Z" fill="#000"/>
     </mask>
   </defs>
   <symbol id="reel" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-reel)"/></symbol>
@@ -635,7 +636,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <g clip-path="url(#tsb-clip)"><circle class="mv" cx="250" cy="128.5" r="128.5" fill="#100000"/></g>
   </symbol>
   <symbol id="aperture" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-aperture)"/></symbol>
-  <symbol id="frame" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-frame)"/></symbol>
+  <symbol id="camera" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-camera)"/></symbol>
   <symbol id="seat" viewBox="0 0 100 100"><circle class="dash" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="9 9"/></symbol>
 </svg>
 
@@ -936,7 +937,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <svg><use href="#reel"/></svg>
           <svg><use href="#record"/></svg>
           <svg><use href="#aperture"/></svg>
-          <svg><use href="#frame"/></svg>
+          <svg><use href="#camera"/></svg>
           <svg class="seat"><use href="#seat"/></svg>
         </div>
         <h2><span id="member-words">Four members</span> today. The next number is yours.</h2>
@@ -959,7 +960,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="m-name"><strong>Alan Jose</strong><span>Photographer</span></div>
         </li>
         <li class="member">
-          <div class="m-top"><span class="m-num num">04</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#frame"/></svg></div>
+          <div class="m-top"><span class="m-num num">04</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#camera"/></svg></div>
           <div class="m-name"><strong>Job T S</strong><span>Cinematographer · Editor</span></div>
         </li>
         <li class="member open">
