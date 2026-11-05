@@ -167,6 +167,8 @@ li:hover .g-credit circle:nth-child(3){transition-delay:.08s} li:hover .g-credit
 .toast{font-size:14px;font-weight:500;min-height:1.4em}
 
 footer{padding-block:28px 40px}
+.foot-mail{color:inherit;text-underline-offset:3px}
+.foot-mail:hover{color:var(--red)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 
 .logo-mark{width:44px;height:auto;aspect-ratio:379/257;flex:none}
@@ -214,6 +216,7 @@ footer .wrap{align-items:flex-end}
 @media (min-width:760px){ .contacts{grid-template-columns:1fr 1fr} }
 .contact{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;min-width:0}
 .contact .label{flex-basis:100%}
+.contact-studio{grid-column:1/-1}
 @media (max-width:759px){ .contact{display:grid;grid-template-columns:1fr;gap:10px;justify-items:start} .contact .copy + .mail{margin-top:10px} }
 .mail{font-weight:700;font-size:clamp(18px,2.2vw,24px);letter-spacing:-0.02em;text-decoration:none;word-break:break-all;background:linear-gradient(#111,#111) 0 100%/0 2px no-repeat;transition:background-size .35s}
 .mail:hover{background-size:100% 2px}
@@ -963,6 +966,11 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         </div>
       </div>
       <div class="contacts">
+        <div class="contact contact-studio">
+          <span class="label">Two Smoking Barrels · The atelier</span>
+          <a class="mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a>
+          <button class="btn ghost copy" type="button" data-copy="hello@twosmokingbarrels.co">Copy email</button>
+        </div>
         <div class="contact">
           <span class="label">Roddick Vincent · Filmmaker</span>
           <a class="mail" href="mailto:roddickvincent1@gmail.com">roddickvincent1@gmail.com</a>
@@ -995,7 +1003,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         <div class="lockup-label">Film and Music Atelier</div>
       </div>
     </div>
-    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 02</span></span>
+    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 02</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
   </div>
 </footer>
 
