@@ -853,8 +853,8 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             <ul class="t-tags"><li>Experimental</li><li>Tribal techno</li><li>Jungle</li></ul>
             <div class="eq" aria-hidden="true"><i style="--h:0.35;--d:0s"></i><i style="--h:0.7;--d:0.1s"></i><i style="--h:0.5;--d:0.25s"></i><i style="--h:0.9;--d:0.05s"></i><i style="--h:0.6;--d:0.3s"></i><i style="--h:0.8;--d:0.15s"></i><i style="--h:0.4;--d:0.2s"></i><i style="--h:1;--d:0.35s"></i><i style="--h:0.55;--d:0.08s"></i><i style="--h:0.75;--d:0.28s"></i><i style="--h:0.45;--d:0.18s"></i><i style="--h:0.85;--d:0.12s"></i><i style="--h:0.3;--d:0.22s"></i><i style="--h:0.65;--d:0.32s"></i><i style="--h:0.5;--d:0.04s"></i><i style="--h:0.95;--d:0.26s"></i><i style="--h:0.6;--d:0.14s"></i><i style="--h:0.4;--d:0.3s"></i></div>
             <div class="t-player">
-              <button type="button" class="t-play" id="ph-play" aria-label="Play a 32-second preview of Perfect Human"><span class="t-tri" aria-hidden="true"></span><span class="t-pause" aria-hidden="true"></span><span class="t-lbl">Play preview</span></button>
-              <div class="t-prog"><div class="t-bar" id="ph-bar" role="slider" tabindex="0" aria-label="Preview position" aria-valuemin="0" aria-valuemax="32" aria-valuenow="0" aria-valuetext="0:00 of 0:32" data-cursor="Seek"><span id="ph-fill"></span></div><span class="t-time" id="ph-time">0:00 / 0:32</span></div>
+              <button type="button" class="t-play" id="ph-play" aria-label="Play a 30-second preview of Perfect Human"><span class="t-tri" aria-hidden="true"></span><span class="t-pause" aria-hidden="true"></span><span class="t-lbl">Play preview</span></button>
+              <div class="t-prog"><div class="t-bar" id="ph-bar" role="slider" tabindex="0" aria-label="Preview position" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0" aria-valuetext="0:00 of 0:30" data-cursor="Seek"><span id="ph-fill"></span></div><span class="t-time" id="ph-time">0:00 / 0:30</span></div>
               <a class="t-yt" href="https://www.youtube.com/watch?v=hKuYcGVdBd4" target="_blank" rel="noopener" data-cursor="YouTube">Full track on YouTube ↗</a>
             </div>
             <audio id="ph-audio" src="perfect-human-preview.mp3" preload="none"></audio>
@@ -1119,7 +1119,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   var card=document.getElementById('ph-card'), a=document.getElementById('ph-audio'); if(!card||!a) return;
   var btn=document.getElementById('ph-play'), lbl=btn.querySelector('.t-lbl'), bar=document.getElementById('ph-bar'), fill=document.getElementById('ph-fill'), time=document.getElementById('ph-time');
-  var bars=[].slice.call(card.querySelectorAll('.eq i')), ctx=null, an=null, data=null, raf=0, DUR=32;
+  var bars=[].slice.call(card.querySelectorAll('.eq i')), ctx=null, an=null, data=null, raf=0, DUR=30;
   function fmt(t){ t=Math.max(0,Math.floor(t)); return Math.floor(t/60)+':'+('0'+t%60).slice(-2); }
   function dur(){ return isFinite(a.duration)&&a.duration>0?a.duration:DUR; }
   function paint(){
@@ -1132,7 +1132,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   function setUI(on){
     card.classList.toggle('playing',on);
     lbl.textContent=on?'Pause':(a.currentTime>0&&!a.ended?'Resume':'Play preview');
-    btn.setAttribute('aria-label',on?'Pause the preview':'Play a 32-second preview of Perfect Human');
+    btn.setAttribute('aria-label',on?'Pause the preview':'Play a 30-second preview of Perfect Human');
     setCursor(on?'Pause':'Play');
   }
   function setupAnalyser(){
