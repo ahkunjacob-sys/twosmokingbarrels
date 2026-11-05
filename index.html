@@ -890,14 +890,14 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 
   <section>
     <div class="wrap count">
-      <div class="big num" aria-hidden="true">02</div>
+      <div class="big num" id="member-count" aria-hidden="true">02</div>
       <div>
         <div class="seats" aria-hidden="true">
           <svg><use href="#reel"/></svg>
           <svg><use href="#record"/></svg>
           <svg class="seat"><use href="#seat"/></svg>
         </div>
-        <h2>Two members today. The next number is yours.</h2>
+        <h2><span id="member-words">Two members</span> today. The next number is yours.</h2>
         <p>Every person who joins gets the next number. It is how we will watch this grow from two barrels into a movement.</p>
       </div>
     </div>
@@ -914,7 +914,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         </li>
         <li class="member open">
           <a href="#collaborate">
-            <div class="m-top"><span class="m-num num">03</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
+            <div class="m-top"><span class="m-num num" id="member-next">03</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
             <div class="m-name"><strong>Your name here</strong><span>Any craft · Join us →</span></div>
           </a>
         </li>
@@ -974,7 +974,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         <div class="lockup-label">Film and Music Atelier</div>
       </div>
     </div>
-    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num">Members: 02</span></span>
+    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 02</span></span>
   </div>
 </footer>
 
@@ -1183,6 +1183,20 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   });
   document.addEventListener('visibilitychange',function(){ if(document.hidden&&!a.paused) a.pause(); });
   paint();
+})();
+</script>
+<script>
+/* Member count: worked out from the member cards, so adding a card updates every number. */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.wall .member:not(.open)')), n=cards.length; if(!n) return;
+  function pad(x){ return x<10?'0'+x:String(x); }
+  var words=['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+  cards.forEach(function(c,i){ var num=c.querySelector('.m-num'); if(num) num.textContent=pad(i+1); });
+  var set=function(id,t){ var el=document.getElementById(id); if(el) el.textContent=t; };
+  set('member-count',pad(n));
+  set('member-words',(n<words.length?words[n]:String(n))+(n===1?' member':' members'));
+  set('member-foot','Members: '+pad(n));
+  set('member-next',pad(n+1));
 })();
 </script>
 </body></html>
