@@ -11,6 +11,7 @@ Instagram: [@twosmokingbarrels.co](https://www.instagram.com/twosmokingbarrels.c
 - `still-*.jpg`: film stills (`-t` files are the smaller thumbnails)
 - `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`: browser tab and home-screen icons
 - `og-image.png`: the preview card shown when the link is shared
+- `perfect-human-preview.mp3`: 32-second preview of *Perfect Human* (Ricky Reji × Krishpill), cut from the stereo master at 2:16–2:48
 
 The site lives at https://twosmokingbarrels.co (domain registered with Namecheap, DNS pointed at GitHub Pages).
 
