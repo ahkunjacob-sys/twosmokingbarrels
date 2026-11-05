@@ -57,6 +57,23 @@ p{margin:0}
 
 /* header */
 header{padding-block:20px}
+.desk{display:flex;align-items:stretch;background:#111;color:#F0EEE9;font-size:14px;line-height:1;overflow:hidden;border-block:1px solid #111}
+.desk-tag{flex:none;display:flex;align-items:center;gap:9px;padding:11px 16px 11px max(16px,env(safe-area-inset-left,0px));background:#E2231A;color:#111;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;position:relative;z-index:1}
+.desk-tag i{width:8px;height:8px;border-radius:50%;background:#111;animation:desk-blink 1.6s steps(1) infinite}
+@keyframes desk-blink{50%{opacity:.15}}
+.desk-view{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 40px),transparent)}
+.desk-track{display:flex;width:max-content;animation:desk-roll var(--desk-dur,60s) linear infinite}
+.desk:hover .desk-track,.desk:focus-within .desk-track{animation-play-state:paused}
+.desk-list{display:flex;margin:0;padding:0;list-style:none;flex:none}
+.desk-list li{display:block;white-space:nowrap;padding:11px 0}
+.desk-list li::after{content:"";display:inline-block;vertical-align:middle;width:6px;height:6px;border-radius:50%;background:#E2231A;margin:-2px 26px 0}
+.desk-list b{font-weight:700}
+.desk-tag-short{display:none}
+.desk-list a{color:inherit;text-underline-offset:3px;margin-left:.35em}
+.desk-list a:hover{color:#E2231A}
+@keyframes desk-roll{to{transform:translateX(-50%)}}
+@media (max-width:640px){ .desk{font-size:13px} .desk-tag{font-size:11px;padding-inline:12px} .desk-tag-long{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap} .desk-tag-short{display:inline} }
+@media (prefers-reduced-motion:reduce){ .desk-track{animation:none} .desk-tag i{animation:none} .desk-view{overflow-x:auto;-webkit-mask-image:none;mask-image:none} }
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none;font-weight:700;letter-spacing:-0.02em;font-size:17px}
 nav{display:flex;gap:22px;flex-wrap:wrap}
@@ -686,6 +703,19 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 </div>
 
 <main id="top">
+  <!-- "Now on the desk" ticker: edit the <li> items below to update it -->
+  <div class="desk" role="region" aria-label="Now on the desk">
+    <span class="desk-tag"><i aria-hidden="true"></i><span class="desk-tag-long">Now on the desk</span><span class="desk-tag-short" aria-hidden="true">Now</span></span>
+    <div class="desk-view">
+      <ul class="desk-list" id="desk-list">
+        <li>In development: <b>The Geometry of Choice</b>, a short by Roddick Vincent, music by Ricky Reji</li>
+        <li>Now playing on the site: <b>Perfect Human</b>, Ricky Reji × Krishpill</li>
+        <li><b>DIRT</b>: stills and poster now up in Work</li>
+        <li>Seat <b class="next-num">03</b> is open. <a href="#collaborate">Join the movement</a></li>
+        <li>New home: <b>twosmokingbarrels.co</b></li>
+      </ul>
+    </div>
+  </div>
   <div class="hero">
     <div class="wrap">
       <div class="hero-top"><span class="label">Film and Music Atelier</span><span class="num">02</span></div>
@@ -1221,7 +1251,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   set('member-words',(n<words.length?words[n]:String(n))+(n===1?' member':' members'));
   set('member-foot','Members: '+pad(n));
   set('member-next',pad(n+1));
-  document.querySelectorAll('.jb-num').forEach(function(el){ el.textContent=pad(n+1); });
+  document.querySelectorAll('.jb-num,.next-num').forEach(function(el){ el.textContent=pad(n+1); });
 })();
 </script>
 <script>
@@ -1289,6 +1319,48 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   } else if('MutationObserver' in window){
     var was=false;
     new MutationObserver(function(){ var on=card.classList.contains('live'); if(on&&!was) play(); else if(!on&&was) stop(false); was=on; }).observe(card,{attributes:true,attributeFilter:['class']});
+  }
+})();
+</script>
+<script>
+/* "Now on the desk" ticker: duplicate the list once so it loops seamlessly; speed scales with length */
+(function(){
+  var list=document.getElementById('desk-list'); if(!list) return;
+  var track=document.createElement('div'); track.className='desk-track';
+  list.parentNode.insertBefore(track,list); track.appendChild(list);
+  var copy=list.cloneNode(true); copy.removeAttribute('id'); copy.setAttribute('aria-hidden','true');
+  copy.querySelectorAll('a').forEach(function(a){ a.tabIndex=-1; });
+  track.appendChild(copy);
+  function speed(){ var w=list.scrollWidth||1200; track.style.setProperty('--desk-dur',Math.max(25,w/55)+'s'); }
+  speed(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(speed);
+})();
+/* DIRT: on hover the fist winds up and the dirt launches along arcs into place */
+(function(){
+  var stage=document.querySelector('.dirt-stage'), svg=document.getElementById('dirt-art'); if(!stage||!svg||!svg.animate) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var grains=[].slice.call(svg.querySelectorAll('.grain')), fist=svg.lastElementChild, FX=134, FY=82, last=0, running=[];
+  if(fist) { fist.style.transformBox='fill-box'; fist.style.transformOrigin='50% 50%'; }
+  var data=grains.map(function(g){ var x=+g.getAttribute('cx'), y=+g.getAttribute('cy'); return {g:g,dx:FX-x,dy:FY-y,d:Math.hypot(FX-x,FY-y)}; });
+  function throwDirt(){
+    var now=performance.now(); if(now-last<1400) return; last=now;
+    running.forEach(function(a){ a.cancel(); }); running=[];
+    var wind=260;
+    if(fist) running.push(fist.animate([{transform:'scale(1)'},{transform:'scale(.78)',offset:.45},{transform:'scale(1.22)',offset:.62},{transform:'scale(1)'}],{duration:wind+260,easing:'ease-out'}));
+    data.forEach(function(p,i){
+      var lift=8+p.d*.32, jitter=(i%7)*9;
+      running.push(p.g.animate([
+        {transform:'translate('+p.dx+'px,'+p.dy+'px)',opacity:0},
+        {transform:'translate('+p.dx+'px,'+p.dy+'px)',opacity:1,offset:.04},
+        {transform:'translate('+(p.dx*.45)+'px,'+(p.dy*.45-lift)+'px)',offset:.5},
+        {transform:'translate(0px,0px)',opacity:1}
+      ],{duration:520+p.d*5.5,delay:wind+p.d*1.6+jitter,easing:'cubic-bezier(.2,.65,.35,1)',fill:'backwards'}));
+    });
+  }
+  if(window.matchMedia&&matchMedia('(hover:hover)').matches){
+    stage.addEventListener('pointerenter',throwDirt);
+  } else if('MutationObserver' in window){
+    var was=false;
+    new MutationObserver(function(){ var on=stage.classList.contains('live'); if(on&&!was) throwDirt(); was=on; }).observe(stage,{attributes:true,attributeFilter:['class']});
   }
 })();
 </script>
