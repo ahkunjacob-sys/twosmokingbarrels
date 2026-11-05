@@ -12,7 +12,7 @@ Instagram: [@twosmokingbarrels.co](https://www.instagram.com/twosmokingbarrels.c
 - `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`: browser tab and home-screen icons
 - `og-image.png`: the preview card shown when the link is shared
 
-If the site moves to its own domain, update the `og:url` and `og:image` addresses in `index.html`.
+The site lives at https://twosmokingbarrels.co (domain registered with Namecheap, DNS pointed at GitHub Pages).
 
 ## Publishing with GitHub Pages
 
@@ -20,4 +20,4 @@ If the site moves to its own domain, update the `og:url` and `og:image` addresse
 2. Under **Build and deployment**, set **Source** to *Deploy from a branch*.
 3. Pick the `main` branch and the `/ (root)` folder, then save.
 
-The site will be live at `https://ahkunjacob-sys.github.io/twosmokingbarrels/` after a minute or two.
+The site will be live at `https://twosmokingbarrels.co/` after a minute or two.
