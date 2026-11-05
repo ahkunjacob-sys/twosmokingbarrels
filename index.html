@@ -585,13 +585,12 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 </div>
 <script>
 (function(){
-  var L=document.getElementById('leader'), seen=false;
-  try{ seen=localStorage.getItem('tsb-leader-seen')==='1'; }catch(e){}
+  var L=document.getElementById('leader');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(seen||reduce||navigator.webdriver||document.visibilityState==='hidden') return;
+  if(reduce||navigator.webdriver||document.visibilityState==='hidden') return;
   L.hidden=false; document.documentElement.classList.add('leader-on');
   var t, gone=false;
-  function done(){ if(gone) return; gone=true; clearTimeout(t); L.classList.add('ld-out'); document.documentElement.classList.remove('leader-on'); setTimeout(function(){ L.hidden=true; },650); try{ localStorage.setItem('tsb-leader-seen','1'); }catch(e){} }
+  function done(){ if(gone) return; gone=true; clearTimeout(t); L.classList.add('ld-out'); document.documentElement.classList.remove('leader-on'); setTimeout(function(){ L.hidden=true; },650); }
   requestAnimationFrame(function(){ L.classList.add('ld-play'); });
   t=setTimeout(done,3200);
   document.getElementById('ld-skip').addEventListener('click',done);
