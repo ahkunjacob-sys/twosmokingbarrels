@@ -393,6 +393,12 @@ html.leader-on{overflow:hidden}
 .dim{transform-box:view-box;transform-origin:20px 44px;transition:transform .9s cubic-bezier(.4,1.3,.5,1)}
 .work-card:hover .chooser{transform:translateX(96px)}
 .work-card:hover .dim{transform:scaleX(5)}
+@media (hover:hover){
+  .work-card.geo-card:hover .chooser,.work-card.geo-card:hover .dim,.work-card.geo-card:hover .work-art,.work-card.geo-card:hover .grain{transform:none;box-shadow:none}
+  .work-card.geo-card .work-art.geo:hover .chooser{transform:translateX(96px)}
+  .work-card.geo-card .work-art.geo:hover .dim{transform:scaleX(5)}
+  .work-card.geo-card .work-art.geo:hover{transform:translate(-5px,-5px);box-shadow:6px 6px 0 var(--red)}
+}
 .work-card{display:grid;gap:18px;align-content:start;min-width:0;color:inherit;text-decoration:none}
 .work-art{position:relative;aspect-ratio:16/9;max-width:100%;background:#111;overflow:hidden;transition:transform .45s cubic-bezier(.3,1.4,.5,1),box-shadow .45s}
 .work-art svg{position:absolute;inset:0;width:100%;height:100%}
@@ -792,7 +798,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             </dl>
           </div>
         </article>
-        <article class="work-card">
+        <article class="work-card geo-card">
           <div class="work-art geo" aria-hidden="true">
             <svg viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice">
               <line x1="8" y1="26" x2="152" y2="26" stroke="#111" stroke-opacity=".35" stroke-width=".6" stroke-dasharray="1.5 2"/>
