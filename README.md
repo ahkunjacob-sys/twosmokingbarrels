@@ -9,6 +9,12 @@ Instagram: [@twosmokingbarrels.co](https://www.instagram.com/twosmokingbarrels.c
 - `index.html`: the whole site (layout, styles and scripts in one file)
 - `dirt-poster.jpg`, `dirt-still.jpg`: artwork for *DIRT*
 - `still-*.jpg`: film stills (`-t` files are the smaller thumbnails)
+- `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`: browser tab and home-screen icons
+- `og-image.png`: the preview card shown when the link is shared
+
+Hover sounds are generated in the browser (no audio files) and stay off until a visitor turns them on.
+
+If the site moves to its own domain, update the `og:url` and `og:image` addresses in `index.html`.
 
 ## Publishing with GitHub Pages
 
