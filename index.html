@@ -390,13 +390,19 @@ html.leader-on{overflow:hidden}
 .work-title.sm{font-size:clamp(28px,4.4vw,56px);line-height:.95;letter-spacing:-0.035em}
 .badge{position:absolute;top:7%;right:5%;background:#111;color:#F0EEE9;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px}
 .chooser{transition:transform .9s cubic-bezier(.4,1.3,.5,1)}
-.dim{transform-box:view-box;transform-origin:20px 44px;transition:transform .9s cubic-bezier(.4,1.3,.5,1)}
+.dim{transform-box:view-box;transform-origin:20px 50px;transition:transform .9s cubic-bezier(.4,1.3,.5,1)}
 .work-card:hover .chooser{transform:translateX(96px)}
 .work-card:hover .dim{transform:scaleX(5)}
+.g-walker{opacity:0;transform:translateX(-14px)}
+.g-mark{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+#g-body{transform-box:fill-box;transform-origin:50% 100%}
+#g-leg1,#g-leg2{transform-box:fill-box;transform-origin:50% 0%}
+.work-card.geo-card.geo-js .chooser,.work-card.geo-card.geo-js .dim{transform:none;transition:none}
+@media (max-width:640px){ .geo-card .badge{top:auto;bottom:7%;font-size:11px;padding:5px 8px} }
 @media (hover:hover){
   .work-card.geo-card:hover .chooser,.work-card.geo-card:hover .dim,.work-card.geo-card:hover .work-art,.work-card.geo-card:hover .grain{transform:none;box-shadow:none}
-  .work-card.geo-card .work-art.geo:hover .chooser{transform:translateX(96px)}
-  .work-card.geo-card .work-art.geo:hover .dim{transform:scaleX(5)}
+  .work-card.geo-card:not(.geo-js) .work-art.geo:hover .chooser{transform:translateX(96px)}
+  .work-card.geo-card:not(.geo-js) .work-art.geo:hover .dim{transform:scaleX(5)}
   .work-card.geo-card .work-art.geo:hover{transform:translate(-5px,-5px);box-shadow:6px 6px 0 var(--red)}
 }
 .work-card{display:grid;gap:18px;align-content:start;min-width:0;color:inherit;text-decoration:none}
@@ -806,9 +812,18 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
               <path d="M20 26 A36 36 0 0 1 92 26" fill="none" stroke="#111" stroke-opacity=".35" stroke-width=".6" stroke-dasharray="1.5 2"/>
               <circle cx="20" cy="26" r="8" fill="#111"/>
               <g fill="none" stroke="#111" stroke-width="1.1"><circle cx="44" cy="26" r="8"/><circle cx="68" cy="26" r="8"/><circle cx="92" cy="26" r="8"/><circle cx="116" cy="26" r="8"/><circle cx="140" cy="26" r="8"/></g>
-              <line class="dim" x1="20" y1="44" x2="44" y2="44" stroke="#111" stroke-width="1" vector-effect="non-scaling-stroke"/>
-              <line x1="20" y1="41" x2="20" y2="47" stroke="#111" stroke-width="1"/>
-              <g class="chooser"><circle cx="44" cy="26" r="8" fill="#F0EEE9"/><line x1="44" y1="41" x2="44" y2="47" stroke="#111" stroke-width="1"/></g>
+              <line class="dim" x1="20" y1="50" x2="44" y2="50" stroke="#111" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <line x1="20" y1="47" x2="20" y2="53" stroke="#111" stroke-width="1"/>
+              <g class="g-marks" fill="none" stroke="#111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path class="g-mark" id="g-x1" d="M40.6 22.6l6.8 6.8M47.4 22.6l-6.8 6.8"/><path class="g-mark" id="g-x2" d="M88.6 22.6l6.8 6.8M95.4 22.6l-6.8 6.8"/></g>
+              <g class="chooser"><circle cx="44" cy="26" r="8" fill="#F0EEE9"/><line x1="44" y1="47" x2="44" y2="53" stroke="#111" stroke-width="1"/></g>
+              <g class="g-marks" fill="none" stroke="#111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path class="g-mark" id="g-ok" d="M135.8 26.4l3 3 5.6-6.6"/>
+              </g>
+              <g transform="translate(0 50)"><g class="g-walker" id="g-walker"><g transform="scale(1.3)">
+                <g id="g-body"><circle cy="-8.9" r="1.8" fill="#111"/><rect x="-1.75" y="-6.75" width="3.5" height="4.5" rx="1.3" fill="#111"/></g>
+                <line id="g-leg1" x1="-.75" y1="-2.7" x2="-.75" y2="-.3" stroke="#111" stroke-width="1.25" stroke-linecap="round"/>
+                <line id="g-leg2" x1=".75" y1="-2.7" x2=".75" y2="-.3" stroke="#111" stroke-width="1.25" stroke-linecap="round"/>
+              </g></g></g>
             </svg>
             <span class="badge">Upcoming</span>
             <span class="work-title sm">The Geometry<br>of Choice</span>
@@ -1203,6 +1218,74 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   set('member-words',(n<words.length?words[n]:String(n))+(n===1?' member':' members'));
   set('member-foot','Members: '+pad(n));
   set('member-next',pad(n+1));
+})();
+</script>
+<script>
+/* The Geometry of Choice: a little man walks in, weighs each spot, and commits to the far one. */
+(function(){
+  var card=document.querySelector('.geo-card'), art=card&&card.querySelector('.work-art.geo'); if(!art||!art.animate) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var $=function(id){ return document.getElementById(id); };
+  var walker=$('g-walker'), body=$('g-body'), legs=[$('g-leg1'),$('g-leg2')], chooser=card.querySelector('.chooser'), dim=card.querySelector('.dim'), x1=$('g-x1'), x2=$('g-x2'), ok=$('g-ok');
+  if(!walker||!chooser||!dim) return;
+  card.classList.add('geo-js');
+  var T=3600, run=[];
+  // [start,end] of each stretch of walking, as fractions of T; the gaps are the hesitations
+  var walks=[[0,.2],[.36,.54],[.70,.88]], pauses=[[.2,.36],[.54,.70]];
+  function track(a){ run.push(a); return a; }
+  function legFrames(sign){
+    var f=[{offset:0,transform:'rotate(0deg)'}], step=110/T;
+    walks.forEach(function(w){
+      var t=w[0], k=0; f.push({offset:t,transform:'rotate(0deg)'});
+      while(t+step<w[1]){ t+=step; k++; f.push({offset:t,transform:'rotate('+(k%2?1:-1)*sign*28+'deg)'}); }
+      f.push({offset:w[1],transform:'rotate(0deg)'});
+    });
+    f.push({offset:1,transform:'rotate(0deg)'}); return f;
+  }
+  function swayFrames(){
+    var f=[{offset:0,transform:'rotate(0deg)'}];
+    pauses.forEach(function(p){ var d=p[1]-p[0]; f.push({offset:p[0],transform:'rotate(0deg)'},{offset:p[0]+d*.25,transform:'rotate(-9deg)'},{offset:p[0]+d*.55,transform:'rotate(7deg)'},{offset:p[0]+d*.85,transform:'rotate(0deg)'}); });
+    f.push({offset:1,transform:'rotate(0deg)'}); return f;
+  }
+  function pop(el,at){ return [{offset:0,opacity:0,transform:'scale(.2)'},{offset:at,opacity:0,transform:'scale(.2)'},{offset:Math.min(1,at+.05),opacity:1,transform:'scale(1.25)'},{offset:Math.min(1,at+.09),opacity:1,transform:'scale(1)'},{offset:1,opacity:1,transform:'scale(1)'}]; }
+  function play(){
+    stop(true);
+    var o={duration:T,fill:'forwards'};
+    track(walker.animate([
+      {offset:0,opacity:0,transform:'translateX(-14px)'},
+      {offset:.04,opacity:1},
+      {offset:.2,transform:'translateX(44px)',easing:'linear'},
+      {offset:.36,transform:'translateX(44px)',easing:'linear'},
+      {offset:.54,transform:'translateX(92px)',easing:'linear'},
+      {offset:.70,transform:'translateX(92px)',easing:'linear'},
+      {offset:.88,transform:'translateX(140px)'},
+      {offset:1,opacity:1,transform:'translateX(140px)'}
+    ],{duration:T,fill:'forwards',easing:'linear'}));
+    track(chooser.animate([
+      {offset:0,transform:'translateX(0px)'},{offset:.36,transform:'translateX(0px)'},{offset:.54,transform:'translateX(48px)'},
+      {offset:.70,transform:'translateX(48px)'},{offset:.88,transform:'translateX(96px)'},{offset:1,transform:'translateX(96px)'}
+    ],o));
+    track(dim.animate([
+      {offset:0,transform:'scaleX(1)'},{offset:.36,transform:'scaleX(1)'},{offset:.54,transform:'scaleX(3)'},
+      {offset:.70,transform:'scaleX(3)'},{offset:.88,transform:'scaleX(5)'},{offset:1,transform:'scaleX(5)'}
+    ],o));
+    track(legs[0].animate(legFrames(1),o)); track(legs[1].animate(legFrames(-1),o));
+    track(body.animate(swayFrames(),o));
+    track(x1.animate(pop(x1,.40),o)); track(x2.animate(pop(x2,.74),o)); track(ok.animate(pop(ok,.9),o));
+  }
+  function stop(now){
+    var old=run; run=[];
+    if(now){ old.forEach(function(a){ a.cancel(); }); return; }
+    // ease everything back to rest instead of snapping
+    old.forEach(function(a){ var el=a.effect&&a.effect.target; if(!el){ a.cancel(); return; } var cs=getComputedStyle(el), from={transform:cs.transform,opacity:cs.opacity}; a.cancel(); var to={transform:getComputedStyle(el).transform,opacity:getComputedStyle(el).opacity}; el.animate([from,to],{duration:320,easing:'cubic-bezier(.3,.7,.3,1)'}); });
+  }
+  if(window.matchMedia&&matchMedia('(hover:hover)').matches){
+    art.addEventListener('pointerenter',play);
+    art.addEventListener('pointerleave',function(){ stop(false); });
+  } else if('MutationObserver' in window){
+    var was=false;
+    new MutationObserver(function(){ var on=card.classList.contains('live'); if(on&&!was) play(); else if(!on&&was) stop(false); was=on; }).observe(card,{attributes:true,attributeFilter:['class']});
+  }
 })();
 </script>
 </body></html>
