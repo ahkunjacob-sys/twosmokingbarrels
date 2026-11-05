@@ -960,7 +960,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <div class="wrap">
       <h2>Open for collaboration.</h2>
       <a class="join-cta" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" data-cursor="Join">
-        <span class="jc-num num">03</span>
+        <span class="jc-num num">04</span>
         <span class="jc-body"><strong>Join the movement</strong><span>Tell us your name, your craft, show us your work and what you want to make with us. Two minutes.</span></span>
         <span class="jc-arrow" aria-hidden="true">→</span>
       </a>
@@ -1232,7 +1232,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   set('member-words',(n<words.length?words[n]:String(n))+(n===1?' member':' members'));
   set('member-foot','Members: '+pad(n));
   set('member-next',pad(n+1));
-  document.querySelectorAll('.jb-num').forEach(function(el){ el.textContent=pad(n+1); });
+  document.querySelectorAll('.jb-num,.jc-num').forEach(function(el){ el.textContent=pad(n+1); });
 })();
 </script>
 <script>
