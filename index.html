@@ -58,16 +58,6 @@ p{margin:0}
 /* header */
 header{padding-block:20px}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.snd{-webkit-tap-highlight-color:transparent;display:inline-flex;align-items:center;gap:8px;font:700 13px var(--sans);letter-spacing:.02em;background:transparent;color:var(--ink);border:2px solid var(--ink);padding:7px 11px;cursor:pointer;line-height:1}
-.snd svg{width:18px;height:18px;flex:none}
-header nav{margin-left:auto}
-.snd-mm{display:none;align-self:flex-start;border-color:currentColor;color:inherit}
-.mmenu .snd-mm[aria-pressed="true"]{background:#111;border-color:#111;color:#F0EEE9}
-.snd .snd-on{display:none}
-.snd[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#F0EEE9}
-.snd[aria-pressed="true"] .snd-on{display:inline}
-.snd[aria-pressed="true"] .snd-off{display:none}
-.snd:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none;font-weight:700;letter-spacing:-0.02em;font-size:17px}
 nav{display:flex;gap:22px;flex-wrap:wrap}
 nav a{text-decoration:none;font-size:15px;font-weight:500}
@@ -523,8 +513,6 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 .menu-btn,.mmenu,.scroll-cue,.joinbar{display:none}
 @media (max-width:600px){
   header nav{display:none}
-  .snd-head{display:none}
-  .mm .snd-mm,.mmenu .snd-mm{display:inline-flex}
   header .wrap{flex-wrap:nowrap}
   .menu-btn{display:inline-flex;align-items:center;gap:10px;font:700 15px var(--sans);background:#111;color:#F0EEE9;border:0;padding:10px 14px 10px 12px;cursor:pointer}
   .mb-dots{display:inline-flex}
@@ -646,7 +634,6 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       <a href="#work">Work</a>
       <a href="#collaborate">Collaborate</a>
     </nav>
-    <button class="snd snd-head" id="snd" type="button" aria-pressed="false" title="Turn hover sounds on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><g class="snd-on" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/></g><g class="snd-off" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 9l5 6M21 9l-5 6"/></g></svg><span class="snd-txt">Sound off</span></button>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mmenu"><span class="mb-dots" aria-hidden="true"><i></i><i></i></span>Menu</button>
   </div>
 </header>
@@ -658,7 +645,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <a href="#work"><span class="num">03</span>Work</a>
     <a href="#collaborate"><span class="num">04</span>Collaborate</a>
   </nav>
-  <div class="mm-foot"><button class="snd snd-mm" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><g class="snd-on" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/></g><g class="snd-off" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 9l5 6M21 9l-5 6"/></g></svg><span class="snd-txt2">Sound off</span></button><a href="https://tally.so/r/Vpjpdj" target="_blank" rel="noopener" class="mm-join">Join the movement →</a><a href="https://www.instagram.com/twosmokingbarrels.co/" target="_blank" rel="noopener">@twosmokingbarrels.co</a></div>
+  <div class="mm-foot"><a href="https://tally.so/r/Vpjpdj" target="_blank" rel="noopener" class="mm-join">Join the movement →</a><a href="https://www.instagram.com/twosmokingbarrels.co/" target="_blank" rel="noopener">@twosmokingbarrels.co</a></div>
 </div>
 
 <main id="top">
@@ -1100,80 +1087,4 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 })();
 </script>
 
-<script>
-/* Hover sounds: synthesised with Web Audio, off until the visitor turns them on. */
-(function(){
-  var btns=[].slice.call(document.querySelectorAll('.snd')); if(!btns.length) return; var btn=btns[0];
-  var AC=window.AudioContext||window.webkitAudioContext;
-  if(!AC){ btns.forEach(function(b){ b.hidden=true; }); return; }
-  var ctx=null, master=null, on=false, bufs={}, active=new Map();
-  function noise(len){ var b=ctx.createBuffer(1,Math.floor(ctx.sampleRate*len),ctx.sampleRate), d=b.getChannelData(0); for(var i=0;i<d.length;i++) d[i]=Math.random()*2-1; return b; }
-  // projector: 24 shutter clicks a second over a low motor rumble, 2s loop
-  function projector(){
-    var sr=ctx.sampleRate, n=Math.floor(sr*2), b=ctx.createBuffer(1,n,sr), d=b.getChannelData(0), per=sr/24, lp=0;
-    for(var k=0;k<48;k++){ var st=Math.floor(k*per+(Math.random()-.5)*sr*.002), amp=.55+Math.random()*.35;
-      for(var j=0;j<sr*.012&&st+j<n;j++){ var e=Math.exp(-j/(sr*.0022)); d[st+j]+=(Math.random()*2-1)*amp*e+Math.sin(j/sr*2*Math.PI*1400)*.35*amp*e; } }
-    for(var i=0;i<n;i++){ var t=i/sr; lp+=.02*((Math.random()*2-1)-lp); d[i]+=lp*.9+Math.sin(2*Math.PI*48*t)*.05+Math.sin(2*Math.PI*96*t)*.025; }
-    return b;
-  }
-  // vinyl: soft surface hiss with random dust pops, 4s loop
-  function crackle(){
-    var sr=ctx.sampleRate, n=Math.floor(sr*4), b=ctx.createBuffer(1,n,sr), d=b.getChannelData(0), hp=0, prev=0;
-    for(var i=0;i<n;i++){ var w=Math.random()*2-1; hp=w-prev; prev=w; d[i]=hp*.035; }
-    for(var c=0;c<56;c++){ var st=Math.floor(Math.random()*n), a=(Math.random()<.15?.9:.35)*(Math.random()<.5?-1:1), L=Math.floor(sr*(.0006+Math.random()*.0018));
-      for(var j=0;j<L&&st+j<n;j++) d[st+j]+=a*Math.exp(-j/(L*.3))*(Math.random()*.6+.7); }
-    // slow rotation thump at 33⅓ rpm
-    for(var i2=0;i2<n;i2++){ d[i2]+=Math.sin(2*Math.PI*.555*i2/sr)*Math.sin(2*Math.PI*40*i2/sr)*.01; }
-    return b;
-  }
-  function init(){
-    if(ctx) return;
-    ctx=new AC(); master=ctx.createGain(); master.gain.value=.5;
-    var comp=ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
-    bufs.reel=projector(); bufs.record=crackle(); bufs.noise=noise(.3);
-  }
-  function needle(at,dest){
-    var o=ctx.createOscillator(), g=ctx.createGain(); o.type='sine'; o.frequency.setValueAtTime(90,at); o.frequency.exponentialRampToValueAtTime(38,at+.14);
-    g.gain.setValueAtTime(.0001,at); g.gain.exponentialRampToValueAtTime(.7,at+.006); g.gain.exponentialRampToValueAtTime(.0001,at+.22);
-    o.connect(g); g.connect(dest); o.start(at); o.stop(at+.25);
-    var s=ctx.createBufferSource(), f=ctx.createBiquadFilter(), g2=ctx.createGain(); s.buffer=bufs.noise; f.type='bandpass'; f.frequency.value=2600; f.Q.value=.8;
-    g2.gain.setValueAtTime(.5,at); g2.gain.exponentialRampToValueAtTime(.0001,at+.05); s.connect(f); f.connect(g2); g2.connect(dest); s.start(at); s.stop(at+.06);
-  }
-  function start(el,kind){
-    if(!on||!ctx||active.has(el)) return;
-    if(ctx.state==='suspended') ctx.resume();
-    var t=ctx.currentTime, g=ctx.createGain(), src=ctx.createBufferSource(), f=ctx.createBiquadFilter();
-    src.buffer=bufs[kind]; src.loop=true;
-    if(kind==='reel'){ f.type='lowpass'; f.frequency.value=3800; g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.32,t+.35); src.playbackRate.setValueAtTime(.55,t); src.playbackRate.linearRampToValueAtTime(1,t+.45); }
-    else { f.type='lowpass'; f.frequency.value=7000; g.gain.setValueAtTime(.0001,t+.08); g.gain.exponentialRampToValueAtTime(.55,t+.3); needle(t,master); }
-    src.connect(f); f.connect(g); g.connect(master); src.start(t, Math.random()*1.5);
-    active.set(el,{g:g,src:src});
-  }
-  function stop(el){
-    var a=active.get(el); if(!a) return; active.delete(el);
-    var t=ctx.currentTime; a.g.gain.cancelScheduledValues(t); a.g.gain.setValueAtTime(Math.max(a.g.gain.value,.0001),t); a.g.gain.exponentialRampToValueAtTime(.0001,t+.3);
-    if(a.src.playbackRate) a.src.playbackRate.linearRampToValueAtTime(.5,t+.3);
-    a.src.stop(t+.35);
-  }
-  function stopAll(){ active.forEach(function(_,el){ stop(el); }); }
-  var targets=[];
-  document.querySelectorAll('.half').forEach(function(h){ if(h.querySelector('.reel-spin')) targets.push([h,'reel']); else if(h.querySelector('.deck')) targets.push([h,'record']); });
-  document.querySelectorAll('.work-card.track').forEach(function(el){ targets.push([el,'record']); });
-  var hover=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
-  if(hover){
-    targets.forEach(function(p){ p[0].addEventListener('pointerenter',function(){ start(p[0],p[1]); }); p[0].addEventListener('pointerleave',function(){ stop(p[0]); }); });
-  } else if('IntersectionObserver' in window){
-    // on phones, play while the piece is in the middle of the screen (when it animates)
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ var k=e.target.__snd; if(e.isIntersecting) start(e.target,k); else stop(e.target); }); },{rootMargin:'-28% 0px -28% 0px',threshold:0});
-    targets.forEach(function(p){ p[0].__snd=p[1]; io.observe(p[0]); });
-  }
-  function toggle(){
-    init(); on=!on; if(on&&ctx.state==='suspended') ctx.resume();
-    btns.forEach(function(b){ b.setAttribute('aria-pressed',on?'true':'false'); b.title=on?'Turn hover sounds off':'Turn hover sounds on'; var t=b.querySelector('.snd-txt,.snd-txt2'); if(t) t.textContent=on?'Sound on':'Sound off'; });
-    if(on){ needle(ctx.currentTime,master); } else stopAll();
-  }
-  btns.forEach(function(b){ b.addEventListener('click',toggle); });
-  document.addEventListener('visibilitychange',function(){ if(document.hidden&&ctx) stopAll(); });
-})();
-</script>
 </body></html>
