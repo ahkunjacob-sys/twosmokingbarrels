@@ -680,7 +680,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <a href="#work"><span class="num">03</span>Work</a>
     <a href="#collaborate"><span class="num">04</span>Collaborate</a>
   </nav>
-  <div class="mm-foot"><a href="https://tally.so/r/Vpjpdj" target="_blank" rel="noopener" class="mm-join">Join the movement →</a><a href="https://www.instagram.com/twosmokingbarrels.co/" target="_blank" rel="noopener">@twosmokingbarrels.co</a></div>
+  <div class="mm-foot"><a href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" class="mm-join">Join the movement →</a><a href="https://www.instagram.com/twosmokingbarrels.co/" target="_blank" rel="noopener">@twosmokingbarrels.co</a></div>
 </div>
 
 <main id="top">
@@ -946,7 +946,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   <section id="collaborate" class="join">
     <div class="wrap">
       <h2>Open for collaboration.</h2>
-      <a class="join-cta" href="https://tally.so/r/Vpjpdj" target="_blank" rel="noopener" data-cursor="Join">
+      <a class="join-cta" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" data-cursor="Join">
         <span class="jc-num num">03</span>
         <span class="jc-body"><strong>Join the movement</strong><span>Tell us your name, your craft, show us your work and what you want to make with us. Two minutes.</span></span>
         <span class="jc-arrow" aria-hidden="true">→</span>
@@ -981,7 +981,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     </div>
   </section>
 </main>
-<a class="joinbar" id="joinbar" href="https://tally.so/r/Vpjpdj" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">03</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
+<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">03</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
 <div class="cur" id="cur" aria-hidden="true"><div class="cur-dot"><span id="cur-txt"></span></div></div>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="close-poster">Close ✕</button><button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous still" data-cursor="Prev" hidden>←</button><button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next still" data-cursor="Next" hidden>→</button><figure><img id="lb-img" src="dirt-poster.jpg" alt="" width="1333" height="2000"><figcaption id="lb-cap"></figcaption></figure></div>
 
@@ -1218,6 +1218,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   set('member-words',(n<words.length?words[n]:String(n))+(n===1?' member':' members'));
   set('member-foot','Members: '+pad(n));
   set('member-next',pad(n+1));
+  document.querySelectorAll('.jb-num').forEach(function(el){ el.textContent=pad(n+1); });
 })();
 </script>
 <script>
