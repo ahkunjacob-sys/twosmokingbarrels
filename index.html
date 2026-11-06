@@ -1051,7 +1051,12 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:none)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)) return;
   var sel=[".brand", ".count", ".dirt-stage", ".half", ".join", ".join-cta", ".lockup", ".member", ".member.open", ".wordmark", ".work-card", ".work-card.dirt", ".work-card.track", ".work-open", ".make > div", ".beliefs li"].join(',');
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('live',e.isIntersecting); }); },{rootMargin:'-28% 0px -28% 0px',threshold:0});
+  // Wake blocks up only once scrolling settles, so no effect runs while the finger is moving
+  var want=new Map(), idle=0;
+  function flush(){ want.forEach(function(on,el){ el.classList.toggle('live',on); }); want.clear(); }
+  function later(){ clearTimeout(idle); idle=setTimeout(flush,160); }
+  window.addEventListener('scroll',later,{passive:true});
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ want.set(e.target,e.isIntersecting); }); later(); },{rootMargin:'-28% 0px -28% 0px',threshold:0});
   function watch(){ document.querySelectorAll(sel).forEach(function(el){ if(!el.__live){ el.__live=1; io.observe(el); } }); }
   watch(); setTimeout(watch,1500);
 })();
