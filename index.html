@@ -302,6 +302,21 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .credits div{min-width:0}
 .credits dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .credits dd{margin:2px 0 0;font-weight:700;font-size:15px}
+.crew{margin-top:14px;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent);display:grid;gap:12px}
+.crew-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.crew-head h4{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.crew-where{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700}
+.crew-photo{position:relative;display:block;width:100%;padding:0;border:0;background:#111;cursor:zoom-in;overflow:hidden;aspect-ratio:960/556}
+.crew-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.04);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.crew-photo:hover img,.crew-photo:focus-visible img{transform:scale(1.03)}
+.crew-photo:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.crew-tag{position:absolute;right:10px;bottom:10px;background:#F0EEE9;color:#111;font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 9px;transform:translateY(6px);opacity:0;transition:opacity .25s,transform .25s}
+.crew-photo:hover .crew-tag,.crew-photo:focus-visible .crew-tag{opacity:1;transform:none}
+@media (hover:none){ .crew-tag{opacity:1;transform:none} }
+.crew-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px}
+.crew-list li{display:grid;gap:1px;min-width:0;align-content:start}
+.crew-list span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.crew-list b{font-size:14px;font-weight:700}
 .lightbox{position:fixed;inset:0;z-index:50;background:rgba(10,10,10,.92);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out;animation:lbin .35s ease}
 .lightbox img{max-height:calc(100vh - 140px);max-height:calc(100dvh - 140px);max-width:100%;width:auto;height:auto;object-fit:contain;box-shadow:10px 10px 0 #E2231A}
 .lightbox button{position:absolute;top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));font:700 15px var(--sans);background:#F0EEE9;color:#111;border:0;padding:10px 14px;cursor:pointer}
@@ -822,6 +837,24 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
               <div><dt>Editor</dt><dd>Nitin Sharma</dd></div>
               <div><dt>Cinematography</dt><dd>Job T Sunil</dd></div>
             </dl>
+            <section class="crew" aria-labelledby="crew-h">
+              <div class="crew-head"><h4 id="crew-h" class="label">The crew</h4><span class="crew-where">On set · Wayanad</span></div>
+              <button class="crew-photo" type="button" id="open-crew" aria-label="View the DIRT crew photo">
+                <img src="crew-dirt-t.jpg" alt="The DIRT cast and crew on set in a Wayanad paddy field, one of them holding the clapperboard" width="960" height="556" loading="lazy">
+                <span class="crew-tag" aria-hidden="true">View ↗</span>
+              </button>
+              <ul class="crew-list">
+                <li><span>Director</span><b>Roddick Vincent</b></li>
+                <li><span>Director of Photography</span><b>Job T Sunil</b></li>
+                <li><span>Music Director</span><b>Ricky Reji</b></li>
+                <li><span>Casting Director · Actor</span><b>Jacob Puthusseriyil</b></li>
+                <li><span>First AD · Acting Coach</span><b>Shaun Saji</b></li>
+                <li><span>Production Manager</span><b>Jonathan Ravada</b></li>
+                <li><span>Unit Production Manager</span><b>Jisto Reji</b></li>
+                <li><span>Actor</span><b>Saji KD</b></li>
+                <li><span>Actor</span><b>Shyam</b></li>
+              </ul>
+            </section>
           </div>
         </article>
         <article class="work-card geo-card">
@@ -1063,7 +1096,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   var C=document.getElementById('cur'), T=document.getElementById('cur-txt'); if(!C) return;
-  var map=[['#open-poster','Poster'],['.frame','View'],['.work-card.track','Play'],['#lightbox','Close'],['.member.open a','Join'],['.work-open','Join'],['a.mail.phone','Call'],['a.mail','Email'],['#ld-skip','Skip'],['#leader','Skip']];
+  var map=[['#open-poster','Poster'],['#open-crew','View'],['.frame','View'],['.work-card.track','Play'],['#lightbox','Close'],['.member.open a','Join'],['.work-open','Join'],['a.mail.phone','Call'],['a.mail','Email'],['#ld-skip','Skip'],['#leader','Skip']];
   map.forEach(function(m){ document.querySelectorAll(m[0]).forEach(function(el){ if(!el.dataset.cursor) el.dataset.cursor=m[1]; }); });
   document.querySelectorAll('.half').forEach(function(h){ if(h.querySelector('.reel-spin')) h.dataset.cursor='Roll'; else if(h.querySelector('.deck')) h.dataset.cursor='Spin'; });
   document.documentElement.classList.add('has-cur');
@@ -1112,6 +1145,8 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   function step(d){ if(idx<0) return; showStill(idx+d); }
   var op=document.getElementById('open-poster');
   if(op) op.addEventListener('click',function(){ idx=-1; setNav(false); show('dirt-poster.jpg',1333,2000,POSTER_ALT,'',op); });
+  var oc=document.getElementById('open-crew');
+  if(oc) oc.addEventListener('click',function(){ idx=-1; setNav(false); show('crew-dirt.jpg',960,1280,'The DIRT cast and crew on set in a Wayanad paddy field','DIRT · The crew, on set in Wayanad',oc); });
   document.querySelectorAll('.frame').forEach(function(f){
     f.addEventListener('click',function(){ var i=stills.findIndex(function(s){ return s.dataset.full===f.dataset.full; }); showStill(i<0?0:i,f); });
   });
