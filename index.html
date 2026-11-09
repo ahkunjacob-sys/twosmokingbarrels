@@ -313,6 +313,23 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .crew-polaroid figcaption{font:600 clamp(22px,2.4vw,28px)/1 'Caveat',cursive;color:#1d1c1a;padding:14px 4px 18px;transform:rotate(-1deg);text-align:left}
 .tape{position:absolute;z-index:2;left:50%;top:-15px;width:118px;height:30px;margin-left:-59px;background:rgba(214,198,158,.72);box-shadow:0 1px 3px rgba(0,0,0,.14);transform:rotate(3.5deg);-webkit-clip-path:polygon(0 8%,4% 0,9% 10%,14% 1%,20% 9%,26% 0,33% 8%,40% 1%,47% 9%,54% 0,61% 8%,68% 1%,75% 9%,82% 0,89% 8%,95% 1%,100% 7%,100% 93%,96% 100%,90% 91%,84% 100%,77% 92%,70% 100%,63% 91%,56% 100%,49% 92%,42% 100%,35% 91%,28% 100%,21% 92%,14% 100%,8% 91%,3% 100%,0 92%);clip-path:polygon(0 8%,4% 0,9% 10%,14% 1%,20% 9%,26% 0,33% 8%,40% 1%,47% 9%,54% 0,61% 8%,68% 1%,75% 9%,82% 0,89% 8%,95% 1%,100% 7%,100% 93%,96% 100%,90% 91%,84% 100%,77% 92%,70% 100%,63% 91%,56% 100%,49% 92%,42% 100%,35% 91%,28% 100%,21% 92%,14% 100%,8% 91%,3% 100%,0 92%)}
 @media (prefers-reduced-motion:reduce){ .crew-polaroid{transition:none} }
+.clap{display:none}
+.clap-ready .clap{display:grid;position:absolute;inset:0;z-index:3;place-items:center;background:#0c0c0c;pointer-events:none}
+.clap-board{position:relative;width:min(74%,360px);display:block;transform-origin:50% 100%}
+.clap-stick,.clap-top{display:block;height:clamp(16px,3.4vw,24px);background:repeating-linear-gradient(-55deg,#F0EEE9 0 clamp(10px,2vw,16px),#111 clamp(10px,2vw,16px) clamp(20px,4vw,32px));border:2px solid #F0EEE9}
+.clap-stick{position:relative;z-index:1;transform-origin:2px 100%;transform:rotate(-22deg)}
+.clap-top{border-top:0;background:repeating-linear-gradient(55deg,#F0EEE9 0 clamp(10px,2vw,16px),#111 clamp(10px,2vw,16px) clamp(20px,4vw,32px))}
+.clap-body{display:grid;border:2px solid #F0EEE9;border-top:0;background:#171615;color:#F0EEE9;font-family:var(--sans)}
+.cb-row{display:flex;align-items:baseline;gap:8px;padding:clamp(4px,1vw,8px) clamp(6px,1.4vw,10px);border-top:1.5px solid rgba(240,238,233,.55);min-width:0}
+.cb-row:first-child{border-top:0}
+.cb-row.two,.cb-row.three{display:grid;padding:0}
+.cb-row.two{grid-template-columns:1fr 1fr}
+.cb-row.three{grid-template-columns:1fr 1fr 1fr}
+.cb-row.two>span,.cb-row.three>span{display:flex;align-items:baseline;gap:6px;padding:clamp(4px,1vw,8px) clamp(6px,1.4vw,10px);min-width:0;border-left:1.5px solid rgba(240,238,233,.55)}
+.cb-row.two>span:first-child,.cb-row.three>span:first-child{border-left:0}
+.cb-row i{font-style:normal;font-size:clamp(7px,1.1vw,9px);letter-spacing:.14em;text-transform:uppercase;color:rgba(240,238,233,.6);flex:none}
+.cb-row b{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(14px,2.4vw,22px);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cb-row:first-child b{color:#E2231A;font-family:var(--sans);font-weight:900;letter-spacing:-.02em;font-size:clamp(16px,2.8vw,26px)}
 .crew-neg{position:relative;background:#0c0c0c;padding:30px 14px 30px}
 .crew-neg::before,.crew-neg::after{content:"";position:absolute;left:0;right:0;height:11px;background:repeating-linear-gradient(90deg,transparent 0 9px,#ECE7DE 9px 23px,transparent 23px 32px);opacity:.88;border-radius:1px}
 .crew-neg::before{top:9px}
@@ -869,6 +886,18 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
                 <span class="tape" aria-hidden="true"></span>
                 <button class="crew-photo" type="button" id="open-crew" aria-label="View the DIRT crew photo">
                   <img src="crew-dirt-t.jpg" alt="The DIRT cast and crew on set in a Wayanad paddy field, one of them holding the clapperboard" width="960" height="556" loading="lazy">
+                  <span class="clap" aria-hidden="true">
+                    <span class="clap-board">
+                      <span class="clap-stick"></span>
+                      <span class="clap-top"></span>
+                      <span class="clap-body">
+                        <span class="cb-row"><i>Prod.</i><b>DIRT</b></span>
+                        <span class="cb-row three"><span><i>Roll</i><b>A</b></span><span><i>Scene</i><b>12</b></span><span><i>Take</i><b>1</b></span></span>
+                        <span class="cb-row"><i>Director</i><b>Roddick Vincent</b></span>
+                        <span class="cb-row"><i>Camera</i><b>Job T Sunil</b></span>
+                      </span>
+                    </span>
+                  </span>
                   <span class="crew-spot" aria-hidden="true"></span>
                   <span class="crew-name" aria-hidden="true"></span>
                   <span class="crew-tag" aria-hidden="true">View ↗</span>
@@ -1432,6 +1461,26 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     on(bd<70?best:null);
   });
   ph.addEventListener('pointerleave',function(){ on(null); });
+})();
+</script>
+<script>
+/* DIRT crew: clapperboard snaps shut, then drops away to reveal the photo (once per visit) */
+(function(){
+  var ph=document.getElementById('open-crew'), clap=ph&&ph.querySelector('.clap'); if(!clap||!clap.animate||!('IntersectionObserver' in window)) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var board=clap.querySelector('.clap-board'), stick=clap.querySelector('.clap-stick'), img=ph.querySelector('img');
+  ph.classList.add('clap-ready');
+  function done(){ ph.classList.remove('clap-ready'); }
+  function play(){
+    var ease='cubic-bezier(.55,0,.75,.2)';
+    stick.animate([{transform:'rotate(-22deg)'},{transform:'rotate(-26deg)',offset:.55},{transform:'rotate(0deg)',offset:.82,easing:'cubic-bezier(.6,0,1,1)'},{transform:'rotate(1.5deg)',offset:.9},{transform:'rotate(0deg)'}],{duration:760,fill:'forwards'});
+    board.animate([{transform:'translateY(0)'},{transform:'translateY(0)',offset:.82},{transform:'translateY(3px) scale(.985)',offset:.88},{transform:'translateY(0)'}],{duration:760});
+    var out=clap.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(0)',opacity:1,offset:.0},{transform:'translateY(105%)',opacity:1}],{duration:560,delay:1050,easing:ease,fill:'forwards'});
+    if(img) img.animate([{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:900,delay:1150,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'});
+    out.onfinish=done;
+  }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ io.disconnect(); setTimeout(play,250); } }); },{threshold:.6});
+  io.observe(ph);
 })();
 </script>
 </body></html>
