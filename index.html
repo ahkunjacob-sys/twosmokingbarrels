@@ -1075,7 +1075,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 </main>
 <a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">05</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
 <div class="cur" id="cur" aria-hidden="true"><div class="cur-dot"><span id="cur-txt"></span></div></div>
-<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="close-poster">Close ✕</button><button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous still" data-cursor="Prev" hidden>←</button><button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next still" data-cursor="Next" hidden>→</button><figure><img id="lb-img" src="dirt-poster.jpg" alt="" width="1333" height="2000"><figcaption id="lb-cap"></figcaption></figure></div>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="close-poster">Close ✕</button><button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous still" data-cursor="Prev" hidden>←</button><button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next still" data-cursor="Next" hidden>→</button><figure><img id="lb-img" alt="" width="1333" height="2000"><figcaption id="lb-cap"></figcaption></figure></div>
 
 <footer>
   <div class="wrap">
@@ -1161,7 +1161,16 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   var POSTER_ALT='DIRT poster: a boy running across a misty field. A film by Roddick Vincent. Produced by Malayil Foundations, music by Ricky Reji, editor Nitin Sharma, cinematography Job T Sunil.';
   var prev=document.getElementById('lb-prev'), next=document.getElementById('lb-next');
   var stills=[].slice.call(document.querySelectorAll('.frame:not(.dup)')), idx=-1;
-  function show(src,w,h,alt,caption,from){ last=from; img.src=src; img.width=w; img.height=h; img.alt=alt; cap.textContent=caption||''; lb.hidden=false; close.focus(); }
+  function show(src,w,h,alt,caption,from){
+    last=from;
+    if(img.getAttribute('src')!==src){
+      img.style.visibility='hidden';
+      img.onload=function(){ if(img.getAttribute('src')===src) img.style.visibility=''; };
+      img.width=w; img.height=h; img.src=src;
+      if(img.complete&&img.naturalWidth) img.style.visibility='';
+    }
+    img.alt=alt; cap.textContent=caption||''; lb.hidden=false; close.focus();
+  }
   function hide(){ lb.hidden=true; idx=-1; if(last) last.focus(); }
   function setNav(on){ prev.hidden=!on; next.hidden=!on; lb.classList.toggle('has-nav',on); }
   function showStill(i,from){
