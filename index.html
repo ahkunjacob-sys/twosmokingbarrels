@@ -319,7 +319,7 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .grease path{fill:none;stroke:#E2231A;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.92}
 .crew-spot{position:absolute;left:var(--sx,50%);top:var(--sy,30%);width:var(--sr,120px);height:var(--sr,120px);margin:calc(var(--sr,120px)/-2) 0 0 calc(var(--sr,120px)/-2);border-radius:50%;box-shadow:0 0 0 200vmax rgba(8,8,8,.62),inset 0 0 18px 6px rgba(8,8,8,.45);opacity:0;transition:opacity .3s,left .35s cubic-bezier(.3,1.2,.5,1),top .35s cubic-bezier(.3,1.2,.5,1);pointer-events:none}
 .crew-photo.spotting .crew-spot{opacity:1}
-.crew-name{position:absolute;left:var(--sx,50%);top:calc(var(--sy,30%) + var(--sr,120px)/2 + 6px);transform:translateX(-50%);background:#F0EEE9;color:#111;font:700 12px/1.25 var(--sans);padding:5px 8px;white-space:nowrap;opacity:0;transition:opacity .25s,left .35s cubic-bezier(.3,1.2,.5,1),top .35s cubic-bezier(.3,1.2,.5,1);pointer-events:none;text-align:center}
+.crew-name{position:absolute;left:var(--tx,var(--sx,50%));top:calc(var(--sy,30%) + var(--sr,120px)/2 + 6px);transform:translateX(-50%);background:#F0EEE9;color:#111;font:700 12px/1.25 var(--sans);padding:5px 8px;white-space:nowrap;opacity:0;transition:opacity .25s,left .35s cubic-bezier(.3,1.2,.5,1),top .35s cubic-bezier(.3,1.2,.5,1);pointer-events:none;text-align:center}
 .crew-name small{display:block;font-weight:400;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#5b5853}
 .crew-photo.spotting .crew-name{opacity:1}
 .crew-photo.spotting .crew-tag{opacity:0}
@@ -870,16 +870,17 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
                 <div class="neg-edge bottom" aria-hidden="true"><span>▸ 12</span><span>TWO SMOKING BARRELS</span><span>12A ▸</span></div>
               </div>
               <ul class="crew-list">
-                <li><span>Director</span><b>Roddick Vincent</b></li>
-                <li><span>Director of Photography</span><b>Job T Sunil</b></li>
-                <li><span>Music Director</span><b>Ricky Reji</b></li>
-                <li><span>Casting Director · Actor</span><b>Jacob Puthusseriyil</b></li>
-                <li><span>First AD · Acting Coach</span><b>Shaun Saji</b></li>
-                <li><span>Second AD · BTS Photographer</span><b>Alan Jose</b></li>
-                <li><span>Production Manager</span><b>Jonathan Ravada</b></li>
-                <li><span>Unit Production Manager</span><b>Jisto Reji</b></li>
-                <li><span>Actor</span><b>Saji KD</b></li>
-                <li><span>Actor</span><b>Shyam</b></li>
+                <li data-p="59.9,12.0"><span>Director</span><b>Roddick Vincent</b></li>
+                <li data-p="50.3,23.9"><span>Director of Photography</span><b>Job T Sunil</b></li>
+                <li data-p="46.5,10.8"><span>Music Director</span><b>Ricky Reji</b></li>
+                <li data-p="74.4,12.0"><span>Casting Director · Actor</span><b>Jacob Puthusseriyil</b></li>
+                <li data-p="25.7,9.6"><span>First AD · Acting Coach</span><b>Shaun Saji</b></li>
+                <li data-p="43.2,25.2"><span>Second AD · BTS Photographer</span><b>Alan Jose</b></li>
+                <li data-p="13.5,13.1"><span>Production Manager</span><b>Jonathan Ravada</b></li>
+                <li data-p="35.8,9.0"><span>Unit Production Manager</span><b>Jisto Reji</b></li>
+                <li data-p="85.9,12.0"><span>Actor</span><b>Saji KD</b></li>
+                <li data-p="92.7,17.4"><span>Actor</span><b>Vijayan AK</b></li>
+                <li data-p="68.4,19.2"><span>Actor</span><b>Shyam</b></li>
               </ul>
             </section>
           </div>
@@ -1400,22 +1401,23 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   var ph=document.getElementById('open-crew'); if(!ph) return;
   var items=[].slice.call(document.querySelectorAll('.crew-list li[data-p]')); if(!items.length) return;
-  var tag=ph.querySelector('.crew-name'), cur=null;
+  var tag=ph.querySelector('.crew-name'), cur=null, onAt=0;
   var pts=items.map(function(li){ var a=li.getAttribute('data-p').split(','); li.tabIndex=0; return {li:li,x:+a[0],y:+a[1],name:li.querySelector('b').textContent,role:li.querySelector('span').textContent}; });
   function on(p){
-    if(p===cur) return; cur=p;
+    if(p===cur) return; cur=p; if(p) onAt=Date.now();
     items.forEach(function(l){ l.classList.toggle('on',!!p&&l===p.li); });
     if(!p){ ph.classList.remove('spotting'); return; }
-    ph.style.setProperty('--sx',p.x+'%'); ph.style.setProperty('--sy',p.y+'%'); ph.style.setProperty('--sr',Math.round(ph.clientWidth*0.15)+'px');
+    ph.style.setProperty('--sx',p.x+'%'); ph.style.setProperty('--sy',p.y+'%'); ph.style.setProperty('--sr',Math.round(ph.clientWidth*0.13)+'px');
     tag.textContent=''; var b=document.createElement('b'); b.textContent=p.name; var sm=document.createElement('small'); sm.textContent=p.role; tag.appendChild(b); tag.appendChild(sm);
+    var W=ph.clientWidth, tw=tag.offsetWidth, cx=p.x/100*W; ph.style.setProperty('--tx',Math.min(W-tw/2-6,Math.max(tw/2+6,cx))+'px');
     ph.classList.add('spotting');
   }
   pts.forEach(function(p){
-    p.li.addEventListener('mouseenter',function(){ on(p); });
-    p.li.addEventListener('mouseleave',function(){ on(null); });
+    p.li.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') on(p); });
+    p.li.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse') on(null); });
     p.li.addEventListener('focus',function(){ on(p); });
     p.li.addEventListener('blur',function(){ on(null); });
-    p.li.addEventListener('click',function(){ on(cur===p?null:p); });
+    p.li.addEventListener('click',function(){ if(cur===p&&Date.now()-onAt>350) on(null); else on(p); });
   });
   ph.addEventListener('pointermove',function(e){
     if(e.pointerType!=='mouse') return;
