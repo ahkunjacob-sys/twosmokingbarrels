@@ -1180,7 +1180,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   });
   prev.addEventListener('click',function(e){ e.stopPropagation(); step(-1); });
   next.addEventListener('click',function(e){ e.stopPropagation(); step(1); });
-  lb.addEventListener('click',function(e){ if(e.target!==img&&e.target!==prev&&e.target!==next) hide(); });
+  lb.addEventListener('click',function(e){ if(e.target.closest('.lb-nav')) return; hide(); });
   document.addEventListener('keydown',function(e){
     if(lb.hidden) return;
     if(e.key==='Escape') hide();
