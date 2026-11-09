@@ -306,6 +306,22 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .crew-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .crew-head h4{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400}
 .crew-where{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700}
+.crew-taped{position:relative;margin:20px 6px 4px}
+.crew-taped .crew-photo{box-shadow:0 1px 2px rgba(0,0,0,.14),0 10px 24px -10px rgba(0,0,0,.3)}
+.crew-taped .crew-photo img{filter:contrast(1.06) brightness(.98)}
+.gt{position:absolute;z-index:4;width:clamp(54px,9vw,78px);height:clamp(17px,2.6vw,23px);background:#1b1b1a linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,0) 30%,rgba(255,255,255,.04) 70%,rgba(255,255,255,0));box-shadow:0 1px 2px rgba(0,0,0,.25);-webkit-clip-path:polygon(3% 0,97% 4%,100% 100%,0 96%);clip-path:polygon(3% 0,97% 4%,100% 100%,0 96%);pointer-events:none}
+.gt.tl{left:-18px;top:-6px;transform:rotate(-38deg)}
+.gt.tr{right:-18px;top:-6px;transform:rotate(36deg)}
+.gt.bl{left:-18px;bottom:-6px;transform:rotate(38deg)}
+.gt.br{right:-18px;bottom:-6px;transform:rotate(-40deg)}
+.crew-taped figcaption{position:relative;z-index:5;display:inline-block;margin:-14px 0 0 18px;padding:6px 14px 4px;background:rgba(236,228,206,.95);font:600 clamp(20px,2.2vw,25px)/1 'Caveat',cursive;color:#1d1c1a;transform:rotate(-2deg);box-shadow:0 1px 2px rgba(0,0,0,.14);-webkit-clip-path:polygon(0 6%,3% 0,6% 7%,9% 1%,91% 0,94% 7%,97% 0,100% 5%,100% 95%,97% 100%,94% 93%,91% 100%,9% 99%,6% 93%,3% 100%,0 94%);clip-path:polygon(0 6%,3% 0,6% 7%,9% 1%,91% 0,94% 7%,97% 0,100% 5%,100% 95%,97% 100%,94% 93%,91% 100%,9% 99%,6% 93%,3% 100%,0 94%)}
+.tapes{position:absolute;inset:0;z-index:2;pointer-events:none;transition:opacity .3s}
+.nt{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%) rotate(var(--r));background:rgba(240,234,214,.94);color:#141413;font:600 clamp(12px,1.35vw,16px)/1 'Caveat',cursive;padding:3px 7px 2px;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.3);opacity:0;-webkit-clip-path:polygon(0 8%,4% 0,8% 9%,92% 0,96% 8%,100% 2%,100% 92%,96% 100%,92% 91%,8% 100%,4% 92%,0 98%);clip-path:polygon(0 8%,4% 0,8% 9%,92% 0,96% 8%,100% 2%,100% 92%,96% 100%,92% 91%,8% 100%,4% 92%,0 98%)}
+.tapes-on .nt{animation:stick .32s cubic-bezier(.3,1.5,.5,1) calc(var(--i) * 120ms) both}
+@keyframes stick{0%{opacity:0;transform:translate(-50%,-80%) rotate(calc(var(--r) * 3)) scale(1.35)}100%{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}}
+.spotting .tapes{opacity:0}
+@media (max-width:600px){ .nt{font-size:10.5px;padding:2px 4px 1px} }
+@media (prefers-reduced-motion:reduce){ .tapes-on .nt{animation:none;opacity:1} }
 .crew-polaroid{position:relative;margin:18px auto 6px;width:min(100%,560px);background:#FBFAF6;padding:12px 12px 0;box-shadow:0 1px 2px rgba(0,0,0,.12),0 12px 28px -8px rgba(0,0,0,.28);transform:rotate(-2.2deg);transition:transform .5s cubic-bezier(.3,1.3,.5,1),box-shadow .5s}
 .crew-polaroid:hover{transform:rotate(-.6deg) translateY(-3px);box-shadow:0 2px 4px rgba(0,0,0,.12),0 20px 36px -10px rgba(0,0,0,.32)}
 .crew-polaroid .crew-photo{filter:none}
@@ -888,11 +904,12 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             </dl>
             <section class="crew" aria-labelledby="crew-h">
               <div class="crew-head"><h4 id="crew-h" class="label">The crew</h4><span class="crew-where">On set · Wayanad</span></div>
-              <figure class="crew-polaroid">
-                <span class="tape" aria-hidden="true"></span>
+              <figure class="crew-taped">
+                <span class="gt tl" aria-hidden="true"></span><span class="gt tr" aria-hidden="true"></span><span class="gt bl" aria-hidden="true"></span><span class="gt br" aria-hidden="true"></span>
                 <button class="crew-photo" type="button" id="open-crew" aria-label="View the DIRT crew photo">
                   <img src="crew-dirt-t.jpg" alt="The DIRT cast and crew on set in a Wayanad paddy field, one of them holding the clapperboard" width="960" height="556" loading="lazy">
                   <span class="safelight" aria-hidden="true"></span>
+                  <span class="tapes" aria-hidden="true"><span class="nt" style="--x:13.5%;--y:26%;--r:-4deg;--i:0">Jonathan</span><span class="nt" style="--x:25.7%;--y:24%;--r:3deg;--i:1">Shaun</span><span class="nt" style="--x:35.8%;--y:21.5%;--r:-2deg;--i:2">Jisto</span><span class="nt" style="--x:53.5%;--y:5.5%;--r:2deg;--i:3">Ricky</span><span class="nt" style="--x:59.9%;--y:24.5%;--r:-3deg;--i:4">Roddick</span><span class="nt" style="--x:74.4%;--y:24.5%;--r:4deg;--i:5">Jacob</span><span class="nt" style="--x:86%;--y:26%;--r:-3deg;--i:6">Saji</span><span class="nt" style="--x:93%;--y:32%;--r:2deg;--i:7">Vijayan</span><span class="nt" style="--x:40.5%;--y:36.5%;--r:-4deg;--i:8">Alan</span><span class="nt" style="--x:53%;--y:35%;--r:3deg;--i:9">Job</span><span class="nt" style="--x:68.4%;--y:31.5%;--r:-2deg;--i:10">Shyam</span></span>
                   <span class="crew-spot" aria-hidden="true"></span>
                   <span class="crew-name" aria-hidden="true"></span>
                   <span class="crew-tag" aria-hidden="true">View ↗</span>
@@ -1461,9 +1478,9 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 <script>
 /* DIRT crew: the photo develops like a darkroom print as it scrolls into view (once per visit) */
 (function(){
-  var ph=document.getElementById('open-crew'), img=ph&&ph.querySelector('img'), glow=ph&&ph.querySelector('.safelight'), fig=ph&&ph.closest('.crew-polaroid');
-  if(!img||!img.animate||!('IntersectionObserver' in window)) return;
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ph=document.getElementById('open-crew'), img=ph&&ph.querySelector('img'), glow=ph&&ph.querySelector('.safelight'), fig=ph&&ph.closest('figure');
+  if(!img||!img.animate||!('IntersectionObserver' in window)){ if(ph) ph.classList.add('tapes-on'); return; }
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){ ph.classList.add('tapes-on'); return; }
   ph.classList.add('dev-ready'); if(fig) fig.classList.add('developing');
   function play(){
     var D=3400;
@@ -1474,7 +1491,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       {filter:'invert(0) sepia(0) saturate(1) hue-rotate(0deg) brightness(.98) contrast(1.06)'}
     ],{duration:D,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
     if(glow) glow.animate([{opacity:1},{opacity:1,offset:.6},{opacity:0}],{duration:D,fill:'forwards'});
-    a.onfinish=function(){ ph.classList.remove('dev-ready'); if(fig) fig.classList.remove('developing'); a.cancel(); };
+    a.onfinish=function(){ ph.classList.remove('dev-ready'); if(fig) fig.classList.remove('developing'); a.cancel(); ph.classList.add('tapes-on'); };
   }
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ io.disconnect(); setTimeout(play,300); } }); },{threshold:.6});
   io.observe(ph);
