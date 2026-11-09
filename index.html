@@ -25,7 +25,7 @@
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Poppins:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Poppins:wght@400;600&family=Caveat:wght@600&display=swap">
 <style>
 /* Layout: Swiss grid in the atelier's own poster language. Red type band, cream sheets, reel + record as the two barrels. */
 :root{
@@ -306,6 +306,13 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .crew-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .crew-head h4{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400}
 .crew-where{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700}
+.crew-polaroid{position:relative;margin:18px auto 6px;width:min(100%,560px);background:#FBFAF6;padding:12px 12px 0;box-shadow:0 1px 2px rgba(0,0,0,.12),0 12px 28px -8px rgba(0,0,0,.28);transform:rotate(-2.2deg);transition:transform .5s cubic-bezier(.3,1.3,.5,1),box-shadow .5s}
+.crew-polaroid:hover{transform:rotate(-.6deg) translateY(-3px);box-shadow:0 2px 4px rgba(0,0,0,.12),0 20px 36px -10px rgba(0,0,0,.32)}
+.crew-polaroid .crew-photo{filter:none}
+.crew-polaroid .crew-photo img{filter:contrast(1.06) brightness(.98)}
+.crew-polaroid figcaption{font:600 clamp(22px,2.4vw,28px)/1 'Caveat',cursive;color:#1d1c1a;padding:14px 4px 18px;transform:rotate(-1deg);text-align:left}
+.tape{position:absolute;z-index:2;left:50%;top:-15px;width:118px;height:30px;margin-left:-59px;background:rgba(214,198,158,.72);box-shadow:0 1px 3px rgba(0,0,0,.14);transform:rotate(3.5deg);-webkit-clip-path:polygon(0 8%,4% 0,9% 10%,14% 1%,20% 9%,26% 0,33% 8%,40% 1%,47% 9%,54% 0,61% 8%,68% 1%,75% 9%,82% 0,89% 8%,95% 1%,100% 7%,100% 93%,96% 100%,90% 91%,84% 100%,77% 92%,70% 100%,63% 91%,56% 100%,49% 92%,42% 100%,35% 91%,28% 100%,21% 92%,14% 100%,8% 91%,3% 100%,0 92%);clip-path:polygon(0 8%,4% 0,9% 10%,14% 1%,20% 9%,26% 0,33% 8%,40% 1%,47% 9%,54% 0,61% 8%,68% 1%,75% 9%,82% 0,89% 8%,95% 1%,100% 7%,100% 93%,96% 100%,90% 91%,84% 100%,77% 92%,70% 100%,63% 91%,56% 100%,49% 92%,42% 100%,35% 91%,28% 100%,21% 92%,14% 100%,8% 91%,3% 100%,0 92%)}
+@media (prefers-reduced-motion:reduce){ .crew-polaroid{transition:none} }
 .crew-neg{position:relative;background:#0c0c0c;padding:30px 14px 30px}
 .crew-neg::before,.crew-neg::after{content:"";position:absolute;left:0;right:0;height:11px;background:repeating-linear-gradient(90deg,transparent 0 9px,#ECE7DE 9px 23px,transparent 23px 32px);opacity:.88;border-radius:1px}
 .crew-neg::before{top:9px}
@@ -858,17 +865,16 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             </dl>
             <section class="crew" aria-labelledby="crew-h">
               <div class="crew-head"><h4 id="crew-h" class="label">The crew</h4><span class="crew-where">On set · Wayanad</span></div>
-              <div class="crew-neg">
-                <div class="neg-edge" aria-hidden="true"><span>DIRT ▸ CREW ▸ 5222</span><span class="neg-num">12A</span><span>KODAK 5222</span></div>
+              <figure class="crew-polaroid">
+                <span class="tape" aria-hidden="true"></span>
                 <button class="crew-photo" type="button" id="open-crew" aria-label="View the DIRT crew photo">
                   <img src="crew-dirt-t.jpg" alt="The DIRT cast and crew on set in a Wayanad paddy field, one of them holding the clapperboard" width="960" height="556" loading="lazy">
                   <span class="crew-spot" aria-hidden="true"></span>
                   <span class="crew-name" aria-hidden="true"></span>
                   <span class="crew-tag" aria-hidden="true">View ↗</span>
                 </button>
-                <svg class="grease" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M1.6 2.2 C 30 0.4, 70 1.6, 98.6 0.9 C 99.4 30, 98.7 70, 99.2 98.4 C 70 99.6, 30 98.9, 0.9 99.3 C 0.4 70, 1.3 30, 0.6 5.5 L 4.5 0.2"/></svg>
-                <div class="neg-edge bottom" aria-hidden="true"><span>▸ 12</span><span>TWO SMOKING BARRELS</span><span>12A ▸</span></div>
-              </div>
+                <figcaption>Wayanad · the DIRT crew</figcaption>
+              </figure>
               <ul class="crew-list">
                 <li data-p="59.9,12.0"><span>Director</span><b>Roddick Vincent</b></li>
                 <li data-p="50.3,23.9"><span>Director of Photography</span><b>Job T Sunil</b></li>
