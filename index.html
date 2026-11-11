@@ -456,11 +456,6 @@ html.leader-on{overflow:hidden}
 .work-meta{display:grid;gap:8px}
 .work-meta h3{font-size:clamp(26px,3vw,34px);font-weight:700}
 .work-meta p:last-child{color:var(--muted);max-width:58ch}
-.work-meta .geo-syn{color:var(--muted);max-width:58ch}
-.geo-cta{justify-self:start;display:inline-flex;align-items:center;gap:12px;margin-top:8px;background:#111;color:#F0EEE9;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:-0.01em;padding:13px 18px;transition:transform .4s cubic-bezier(.3,1.4,.5,1),box-shadow .4s}
-.geo-cta b{color:var(--red);font-size:18px;line-height:1;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
-.geo-cta:hover,.geo-cta:focus-visible{transform:translate(-4px,-4px);box-shadow:4px 4px 0 var(--red)}
-.geo-cta:hover b,.geo-cta:focus-visible b{transform:translateX(5px)}
 .work-card:hover .work-art{transform:translate(-5px,-5px);box-shadow:6px 6px 0 var(--red)}
 .open-box{min-height:220px;width:100%;max-width:100%;min-width:0;border:2px dashed var(--ink);display:grid;place-content:center;justify-items:center;gap:8px;padding:24px;text-align:center;transition:background .3s,color .3s,border-color .3s}
 
@@ -917,8 +912,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="work-meta">
             <p class="label work-kicker">Short film · Directed by Roddick Vincent · Music by Ricky Reji</p>
             <h3>The Geometry of Choice</h3>
-            <p class="geo-syn">A comic treatise on the most calculated walk in the men's room.</p>
-            <a class="geo-cta" href="https://tally.so/r/WJEoYP" target="_blank" rel="noopener" data-cursor="Collab"><span>Collaborate on this film</span><b aria-hidden="true">→</b></a>
+            <p>A comic treatise on the most calculated walk in the men's room.</p>
           </div>
         </article>
         <article class="work-card track" id="ph-card">
@@ -969,12 +963,12 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             <audio id="ph-audio" src="perfect-human-preview.mp3" preload="none"></audio>
           </div>
         </article>
-        <a class="work-card work-open" href="#collaborate">
+        <a class="work-card work-open" href="https://tally.so/r/WJEoYP" target="_blank" rel="noopener">
           <div class="open-box">
             <svg class="seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg>
             <strong>Next project</strong>
-            <span>Your film, score or idea could sit here.</span>
-            <span class="open-cta">Collaborate with us →</span>
+            <span>Your film, score or brand story could sit here.</span>
+            <span class="open-cta">Pitch us your project ↗</span>
           </div>
         </a>
       </div>
@@ -1130,7 +1124,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   var C=document.getElementById('cur'), T=document.getElementById('cur-txt'); if(!C) return;
-  var map=[['#open-poster','Poster'],['#open-crew','View'],['.frame','View'],['.work-card.track','Play'],['#lightbox','Close'],['.member.open a','Join'],['.work-open','Join'],['a.mail.phone','Call'],['a.mail','Email'],['#ld-skip','Skip'],['#leader','Skip']];
+  var map=[['#open-poster','Poster'],['#open-crew','View'],['.frame','View'],['.work-card.track','Play'],['#lightbox','Close'],['.member.open a','Join'],['.work-open','Pitch'],['a.mail.phone','Call'],['a.mail','Email'],['#ld-skip','Skip'],['#leader','Skip']];
   map.forEach(function(m){ document.querySelectorAll(m[0]).forEach(function(el){ if(!el.dataset.cursor) el.dataset.cursor=m[1]; }); });
   document.querySelectorAll('.half').forEach(function(h){ if(h.querySelector('.reel-spin')) h.dataset.cursor='Roll'; else if(h.querySelector('.deck')) h.dataset.cursor='Spin'; });
   document.documentElement.classList.add('has-cur');
