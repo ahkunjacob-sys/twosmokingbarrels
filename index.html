@@ -297,6 +297,10 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .work-status i{flex:none;position:relative;width:9px;height:9px;border-radius:50%;background:var(--red);transform:translateY(-1px)}
 .work-status i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:ws-pulse 2.2s ease-out infinite;will-change:transform,opacity}
 .work-status b{font-weight:700}
+.film-link{justify-self:start;display:inline-flex;gap:8px;align-items:center;font-weight:700;font-size:15px;text-decoration:none;background:linear-gradient(var(--red),var(--red)) 0 100%/0 2px no-repeat;padding-bottom:3px;transition:background-size .35s cubic-bezier(.3,.7,.3,1)}
+.film-link b{color:var(--red);transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.film-link:hover,.film-link:focus-visible{background-size:100% 2px}
+.film-link:hover b,.film-link:focus-visible b{transform:translateX(4px)}
 @keyframes ws-pulse{0%{transform:scale(1);opacity:.5}70%,100%{transform:scale(3);opacity:0}}
 @media (prefers-reduced-motion:reduce){ .work-status i::after{animation:none;opacity:0} }
 .credits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin:10px 0 0;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
@@ -851,6 +855,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             <h3>DIRT</h3>
             <p>In rural Wayanad, a young boy pushed down one too many times fights back with a fistful of dirt.</p>
             <p class="work-status"><i aria-hidden="true"></i><span><b>Now on the festival circuit.</b> Public release in 2027.</span></p>
+            <a class="film-link" href="/dirt/" data-cursor="Open">Synopsis, stills and full credits <b aria-hidden="true">→</b></a>
             <dl class="credits">
               <div><dt>Produced by</dt><dd>Malayil Foundations</dd></div>
               <div><dt>Music</dt><dd>Ricky Reji</dd></div>
