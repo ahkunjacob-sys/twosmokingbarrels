@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found · Two Smoking Barrels</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script>
+// Forward common slips (a trailing full stop, comma or bracket copied with the link, or different capitals) to the real page.
+(function(){
+  var p=location.pathname, q=p.replace(/[.,;:!?)\]'"’”]+$/,'').replace(/\/+$/,'');
+  var k=q.toLowerCase();
+  if(k==='/dirt'||k==='/dirt/index.html'){ location.replace('/dirt/'+location.hash); return; }
+  if(q!==p.replace(/\/+$/,'') && q){ location.replace(q+location.search+location.hash); }
+})();
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+<style>
+:root{--paper:#F0EEE9;--ink:#111;--red:#E2231A;--muted:#5b5853}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--paper);color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;padding:24px 16px;text-align:center}
+svg{width:96px;height:auto;aspect-ratio:379/257}
+h1{font-weight:900;font-size:clamp(64px,16vw,140px);letter-spacing:-0.06em;line-height:.9;margin:22px 0 14px}
+p{margin:0 0 26px;color:var(--muted);font-size:18px}
+nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+a{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;font-size:15px;padding:13px 18px;transition:transform .4s cubic-bezier(.3,1.4,.5,1),box-shadow .4s}
+a.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+a:hover,a:focus-visible{transform:translate(-4px,-4px);box-shadow:4px 4px 0 var(--red)}
+a.ghost:hover,a.ghost:focus-visible{box-shadow:inset 0 0 0 2px var(--ink),4px 4px 0 var(--red)}
+</style>
+</head>
+<body>
+<main>
+  <svg viewBox="0 0 379 257" aria-hidden="true"><clipPath id="c"><circle cx="128.5" cy="128.5" r="128.5"/></clipPath><circle cx="250" cy="128.5" r="128.5" fill="#E2231A"/><circle cx="128.5" cy="128.5" r="128.5" fill="#111"/><g clip-path="url(#c)"><circle cx="250" cy="128.5" r="128.5" fill="#100000"/></g></svg>
+  <h1>404</h1>
+  <p>This page missed the cut.</p>
+  <nav><a href="/">Back to the atelier</a><a class="ghost" href="/dirt/">See DIRT</a></nav>
+</main>
+</body>
+</html>
