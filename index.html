@@ -297,10 +297,12 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .work-status i{flex:none;position:relative;width:9px;height:9px;border-radius:50%;background:var(--red);transform:translateY(-1px)}
 .work-status i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:ws-pulse 2.2s ease-out infinite;will-change:transform,opacity}
 .work-status b{font-weight:700}
-.film-link{justify-self:start;display:inline-flex;gap:8px;align-items:center;font-weight:700;font-size:15px;text-decoration:none;background:linear-gradient(var(--red),var(--red)) 0 100%/0 2px no-repeat;padding-bottom:3px;transition:background-size .35s cubic-bezier(.3,.7,.3,1)}
-.film-link b{color:var(--red);transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
-.film-link:hover,.film-link:focus-visible{background-size:100% 2px}
-.film-link:hover b,.film-link:focus-visible b{transform:translateX(4px)}
+.film-link{justify-self:start;display:inline-flex;align-items:center;gap:12px;margin-top:6px;background:#111;color:#F0EEE9;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:-0.01em;padding:13px 18px;transition:transform .4s cubic-bezier(.3,1.4,.5,1),box-shadow .4s}
+.film-link b{color:var(--red);font-size:18px;line-height:1;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.film-link:hover,.film-link:focus-visible{transform:translate(-4px,-4px);box-shadow:4px 4px 0 var(--red)}
+.film-link:hover b,.film-link:focus-visible b{transform:translateX(5px)}
+.film-title{text-decoration:none;color:inherit;transition:color .25s}
+.film-title:hover,.film-title:focus-visible{color:var(--red)}
 @keyframes ws-pulse{0%{transform:scale(1);opacity:.5}70%,100%{transform:scale(3);opacity:0}}
 @media (prefers-reduced-motion:reduce){ .work-status i::after{animation:none;opacity:0} }
 .credits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin:10px 0 0;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
@@ -852,10 +854,10 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           </div>
           <div class="work-meta">
             <p class="label work-kicker">Short film · A film by Roddick Vincent · Music by Ricky Reji</p>
-            <h3>DIRT</h3>
+            <h3><a class="film-title" href="/dirt/">DIRT</a></h3>
             <p>In rural Wayanad, a young boy pushed down one too many times fights back with a fistful of dirt.</p>
             <p class="work-status"><i aria-hidden="true"></i><span><b>Now on the festival circuit.</b> Public release in 2027.</span></p>
-            <a class="film-link" href="/dirt/" data-cursor="Open">Synopsis, stills and full credits <b aria-hidden="true">→</b></a>
+            <a class="film-link" href="/dirt/" data-cursor="Open"><span>Open the film page</span><b aria-hidden="true">→</b></a>
             <dl class="credits">
               <div><dt>Produced by</dt><dd>Malayil Foundations</dd></div>
               <div><dt>Music</dt><dd>Ricky Reji</dd></div>
