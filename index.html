@@ -309,44 +309,47 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .credits div{min-width:0}
 .credits dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .credits dd{margin:2px 0 0;font-weight:700;font-size:15px}
-.crew{margin-top:14px;padding-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent);display:grid;gap:12px}
-.crew-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.crew-head h4{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400}
-.crew-where{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700}
-.crew-neg{position:relative;background:#0c0c0c;padding:30px 14px 30px}
-.crew-neg::before,.crew-neg::after{content:"";position:absolute;left:0;right:0;height:11px;background:repeating-linear-gradient(90deg,transparent 0 9px,#ECE7DE 9px 23px,transparent 23px 32px);opacity:.88;border-radius:1px}
-.crew-neg::before{top:9px}
-.crew-neg::after{bottom:9px}
-.neg-edge{position:absolute;left:14px;right:14px;top:21px;display:flex;justify-content:space-between;font:700 8px var(--sans);letter-spacing:.2em;color:#E2231A;opacity:.85;white-space:nowrap;pointer-events:none;line-height:1}
-.neg-edge.bottom{top:auto;bottom:21px}
-.neg-num{position:relative}
-.neg-num::after{content:"";position:absolute;inset:-6px -9px;border:2px solid #E2231A;border-radius:50%;transform:rotate(-8deg);opacity:.9}
-.crew-photo{position:relative;display:block;width:100%;padding:0;border:0;background:#111;cursor:zoom-in;overflow:hidden;aspect-ratio:960/556}
-.grease{position:absolute;top:26px;bottom:26px;left:9px;right:9px;width:calc(100% - 18px);height:calc(100% - 52px);pointer-events:none;overflow:visible}
-.grease path{fill:none;stroke:#E2231A;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.92}
-.crew-spot{position:absolute;left:var(--sx,50%);top:var(--sy,30%);width:var(--sr,120px);height:var(--sr,120px);margin:calc(var(--sr,120px)/-2) 0 0 calc(var(--sr,120px)/-2);border-radius:50%;box-shadow:0 0 0 200vmax rgba(8,8,8,.62),inset 0 0 18px 6px rgba(8,8,8,.45);opacity:0;transition:opacity .3s,left .35s cubic-bezier(.3,1.2,.5,1),top .35s cubic-bezier(.3,1.2,.5,1);pointer-events:none}
-.crew-photo.spotting .crew-spot{opacity:1}
-.crew-name{position:absolute;left:var(--tx,var(--sx,50%));top:calc(var(--sy,30%) + var(--sr,120px)/2 + 6px);transform:translateX(-50%);background:#F0EEE9;color:#111;font:700 12px/1.25 var(--sans);padding:5px 8px;white-space:nowrap;opacity:0;transition:opacity .25s,left .35s cubic-bezier(.3,1.2,.5,1),top .35s cubic-bezier(.3,1.2,.5,1);pointer-events:none;text-align:center}
-.crew-name small{display:block;font-weight:400;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#5b5853}
-.crew-photo.spotting .crew-name{opacity:1}
-.crew-photo.spotting .crew-tag{opacity:0}
-.crew-list li[data-p]{cursor:pointer;transition:color .2s}
-.crew-list li.on b{color:var(--red)}
-.crew-list li.on span{color:var(--ink)}
-.crew-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.04);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.crew-photo:hover img,.crew-photo:focus-visible img{transform:scale(1.03)}
-.crew-photo:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.crew-tag{position:absolute;right:10px;bottom:10px;background:#F0EEE9;color:#111;font:700 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 9px;transform:translateY(6px);opacity:0;transition:opacity .25s,transform .25s}
-.crew-photo:hover .crew-tag,.crew-photo:focus-visible .crew-tag{opacity:1;transform:none}
-@media (hover:none){ .crew-tag{opacity:1;transform:none} }
-.crew-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px}
-.crew-list li{display:grid;gap:1px;min-width:0;align-content:start}
-.crew-list span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.crew-list b{font-size:14px;font-weight:700}
 .lightbox{position:fixed;inset:0;z-index:50;background:rgba(10,10,10,.92);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out;animation:lbin .35s ease}
 .lightbox img{max-height:calc(100vh - 140px);max-height:calc(100dvh - 140px);max-width:100%;width:auto;height:auto;object-fit:contain;box-shadow:10px 10px 0 #E2231A}
 .lightbox button{position:absolute;top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));font:700 15px var(--sans);background:#F0EEE9;color:#111;border:0;padding:10px 14px;cursor:pointer}
 @keyframes lbin{from{opacity:0}to{opacity:1}}
+/* DIRT synopsis feature */
+.dirt-feature{grid-column:1/-1;position:relative;display:block;overflow:hidden;isolation:isolate;background:#0b0b0b;color:#F0EEE9;text-decoration:none;min-height:clamp(520px,82vh,780px);cursor:pointer}
+@media (max-width:719px){.dirt-feature{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));min-height:0}}
+.df-bg{position:absolute;inset:0;z-index:-2}
+.df-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;filter:grayscale(1) contrast(1.1) brightness(.8);transform:scale(1.08);will-change:transform}
+.dirt-feature::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.72) 46%,rgba(8,8,8,.15) 100%),linear-gradient(0deg,rgba(8,8,8,.85),transparent 45%)}
+@media (max-width:719px){
+  .dirt-feature::before{background:linear-gradient(180deg,rgba(8,8,8,.25) 0%,rgba(8,8,8,.1) 22%,rgba(8,8,8,.88) 46%,#0b0b0b 62%)}
+  .df-bg{bottom:auto;height:78vw}
+  .df-bg img{object-position:58% 18%}
+  .df-in{padding-top:20px}
+  .df-top{margin-bottom:46vw}
+}
+.df-in{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(28px,5vw,56px);min-height:inherit;padding:clamp(24px,4.5vw,64px) clamp(20px,4.5vw,64px)}
+.df-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.df-kick{color:var(--red);font-weight:700}
+.df-runtime{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#b9b4ab}
+.df-syn{display:block;max-width:24ch;font-size:clamp(26px,3.6vw,48px);line-height:1.14;font-weight:700;letter-spacing:-0.025em;text-wrap:pretty}
+@media (max-width:719px){.df-syn{max-width:none;font-size:clamp(24px,6.6vw,30px)}}
+.df-syn .w{opacity:var(--w-off,1)}
+.df-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.df-cta{display:inline-flex;align-items:center;gap:12px;background:#F0EEE9;color:#111;font-weight:700;font-size:15px;padding:14px 20px;transition:transform .4s cubic-bezier(.3,1.4,.5,1),box-shadow .4s}
+.df-cta b{color:var(--red);font-size:18px;line-height:1;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.dirt-feature:hover .df-cta,.dirt-feature:focus-visible .df-cta{transform:translate(-4px,-4px);box-shadow:4px 4px 0 var(--red)}
+.dirt-feature:hover .df-cta b,.dirt-feature:focus-visible .df-cta b{transform:translateX(5px)}
+.dirt-feature:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+.df-note{font-size:14px;color:#b9b4ab}
+/* scroll-driven: words light up and the still drifts as the band passes through the screen */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .dirt-feature{view-timeline-name:--df}
+    .df-bg img{animation:df-drift linear both;animation-timeline:--df;animation-range:cover 0% cover 100%}
+    .df-syn .w{opacity:.16;animation:df-lit linear both;animation-timeline:--df;animation-range:cover calc(10% + var(--i) * 0.45%) cover calc(14% + var(--i) * 0.45%)}
+  }
+}
+@keyframes df-drift{from{transform:scale(1.16) translateY(-4%)}to{transform:scale(1.06) translateY(4%)}}
+@keyframes df-lit{to{opacity:1}}
 /* filmstrip */
 .filmstrip-wrap{min-width:0;display:grid;gap:10px}
 .strip-label{color:var(--red)}
@@ -434,7 +437,7 @@ html.leader-on{overflow:hidden}
 @media (hover:hover) and (pointer:fine){ html.has-cur, html.has-cur *{cursor:none!important} }
 /* work */
 #work{padding-bottom:0}
-.work-grid{display:grid;grid-template-columns:1fr;gap:clamp(24px,3vw,36px)}
+.work-grid{display:grid;grid-template-columns:1fr;grid-auto-flow:row dense;gap:clamp(24px,3vw,36px)}
 @media (min-width:760px){ .work-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .work-open{grid-column:1/-1} }
 .work-art.geo{background:var(--red)}
 .work-title.sm{font-size:clamp(28px,4.4vw,56px);line-height:.95;letter-spacing:-0.035em}
@@ -857,42 +860,25 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
             <h3><a class="film-title" href="/dirt/">DIRT</a></h3>
             <p>In rural Wayanad, a young boy pushed down one too many times fights back with a fistful of dirt.</p>
             <p class="work-status"><i aria-hidden="true"></i><span><b>Now on the festival circuit.</b> Public release in 2027.</span></p>
-            <a class="film-link" href="/dirt/" data-cursor="Open"><span>Open the film page</span><b aria-hidden="true">→</b></a>
             <dl class="credits">
               <div><dt>Produced by</dt><dd>Malayil Foundations</dd></div>
               <div><dt>Music</dt><dd>Ricky Reji</dd></div>
               <div><dt>Editor</dt><dd>Nitin Sharma</dd></div>
               <div><dt>Cinematography</dt><dd>Job T Sunil</dd></div>
             </dl>
-            <section class="crew" aria-labelledby="crew-h">
-              <div class="crew-head"><h4 id="crew-h" class="label">The crew</h4><span class="crew-where">On set · Wayanad</span></div>
-              <div class="crew-neg">
-                <div class="neg-edge" aria-hidden="true"><span>DIRT ▸ CREW ▸ 5222</span><span class="neg-num">12A</span><span>KODAK 5222</span></div>
-                <button class="crew-photo" type="button" id="open-crew" aria-label="View the DIRT crew photo">
-                  <img src="crew-dirt-t.jpg" alt="The DIRT cast and crew on set in a Wayanad paddy field, one of them holding the clapperboard" width="960" height="556" loading="lazy">
-                  <span class="crew-spot" aria-hidden="true"></span>
-                  <span class="crew-name" aria-hidden="true"></span>
-                  <span class="crew-tag" aria-hidden="true">View ↗</span>
-                </button>
-                <svg class="grease" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M1.6 2.2 C 30 0.4, 70 1.6, 98.6 0.9 C 99.4 30, 98.7 70, 99.2 98.4 C 70 99.6, 30 98.9, 0.9 99.3 C 0.4 70, 1.3 30, 0.6 5.5 L 4.5 0.2"/></svg>
-                <div class="neg-edge bottom" aria-hidden="true"><span>▸ 12</span><span>TWO SMOKING BARRELS</span><span>12A ▸</span></div>
-              </div>
-              <ul class="crew-list">
-                <li data-p="59.9,12.0"><span>Director</span><b>Roddick Vincent</b></li>
-                <li data-p="50.3,23.9"><span>Director of Photography</span><b>Job T Sunil</b></li>
-                <li data-p="46.5,10.8"><span>Music Director</span><b>Ricky Reji</b></li>
-                <li data-p="74.4,12.0"><span>Casting Director · Actor</span><b>Jacob Puthusseriyil</b></li>
-                <li data-p="25.7,9.6"><span>First AD · Acting Coach</span><b>Shaun Saji</b></li>
-                <li data-p="43.2,25.2"><span>Second AD · BTS Photographer</span><b>Alan Jose</b></li>
-                <li data-p="13.5,13.1"><span>Production Manager</span><b>Jonathan Ravada</b></li>
-                <li data-p="35.8,9.0"><span>Unit Production Manager</span><b>Jisto Reji</b></li>
-                <li data-p="85.9,12.0"><span>Actor</span><b>Saji KD</b></li>
-                <li data-p="92.7,17.4"><span>Actor</span><b>Vijayan AK</b></li>
-                <li data-p="68.4,19.2"><span>Actor · The boy</span><b>Shyam</b></li>
-              </ul>
-            </section>
           </div>
         </article>
+        <a class="dirt-feature" href="/dirt/" aria-label="DIRT: read the synopsis, see the stills and full credits">
+          <span class="df-bg" aria-hidden="true"><img src="still-3.jpg" alt="" width="1800" height="1351" loading="lazy" decoding="async"></span>
+          <span class="df-in">
+            <span class="df-top"><span class="label df-kick">Synopsis</span><span class="df-runtime">8 min 12 s · Malayalam</span></span>
+            <span class="df-syn">In a village in Wayanad, an eleven-year-old Adivasi boy runs to the playground to join a football game, only to be turned away. Over one afternoon he watches the same exclusion fall on his mother and father, until a final humiliation in a paddy field pushes him to answer back with the only thing he has.</span>
+            <span class="df-foot">
+              <span class="df-cta"><span>Open the film page</span><b aria-hidden="true">→</b></span>
+              <span class="df-note">Stills, cast &amp; full credits</span>
+            </span>
+          </span>
+        </a>
         <article class="work-card geo-card">
           <div class="work-art geo" aria-hidden="true">
             <svg viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice">
@@ -1132,7 +1118,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   var C=document.getElementById('cur'), T=document.getElementById('cur-txt'); if(!C) return;
-  var map=[['#open-poster','Poster'],['#open-crew','View'],['.frame','View'],['.work-card.track','Play'],['#lightbox','Close'],['.member.open a','Join'],['.work-open','Pitch'],['a.mail.phone','Call'],['a.mail','Email'],['#ld-skip','Skip'],['#leader','Skip']];
+  var map=[['#open-poster','Poster'],['.frame','View'],['.work-card.track','Play'],['#lightbox','Close'],['.member.open a','Join'],['.work-open','Pitch'],['.dirt-feature','Open'],['a.mail.phone','Call'],['a.mail','Email'],['#ld-skip','Skip'],['#leader','Skip']];
   map.forEach(function(m){ document.querySelectorAll(m[0]).forEach(function(el){ if(!el.dataset.cursor) el.dataset.cursor=m[1]; }); });
   document.querySelectorAll('.half').forEach(function(h){ if(h.querySelector('.reel-spin')) h.dataset.cursor='Roll'; else if(h.querySelector('.deck')) h.dataset.cursor='Spin'; });
   document.documentElement.classList.add('has-cur');
@@ -1190,8 +1176,6 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   function step(d){ if(idx<0) return; showStill(idx+d); }
   var op=document.getElementById('open-poster');
   if(op) op.addEventListener('click',function(){ idx=-1; setNav(false); show('dirt-poster.jpg',1333,2000,POSTER_ALT,'',op); });
-  var oc=document.getElementById('open-crew');
-  if(oc) oc.addEventListener('click',function(){ idx=-1; setNav(false); show('crew-dirt.jpg',960,1280,'The DIRT cast and crew on set in a Wayanad paddy field','DIRT · The crew, on set in Wayanad',oc); });
   document.querySelectorAll('.frame').forEach(function(f){
     f.addEventListener('click',function(){ var i=stills.findIndex(function(s){ return s.dataset.full===f.dataset.full; }); showStill(i<0?0:i,f); });
   });
@@ -1414,35 +1398,13 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 })();
 </script>
 <script>
-/* DIRT crew: spotlight a person when their name (or face) is hovered or tapped */
+/* DIRT feature: split the synopsis into words so they can light up one by one on scroll */
 (function(){
-  var ph=document.getElementById('open-crew'); if(!ph) return;
-  var items=[].slice.call(document.querySelectorAll('.crew-list li[data-p]')); if(!items.length) return;
-  var tag=ph.querySelector('.crew-name'), cur=null, onAt=0;
-  var pts=items.map(function(li){ var a=li.getAttribute('data-p').split(','); li.tabIndex=0; return {li:li,x:+a[0],y:+a[1],name:li.querySelector('b').textContent,role:li.querySelector('span').textContent}; });
-  function on(p){
-    if(p===cur) return; cur=p; if(p) onAt=Date.now();
-    items.forEach(function(l){ l.classList.toggle('on',!!p&&l===p.li); });
-    if(!p){ ph.classList.remove('spotting'); return; }
-    ph.style.setProperty('--sx',p.x+'%'); ph.style.setProperty('--sy',p.y+'%'); ph.style.setProperty('--sr',Math.round(ph.clientWidth*0.13)+'px');
-    tag.textContent=''; var b=document.createElement('b'); b.textContent=p.name; var sm=document.createElement('small'); sm.textContent=p.role; tag.appendChild(b); tag.appendChild(sm);
-    var W=ph.clientWidth, tw=tag.offsetWidth, cx=p.x/100*W; ph.style.setProperty('--tx',Math.min(W-tw/2-6,Math.max(tw/2+6,cx))+'px');
-    ph.classList.add('spotting');
-  }
-  pts.forEach(function(p){
-    p.li.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') on(p); });
-    p.li.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse') on(null); });
-    p.li.addEventListener('focus',function(){ on(p); });
-    p.li.addEventListener('blur',function(){ on(null); });
-    p.li.addEventListener('click',function(){ if(cur===p&&Date.now()-onAt>350) on(null); else on(p); });
-  });
-  ph.addEventListener('pointermove',function(e){
-    if(e.pointerType!=='mouse') return;
-    var r=ph.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*100, y=(e.clientY-r.top)/r.height*100, best=null, bd=1e9;
-    pts.forEach(function(p){ var dx=(x-p.x), dy=(y-p.y)*r.height/r.width, d=dx*dx+dy*dy; if(d<bd){ bd=d; best=p; } });
-    on(bd<70?best:null);
-  });
-  ph.addEventListener('pointerleave',function(){ on(null); });
+  var el=document.querySelector('.df-syn'); if(!el) return;
+  var words=el.textContent.trim().split(/\s+/);
+  el.setAttribute('aria-label',el.textContent.trim());
+  el.textContent='';
+  words.forEach(function(w,i){ var s=document.createElement('span'); s.className='w'; s.setAttribute('aria-hidden','true'); s.style.setProperty('--i',i); s.textContent=w; el.appendChild(s); if(i<words.length-1) el.appendChild(document.createTextNode(' ')); });
 })();
 </script>
 </body></html>
