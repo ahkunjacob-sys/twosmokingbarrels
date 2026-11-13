@@ -684,6 +684,14 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       <circle cx="31" cy="35" r="3" fill="#fff"/><circle cx="53" cy="35" r="3" fill="#fff"/>
       <path d="M62 52 L80 44 L80 74 L62 66 Z" fill="#000"/>
     </mask>
+    <mask id="m-clap" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <circle cx="50" cy="50" r="50" fill="#fff"/>
+      <rect x="24" y="45" width="52" height="31" rx="2" fill="#000"/>
+      <rect x="24" y="37" width="52" height="7" fill="#000"/>
+      <path d="M31 37 L36 44 M42 37 L47 44 M53 37 L58 44 M64 37 L69 44" stroke="#fff" stroke-width="3.2"/>
+      <g transform="rotate(-16 24 34)"><rect x="24" y="27" width="52" height="7" fill="#000"/><path d="M31 27 L36 34 M42 27 L47 34 M53 27 L58 34 M64 27 L69 34" stroke="#fff" stroke-width="3.2"/></g>
+      <rect x="31" y="54" width="22" height="3" fill="#fff"/><rect x="31" y="62" width="32" height="3" fill="#fff"/>
+    </mask>
   </defs>
   <symbol id="reel" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-reel)"/></symbol>
   <symbol id="record" viewBox="0 0 100 100">
@@ -703,6 +711,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   </symbol>
   <symbol id="aperture" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-aperture)"/></symbol>
   <symbol id="camera" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-camera)"/></symbol>
+  <symbol id="clap" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-clap)"/></symbol>
   <symbol id="seat" viewBox="0 0 100 100"><circle class="dash" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="9 9"/></symbol>
 </svg>
 
@@ -1041,9 +1050,13 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="m-top"><span class="m-num num">04</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#camera"/></svg></div>
           <div class="m-name"><strong>Job T S</strong><span>Cinematographer · Editor</span></div>
         </li>
+        <li class="member">
+          <div class="m-top"><span class="m-num num">05</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#clap"/></svg></div>
+          <div class="m-name"><strong>Shaun Saji</strong><span>Director · Actor</span></div>
+        </li>
         <li class="member open">
           <a href="#collaborate">
-            <div class="m-top"><span class="m-num num" id="member-next">05</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
+            <div class="m-top"><span class="m-num num" id="member-next">06</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
             <div class="m-name"><strong>Your name here</strong><span>Any craft · Join us →</span></div>
           </a>
         </li>
