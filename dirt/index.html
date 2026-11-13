@@ -125,7 +125,7 @@ section.bts{border-bottom:0}
 .bts-lede{font-size:clamp(18px,1.9vw,22px);color:var(--muted);max-width:46ch;align-self:end}
 .bts-hint{display:none}
 .bts .board-wrap{display:block;margin-top:clamp(24px,4vw,44px)}
-.sboard{position:relative;overflow:hidden;padding:26px 30px 34px 74px;
+.sboard{position:relative;padding:26px 30px 34px 74px;
   background-color:#b88b58;
   background-image:radial-gradient(ellipse at 50% 0%,rgba(255,230,190,.32),transparent 55%),radial-gradient(ellipse at 50% 110%,rgba(40,20,5,.4),transparent 55%),radial-gradient(rgba(70,38,10,.45) 1px,transparent 1.6px),radial-gradient(rgba(255,236,205,.3) 1px,transparent 1.6px),radial-gradient(rgba(90,55,20,.25) 2px,transparent 2.6px);
   background-size:100% 100%,100% 100%,7px 7px,11px 11px,23px 23px;background-position:0 0,0 0,0 0,3px 5px,9px 2px;
@@ -145,15 +145,15 @@ section.bts{border-bottom:0}
 .stamp{position:absolute;right:-14px;bottom:-10px;padding:4px 9px 2px;border:3px solid var(--red);color:var(--red);font:900 15px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;background:rgba(251,249,243,.85);transform:rotate(-12deg) scale(1.6);opacity:0;transition:opacity .25s,transform .35s cubic-bezier(.3,1.6,.5,1)}
 .strip.done .stamp{opacity:.92;transform:rotate(-12deg) scale(1)}
 .sr{position:relative;display:flex;align-items:center;padding:14px 10px 10px 6px}
-.sp{position:relative;flex:0 0 auto;width:clamp(120px,13.5vw,168px);aspect-ratio:3/4;margin-left:-18px;padding:5px;border:0;background:#f6f3ec;cursor:zoom-in;transform:rotate(var(--r));box-shadow:0 1px 1px rgba(0,0,0,.3),0 10px 18px -8px rgba(30,15,0,.7);transition:transform .45s cubic-bezier(.3,1.35,.5,1),box-shadow .45s}
+.sp{position:relative;flex:0 0 auto;width:clamp(108px,11.6vw,156px);aspect-ratio:3/4;margin-left:-18px;padding:5px;border:0;background:#f6f3ec;cursor:zoom-in;transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r));box-shadow:0 1px 1px rgba(0,0,0,.3),0 10px 18px -8px rgba(30,15,0,.7);transition:transform .45s cubic-bezier(.3,1.35,.5,1),box-shadow .45s}
 .sp:first-child{margin-left:0}
 .sp img{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.05)}
-.sp:hover,.sp:focus-visible{transform:rotate(0) scale(1.12) translateY(-6px);z-index:10;box-shadow:0 2px 2px rgba(0,0,0,.3),0 30px 40px -14px rgba(20,10,0,.8)}
+.sp:hover,.sp:focus-visible{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(0) scale(1.12) translateY(-6px);z-index:10;box-shadow:0 2px 2px rgba(0,0,0,.3),0 30px 40px -14px rgba(20,10,0,.8)}
 .sp:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 .fix{position:absolute;z-index:3;pointer-events:none}
 .fix.pin{top:-7px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff7a6e 0 18%,#E2231A 22% 60%,#8e120c 100%);box-shadow:2px 4px 4px rgba(0,0,0,.45)}
 .fix.tape{top:-11px;left:50%;width:64px;height:22px;margin-left:-32px;background:rgba(238,228,200,.72);transform:rotate(calc(var(--r) * -1.6));box-shadow:0 1px 2px rgba(0,0,0,.2)}
-.sn{position:relative;flex:0 0 auto;width:140px;margin-left:10px;padding:14px 14px 10px;font:700 25px/1.02 "Caveat",cursive;color:#1d1a17;transform:rotate(var(--r));box-shadow:0 1px 1px rgba(0,0,0,.25),0 8px 14px -8px rgba(30,15,0,.6)}
+.sn{position:relative;flex:0 0 auto;width:128px;margin-left:10px;padding:14px 14px 10px;font:700 25px/1.02 "Caveat",cursive;color:#1d1a17;transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r));box-shadow:0 1px 1px rgba(0,0,0,.25),0 8px 14px -8px rgba(30,15,0,.6)}
 .sn span{display:block}
 .sn.card{background:#fbf9f3 repeating-linear-gradient(180deg,transparent 0 23px,rgba(70,110,170,.2) 23px 24px);border-top:6px solid var(--red)}
 .sn.sticky{background:#f1df74;font-size:28px}
@@ -161,13 +161,21 @@ section.bts{border-bottom:0}
 .js .sboard.live .strip{opacity:.7}
 .js .sboard.live .strip.now{opacity:1;filter:none}
 .js .sboard.live .strip.done{opacity:.9}
-.js .strip .sp,.js .strip .sn{opacity:0;transform:translateY(-22px) rotate(calc(var(--r) * 2.5)) scale(1.06)}
-.js .strip.seen .sp,.js .strip.seen .sn{opacity:1;transform:rotate(var(--r));transition:opacity .35s ease var(--d,0ms),transform .6s cubic-bezier(.25,1.5,.5,1) var(--d,0ms)}
-.js .strip.seen .sp:hover,.js .strip.seen .sp:focus-visible{transform:rotate(0) scale(1.12) translateY(-6px);transition-delay:0s}
-@media (prefers-reduced-motion:reduce){.js .strip .sp,.js .strip .sn{opacity:1;transform:rotate(var(--r));transition:none}.stamp{transition:none}}
+.js .strip .sp,.js .strip .sn{opacity:0;transform:translate(var(--dx,0px),var(--dy,0px)) translateY(-22px) rotate(calc(var(--r) * 2.5)) scale(1.06)}
+.js .strip.seen .sp,.js .strip.seen .sn{opacity:1;transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r));transition:opacity .35s ease var(--d,0ms),transform .6s cubic-bezier(.25,1.5,.5,1) var(--d,0ms)}
+.js .strip.seen .sp:hover,.js .strip.seen .sp:focus-visible{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(0) scale(1.12) translateY(-6px);transition-delay:0s}
+@media (prefers-reduced-motion:reduce){.js .strip .sp,.js .strip .sn{opacity:1;transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r));transition:none}.stamp{transition:none}}
+@media (max-width:1240px){.bts-hint{display:inline}}
+@media (min-width:720px) and (max-width:1240px){
+  .sr{overflow-x:auto;scrollbar-width:none;padding:18px 24px 14px 10px}
+  .sr::-webkit-scrollbar{display:none}
+  .strip{grid-template-columns:160px minmax(0,1fr);gap:16px}
+  .sh-day{font-size:36px}
+  .sboard .bts-hint{display:inline}
+}
 @media (max-width:719px){
   .bts-hint{display:inline}
-  .sboard{margin-inline:-16px;border-width:10px;padding:18px 0 26px 40px}
+  .sboard{overflow:hidden;margin-inline:-16px;border-width:10px;padding:18px 0 26px 40px}
   .sb-top{margin:0 12px 18px -28px;font-size:10px;letter-spacing:.1em}
   .spine{left:16px;top:70px;bottom:30px}
   .strip{grid-template-columns:1fr;gap:10px}
@@ -178,6 +186,24 @@ section.bts{border-bottom:0}
   .sr::-webkit-scrollbar{display:none}
   .sp{width:150px;margin-left:-12px;scroll-snap-align:start}
 }
+/* a wall you can mess with: drag prints and notes anywhere, then reset */
+.sb-top{align-items:center}
+.sb-reset{font:700 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#111;background:#F0EEE9;border:0;padding:7px 10px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,background .2s}
+.sboard.moved .sb-reset{opacity:1;pointer-events:auto}
+.sb-reset:hover,.sb-reset:focus-visible{background:var(--red);color:#111}
+.sp,.sn{touch-action:pan-x pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.sn{pointer-events:auto;cursor:grab}
+.sp{cursor:grab}
+.sp img{-webkit-user-drag:none;pointer-events:none}
+.sp.held,.sn.held,.js .strip.seen .sp.held,.js .strip.seen .sn.held{z-index:60;cursor:grabbing;transition:box-shadow .2s!important;transform:translate(var(--dx,0px),var(--dy,0px)) rotate(calc(var(--r) * .4)) scale(1.1)!important;box-shadow:0 2px 2px rgba(0,0,0,.3),0 40px 50px -16px rgba(20,10,0,.85)}
+.sp.held .fix.pin,.sn.held .fix.pin{transform:translateY(-8px);opacity:.5}
+.sp.moved,.sn.moved{z-index:40}
+.js .strip.seen .sp.landed,.js .strip.seen .sn.landed{animation:land .35s cubic-bezier(.3,1.6,.5,1)}
+@keyframes land{0%{scale:1.06}60%{scale:.97}100%{scale:1}}
+.sboard.resetting .sp,.sboard.resetting .sn{transition:transform .7s cubic-bezier(.25,1.3,.5,1)!important}
+.drag-hint{display:inline}
+.drag-hint-touch{display:none}
+@media (hover:none){.drag-hint{display:none}.drag-hint-touch{display:inline}}
 footer{padding-block:28px 40px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 footer a{text-underline-offset:3px}
@@ -246,11 +272,11 @@ footer a:hover{color:var(--red)}
   <section class="block bts" id="bts">
     <div class="wrap">
       <h2><small>03</small>Behind the scenes</h2>
-      <p class="bts-lede">The shooting board: four days in Wayanad, 30 January to 3 February 2026. Tap any photo to see it big.<span class="bts-hint"> Swipe each day sideways.</span></p>
+      <p class="bts-lede">The shooting board: four days in Wayanad, 30 January to 3 February 2026. Tap any photo to see it big.<span class="drag-hint"> It&rsquo;s a working wall: drag the prints and notes around, re-pin them wherever you like.</span><span class="drag-hint-touch"> Press and hold a print to pick it up and move it.</span><span class="bts-hint"> Swipe each day sideways to see the rest.</span></p>
     </div>
     <div class="wrap board-wrap">
       <div class="sboard" id="sboard">
-        <div class="sb-top" aria-hidden="true"><span>DIRT · Shooting schedule</span><span>Wayanad · 30 Jan – 3 Feb 2026</span></div>
+        <div class="sb-top"><span aria-hidden="true">DIRT · Shooting schedule</span><button class="sb-reset" type="button" id="sb-reset">Reset the wall ↺</button><span aria-hidden="true">Wayanad · 30 Jan – 3 Feb 2026</span></div>
         <div class="spine" aria-hidden="true"><i class="spine-dot" id="spine-dot"></i></div>
         <ol class="strips">
           <li class="strip" data-day="1">
@@ -403,6 +429,59 @@ footer a:hover{color:var(--red)}
   }
   function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
   window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); update();
+})();
+</script>
+<script>
+/* drag prints and notes around the board; a click without dragging still opens the photo */
+(function(){
+  var board=document.getElementById('sboard'); if(!board) return;
+  var KEY='tsb-dirt-wall', saved={}; try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+  var pieces=[].slice.call(board.querySelectorAll('.sp,.sn'));
+  pieces.forEach(function(el,i){ el.dataset.k=i; var o=saved[i]; if(o){ el.style.setProperty('--dx',o[0]+'px'); el.style.setProperty('--dy',o[1]+'px'); el.classList.add('moved'); } });
+  function anyMoved(){ return pieces.some(function(el){ return el.classList.contains('moved'); }); }
+  function store(){ var o={}; pieces.forEach(function(el){ if(el.classList.contains('moved')) o[el.dataset.k]=[parseFloat(el.style.getPropertyValue('--dx'))||0,parseFloat(el.style.getPropertyValue('--dy'))||0]; }); try{ localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){} }
+  board.classList.toggle('moved',anyMoved());
+  var cur=null, sx=0, sy=0, bx=0, by=0, dragging=false, timer=null, suppress=false;
+  function begin(){ dragging=true; cur.classList.add('held'); if(navigator.vibrate) try{navigator.vibrate(8);}catch(e){} }
+  pieces.forEach(function(el){
+    el.addEventListener('pointerdown',function(e){
+      if(e.button>0) return;
+      cur=el; sx=e.clientX; sy=e.clientY; bx=parseFloat(el.style.getPropertyValue('--dx'))||0; by=parseFloat(el.style.getPropertyValue('--dy'))||0; dragging=false;
+      if(e.pointerType!=='mouse'){ timer=setTimeout(function(){ if(cur===el){ begin(); try{el.setPointerCapture(e.pointerId);}catch(_){} } },320); }
+    });
+  });
+  window.addEventListener('pointermove',function(e){
+    if(!cur) return;
+    var dx=e.clientX-sx, dy=e.clientY-sy;
+    if(!dragging){
+      if(e.pointerType==='mouse' && Math.abs(dx)+Math.abs(dy)>6){ begin(); try{cur.setPointerCapture(e.pointerId);}catch(_){} }
+      else { if(Math.abs(dx)+Math.abs(dy)>10){ clearTimeout(timer); cur=null; } return; }
+    }
+    var box=getComputedStyle(cur.parentNode).overflowX!=='visible'?cur.parentNode:board;
+    var b=box.getBoundingClientRect(), r=cur.getBoundingClientRect(), nx=bx+dx, ny=by+dy;
+    // keep pieces on the board
+    var ox=nx-(parseFloat(cur.style.getPropertyValue('--dx'))||0), oy=ny-(parseFloat(cur.style.getPropertyValue('--dy'))||0);
+    if(r.left+ox<b.left+10) nx-= (r.left+ox)-(b.left+10); if(r.right+ox>b.right-10) nx-= (r.right+ox)-(b.right-10);
+    if(r.top+oy<b.top+10) ny-= (r.top+oy)-(b.top+10); if(r.bottom+oy>b.bottom-10) ny-= (r.bottom+oy)-(b.bottom-10);
+    cur.style.setProperty('--dx',nx+'px'); cur.style.setProperty('--dy',ny+'px');
+  });
+  function end(){
+    clearTimeout(timer); if(!cur) return;
+    var el=cur; cur=null;
+    if(dragging){ dragging=false; suppress=true; setTimeout(function(){ suppress=false; },0); el.classList.remove('held'); el.classList.add('moved','landed'); setTimeout(function(){ el.classList.remove('landed'); },400); board.classList.add('moved'); store(); }
+  }
+  window.addEventListener('pointerup',end); window.addEventListener('pointercancel',end);
+  // block page scroll while a print is held on touch screens
+  board.addEventListener('touchmove',function(e){ if(dragging) e.preventDefault(); },{passive:false});
+  board.addEventListener('contextmenu',function(e){ if(e.target.closest('.sp,.sn')) e.preventDefault(); });
+  // a drag should not open the viewer
+  board.addEventListener('click',function(e){ if(suppress && e.target.closest('.sp')){ e.stopPropagation(); e.preventDefault(); } },true);
+  document.getElementById('sb-reset').addEventListener('click',function(){
+    board.classList.add('resetting');
+    pieces.forEach(function(el){ el.style.removeProperty('--dx'); el.style.removeProperty('--dy'); el.classList.remove('moved'); });
+    board.classList.remove('moved'); try{ localStorage.removeItem(KEY); }catch(e){}
+    setTimeout(function(){ board.classList.remove('resetting'); },750);
+  });
 })();
 </script>
 </body>
