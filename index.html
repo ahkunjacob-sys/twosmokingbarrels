@@ -150,7 +150,7 @@ li:hover .g-credit circle:nth-child(3){transition-delay:.08s} li:hover .g-credit
 .seats svg{width:100%;height:auto;aspect-ratio:1;display:block}
 .count h2{font-size:clamp(30px,4.4vw,54px);line-height:1;font-weight:700;margin-bottom:16px}
 .count p{max-width:48ch;color:var(--muted)}
-svg.seat{animation:turn 14s linear infinite;will-change:transform}
+svg.seat{animation:turn 14s linear infinite}
 .is-off,.is-off *,.is-off *::before,.is-off *::after{animation-play-state:paused!important}
 @keyframes turn{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
@@ -243,7 +243,7 @@ footer .wrap{align-items:flex-end}
 .t-tags li{border:1.5px solid #F0EEE9;padding:5px 11px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 .t-tags li:nth-child(2){background:var(--red);border-color:var(--red);color:#111}
 .eq{display:flex;align-items:flex-end;gap:5px;height:44px;margin-top:6px}
-.eq i{flex:1;max-width:10px;height:calc(var(--h)*100%);background:#F0EEE9;transform-origin:bottom;transform:scaleY(.3);transition:transform .4s;will-change:transform}
+.eq i{flex:1;max-width:10px;height:calc(var(--h)*100%);background:#F0EEE9;transform-origin:bottom;transform:scaleY(.3);transition:transform .4s}
 .eq i:nth-child(3n){background:var(--red)}
 .t-play{display:inline-flex;align-items:center;gap:12px;justify-self:start;margin-top:6px;font-weight:700;font-size:16px;background:#F0EEE9;color:#111;padding:12px 18px;transition:background .25s,color .25s}
 .t-tri{width:0;height:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
@@ -303,7 +303,7 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .dirt-reveal.lens-on .lens{opacity:1}
 .work-card.dirt:hover .work-art{transform:none;box-shadow:none}
 .work-card.dirt .dirt-stage:hover .work-art{transform:translate(-5px,-5px);box-shadow:6px 6px 0 var(--red)}
-#dirt-art{transform-origin:82.5% 88.9%;transition:transform 1s cubic-bezier(.2,.8,.2,1);will-change:transform}
+#dirt-art{transform-origin:82.5% 88.9%;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .work-card.dirt .dirt-stage:hover #dirt-art{transform:scale(1.1)}
 @media (hover:none){ .lens{display:none} }
 .dirt-reveal .work-title{z-index:2;pointer-events:none}
@@ -316,7 +316,7 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .work-card.dirt .filmstrip{margin-top:-4px}
 .work-status{display:flex;align-items:baseline;gap:10px;margin:2px 0 4px;font-size:15px;line-height:1.4}
 .work-status i{flex:none;position:relative;width:9px;height:9px;border-radius:50%;background:var(--red);transform:translateY(-1px)}
-.work-status i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:ws-pulse 2.2s ease-out infinite;will-change:transform,opacity}
+.work-status i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:ws-pulse 2.2s ease-out infinite}
 .work-status b{font-weight:700}
 .film-link{justify-self:start;display:inline-flex;align-items:center;gap:12px;margin-top:6px;background:#111;color:#F0EEE9;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:-0.01em;padding:13px 18px;transition:transform .4s cubic-bezier(.3,1.4,.5,1),box-shadow .4s}
 .film-link b{color:var(--red);font-size:18px;line-height:1;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
@@ -338,7 +338,7 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 .dirt-feature{grid-column:1/-1;position:relative;display:block;overflow:hidden;isolation:isolate;background:#0b0b0b;color:#F0EEE9;text-decoration:none;min-height:clamp(400px,58vh,560px);cursor:pointer}
 @media (max-width:719px){.dirt-feature{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));min-height:0}}
 .df-bg{position:absolute;inset:0;z-index:-2}
-.df-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;filter:grayscale(1) contrast(1.1) brightness(.8);transform:scale(1.08);will-change:transform}
+.df-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;filter:grayscale(1) contrast(1.1) brightness(.8);transform:scale(1.08)}
 .dirt-feature::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.72) 46%,rgba(8,8,8,.15) 100%),linear-gradient(0deg,rgba(8,8,8,.85),transparent 45%)}
 @media (max-width:719px){
   .dirt-feature::before{background:linear-gradient(180deg,rgba(8,8,8,.25) 0%,rgba(8,8,8,.1) 22%,rgba(8,8,8,.88) 46%,#0b0b0b 62%)}
@@ -371,6 +371,12 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 }
 @keyframes df-drift{from{transform:scale(1.16) translateY(-4%)}to{transform:scale(1.06) translateY(4%)}}
 @keyframes df-lit{to{opacity:1}}
+/* phones: keep scrolling light */
+@media (hover:none){
+  .df-syn .w{opacity:1!important;animation:none!important}
+  .df-bg img{animation:none!important}
+  main > section:not(:first-child){content-visibility:auto;contain-intrinsic-size:auto 900px}
+}
 /* filmstrip */
 .filmstrip-wrap{min-width:0;display:grid;gap:10px}
 .strip-label{color:var(--red)}
@@ -888,10 +894,10 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="dirt-stage">
             <button class="work-art dirt-reveal" type="button" id="open-poster" aria-label="View the DIRT poster">
               <svg id="dirt-art" viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
-              <span class="lens" aria-hidden="true"><img class="lens-img" src="still-1.jpg" alt="" width="1725" height="686"></span>
+              <span class="lens" aria-hidden="true"><img class="lens-img" src="still-1.jpg" alt="" width="1725" height="686" loading="lazy" decoding="async"></span>
               <span class="work-title" aria-hidden="true">DIRT</span>
             </button>
-            <span class="peek" aria-hidden="true"><img src="dirt-poster.jpg" alt="" width="1333" height="2000"><span class="pop-tag">View poster ↗</span></span>
+            <span class="peek" aria-hidden="true"><img src="dirt-poster-m.jpg" srcset="dirt-poster-m.jpg 800w, dirt-poster.jpg 1333w" sizes="320px" alt="" width="1333" height="2000" loading="lazy" decoding="async"><span class="pop-tag">View poster ↗</span></span>
           </div>
           <div class="filmstrip-wrap">
             
@@ -914,7 +920,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           </div>
         </article>
         <a class="dirt-feature" href="/dirt/" aria-label="DIRT: read the synopsis, see the stills and full credits">
-          <span class="df-bg" aria-hidden="true"><img src="still-3.jpg" alt="" width="1800" height="1351" loading="lazy" decoding="async"></span>
+          <span class="df-bg" aria-hidden="true"><img src="still-3-m.jpg" srcset="still-3-m.jpg 900w, still-3.jpg 1800w" sizes="(max-width:719px) 60vw, 100vw" alt="" width="1800" height="1351" loading="lazy" decoding="async"></span>
           <span class="df-in">
             <span class="df-top"><span class="label df-kick">Synopsis</span><span class="df-runtime">8 min 12 s · Malayalam</span></span>
             <span class="df-syn">In a village in Wayanad, an eleven-year-old Adivasi boy runs to the playground to join a football game, only to be turned away. Over one afternoon he watches the same exclusion fall on his mother and father, until a final humiliation in a paddy field pushes him to answer back with the only thing he has.</span>
