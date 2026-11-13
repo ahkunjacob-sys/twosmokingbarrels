@@ -161,17 +161,17 @@ section.bts::before{content:"";position:absolute;inset:0;pointer-events:none;bac
 
 }
 /* the loupe */
-.ps-loupe{position:absolute;left:0;top:0;z-index:20;width:var(--L,190px);height:var(--L,190px);margin:calc(var(--L,190px) / -2) 0 0 calc(var(--L,190px) / -2);border-radius:50%;pointer-events:none;opacity:0;transform:translate(var(--x,0px),var(--y,0px)) scale(.85);transition:opacity .25s,transform .25s cubic-bezier(.3,1.4,.5,1)}
+.ps-loupe{position:absolute;left:0;top:0;z-index:20;width:var(--L,190px);height:var(--L,190px);margin:calc(var(--L,190px) / -2) 0 0 calc(var(--L,190px) / -2);border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(0,0,0);transition:opacity .25s;will-change:transform}
 .ps-loupe::before{content:"";position:absolute;inset:-9px;border-radius:50%;background:conic-gradient(from 210deg,#2b2b2b,#8a8a8a 18%,#1a1a1a 34%,#5c5c5c 52%,#111 70%,#7a7a7a 86%,#2b2b2b);box-shadow:0 22px 34px -10px rgba(0,0,0,.7),0 6px 10px rgba(0,0,0,.35)}
 .ps-lens{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#f2efe8;box-shadow:inset 0 0 0 2px rgba(0,0,0,.6),inset 0 8px 18px rgba(0,0,0,.35)}
 .ps-lens::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.38),rgba(255,255,255,0) 32%),radial-gradient(circle at 50% 50%,transparent 62%,rgba(0,0,0,.28) 100%);pointer-events:none}
-.ps-zoom{position:absolute;left:0;top:0;transform-origin:0 0}
+.ps-zoom{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
 .ps-zoom .ps-film{pointer-events:none}
-.ps-sheet.looking .ps-loupe{opacity:1;transform:translate(var(--x,0px),var(--y,0px)) scale(1)}
+.ps-sheet.looking .ps-loupe{opacity:1}
 @media (hover:hover) and (pointer:fine){.ps-sheet.looking .ps-film{cursor:none}.ps-sheet.looking .ps-f{cursor:none}}
 @media (hover:none),(pointer:coarse){
   .ps-how-d{display:none}.ps-how-t{display:inline}
-  .ps-loupe{pointer-events:auto;touch-action:none;opacity:1;transform:translate(var(--x,0px),var(--y,0px)) scale(1);--L:150px}
+  .ps-loupe{pointer-events:auto;touch-action:none;opacity:1;--L:150px}
   .ps-loupe::after{content:"drag";position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font:700 10px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#a8a39b}
   .ps-sheet.dragging .ps-loupe::after{opacity:0}
 }
@@ -407,24 +407,28 @@ footer a:hover{color:var(--red)}
   var copy=film.cloneNode(true); copy.removeAttribute('id'); copy.setAttribute('aria-hidden','true');
   copy.querySelectorAll('button').forEach(function(b){ b.removeAttribute('data-full'); b.tabIndex=-1; }); zoom.appendChild(copy);
   [].slice.call(sheet.querySelectorAll('.ps-mk')).forEach(function(m,i){ m.querySelectorAll('path').forEach(function(p,j){ p.style.setProperty('--md',(0.25+i*0.18+j*0.35)+'s'); }); });
-  var coarse=matchMedia('(hover:none),(pointer:coarse)'), L=190, pos={x:0,y:0};
-  function sizeCopy(){ var fr=film.getBoundingClientRect(); copy.style.width=film.offsetWidth+'px'; L=loupe.offsetWidth||190; }
-  function place(x,y){ // x,y relative to the sheet
-    pos.x=x; pos.y=y; sheet.style.setProperty('--x',x+'px'); sheet.style.setProperty('--y',y+'px');
-    loupe.style.setProperty('--x',x+'px'); loupe.style.setProperty('--y',y+'px');
-    var fx=x-film.offsetLeft, fy=y-film.offsetTop;
-    zoom.style.transform='translate('+(L/2-fx*Z)+'px,'+(L/2-fy*Z)+'px) scale('+Z+')';
+  var coarse=matchMedia('(hover:none),(pointer:coarse)'), L=190, pos={x:0,y:0}, geo=null, want=null, raf=0;
+  // measure once (and on resize); moving the loupe then only writes two transforms, never reads layout
+  function measure(){ copy.style.width=film.offsetWidth+'px'; L=loupe.offsetWidth||190; geo={fl:film.offsetLeft,ft:film.offsetTop,w:sheet.offsetWidth,h:sheet.offsetHeight}; }
+  function place(x,y){
+    pos.x=x; pos.y=y;
+    loupe.style.transform='translate3d('+x+'px,'+y+'px,0)';
+    zoom.style.transform='translate3d('+(L/2-(x-geo.fl)*Z)+'px,'+(L/2-(y-geo.ft)*Z)+'px,0) scale('+Z+')';
   }
-  function rel(e){ var r=sheet.getBoundingClientRect(), k=sheet.offsetWidth/r.width; return [(e.clientX-r.left)*k,(e.clientY-r.top)*k]; }
-  sizeCopy(); addEventListener('resize',function(){ sizeCopy(); place(pos.x,pos.y); });
+  function queue(x,y){ want=[x,y]; if(!raf) raf=requestAnimationFrame(function(){ raf=0; if(want) place(want[0],want[1]); }); }
+  var box=null; function grab(){ var r=sheet.getBoundingClientRect(); box={l:r.left,t:r.top,k:geo.w/r.width}; }
+  function rel(e){ return [(e.clientX-box.l)*box.k,(e.clientY-box.t)*box.k]; }
+  measure(); addEventListener('resize',function(){ measure(); place(pos.x,pos.y); }); addEventListener('load',function(){ measure(); place(pos.x,pos.y); });
   if(!coarse.matches){
-    sheet.addEventListener('pointermove',function(e){ if(e.pointerType!=='mouse') return; var p=rel(e); sheet.classList.add('looking'); place(p[0],p[1]); });
+    sheet.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'){ grab(); } });
+    addEventListener('scroll',function(){ box=null; },{passive:true});
+    sheet.addEventListener('pointermove',function(e){ if(e.pointerType!=='mouse') return; if(!box) grab(); var p=rel(e); sheet.classList.add('looking'); queue(p[0],p[1]); });
     sheet.addEventListener('pointerleave',function(){ sheet.classList.remove('looking'); });
   } else {
-    var start=function(){ place(sheet.offsetWidth*0.72, sheet.offsetHeight*0.28); }; addEventListener('load',start); start();
+    var start=function(){ measure(); place(geo.w*0.72, geo.h*0.28); }; addEventListener('load',start); start();
     var drag=false, ox=0, oy=0;
-    loupe.addEventListener('pointerdown',function(e){ drag=true; sheet.classList.add('dragging'); var p=rel(e); ox=p[0]-pos.x; oy=p[1]-pos.y; try{loupe.setPointerCapture(e.pointerId);}catch(_){} e.preventDefault(); });
-    loupe.addEventListener('pointermove',function(e){ if(!drag) return; var p=rel(e); place(Math.max(0,Math.min(sheet.offsetWidth,p[0]-ox)),Math.max(0,Math.min(sheet.offsetHeight,p[1]-oy))); });
+    loupe.addEventListener('pointerdown',function(e){ drag=true; sheet.classList.add('dragging'); grab(); var p=rel(e); ox=p[0]-pos.x; oy=p[1]-pos.y; try{loupe.setPointerCapture(e.pointerId);}catch(_){} e.preventDefault(); });
+    loupe.addEventListener('pointermove',function(e){ if(!drag) return; var p=rel(e); queue(Math.max(0,Math.min(geo.w,p[0]-ox)),Math.max(0,Math.min(geo.h,p[1]-oy))); });
     var stop=function(){ drag=false; sheet.classList.remove('dragging'); }; loupe.addEventListener('pointerup',stop); loupe.addEventListener('pointercancel',stop);
   }
   if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ sheet.classList.add('in'); io.disconnect(); } },{threshold:.25}); io.observe(sheet); } else sheet.classList.add('in');
