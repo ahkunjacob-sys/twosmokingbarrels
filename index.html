@@ -684,6 +684,17 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       <circle cx="31" cy="35" r="3" fill="#fff"/><circle cx="53" cy="35" r="3" fill="#fff"/>
       <path d="M62 52 L80 44 L80 74 L62 66 Z" fill="#000"/>
     </mask>
+    <mask id="m-masks" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <circle cx="50" cy="50" r="50" fill="#fff"/>
+      <g transform="translate(60 52) rotate(16) translate(-18 -24)">
+        <path d="M0 6 Q0 0 6 0 L30 0 Q36 0 36 6 L36 22 Q36 42 18 48 Q0 42 0 22 Z" fill="#000"/>
+        <g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M6 14 Q10 18 14 15"/><path d="M22 15 Q26 18 30 14"/><path d="M10 36 Q18 29 26 36"/></g>
+      </g>
+      <g transform="translate(39 45) rotate(-14) translate(-18 -24)">
+        <path d="M0 6 Q0 0 6 0 L30 0 Q36 0 36 6 L36 22 Q36 42 18 48 Q0 42 0 22 Z" fill="#000" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+        <g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M6 17 Q10 12 14 17"/><path d="M22 17 Q26 12 30 17"/><path d="M9 29 Q18 39 27 29"/></g>
+      </g>
+    </mask>
     <mask id="m-clap" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
       <circle cx="50" cy="50" r="50" fill="#fff"/>
       <rect x="24" y="45" width="52" height="31" rx="2" fill="#000"/>
@@ -711,6 +722,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   </symbol>
   <symbol id="aperture" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-aperture)"/></symbol>
   <symbol id="camera" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-camera)"/></symbol>
+  <symbol id="masks" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-masks)"/></symbol>
   <symbol id="clap" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-clap)"/></symbol>
   <symbol id="seat" viewBox="0 0 100 100"><circle class="dash" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="9 9"/></symbol>
 </svg>
@@ -1025,7 +1037,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <svg><use href="#record"/></svg>
           <svg><use href="#aperture"/></svg>
           <svg><use href="#camera"/></svg>
-          <svg><use href="#clap"/></svg>
+          <svg><use href="#masks"/></svg>
           <svg class="seat"><use href="#seat"/></svg>
         </div>
         <h2><span id="member-words">Five members</span> today. The next number is yours.</h2>
@@ -1052,7 +1064,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="m-name"><strong>Job T S</strong><span>Cinematographer · Editor</span></div>
         </li>
         <li class="member">
-          <div class="m-top"><span class="m-num num">05</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#clap"/></svg></div>
+          <div class="m-top"><span class="m-num num">05</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#masks"/></svg></div>
           <div class="m-name"><strong>Shaun Saji</strong><span>Director · Actor</span></div>
         </li>
         <li class="member open">
