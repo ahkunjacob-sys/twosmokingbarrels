@@ -118,37 +118,48 @@ section.block{padding-block:clamp(48px,7vw,96px);border-bottom:1px solid color-m
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
 .btn.ghost:hover,.btn.ghost:focus-visible{box-shadow:inset 0 0 0 2px var(--ink),4px 4px 0 var(--red)}
 
-/* behind the scenes: prints scattered on a table */
-section.bts{background:#151412;color:#F0EEE9;border-bottom:0;position:relative;overflow:hidden}
-section.bts::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:radial-gradient(ellipse at 30% 20%,rgba(240,238,233,.07),transparent 60%),radial-gradient(ellipse at 80% 90%,rgba(226,35,26,.06),transparent 55%)}
-.bts .wrap{position:relative}
-.bts-lede{font-size:clamp(18px,1.9vw,22px);color:#cfcac2;max-width:42ch;margin-bottom:clamp(24px,4vw,44px)}
+/* behind the scenes: the director's wall */
+section.bts{border-bottom:0}
+.bts .wrap{display:grid;gap:clamp(20px,3vw,32px)}
+@media (min-width:820px){.bts .wrap{grid-template-columns:220px minmax(0,1fr);gap:48px}}
+.bts-lede{font-size:clamp(18px,1.9vw,22px);color:var(--muted);max-width:46ch;align-self:end}
 .bts-hint{display:none}
-.bts .wrap>div{min-width:0}
-.table{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(26px,3.2vw,44px) clamp(18px,2.6vw,34px);align-items:start}
-.table .print:nth-child(3n+2){margin-top:46px}
-.table .print:nth-child(3n){margin-top:16px}
-@media (max-width:1000px) and (min-width:720px){.table{grid-template-columns:repeat(2,minmax(0,1fr))}.table .print:nth-child(n){margin-top:0}.table .print:nth-child(2n){margin-top:40px}}
-.print{margin:0;transform:rotate(var(--r));transition:transform .5s cubic-bezier(.3,1.3,.5,1)}
-.print button{position:relative;display:block;width:100%;padding:10px 10px 46px;border:0;background:#F4F1EA;cursor:zoom-in;text-align:left;box-shadow:0 2px 0 rgba(0,0,0,.25),0 14px 28px -12px rgba(0,0,0,.7);transition:box-shadow .5s,transform .5s cubic-bezier(.3,1.3,.5,1)}
-.print button::before{content:"";position:absolute;top:-11px;left:50%;width:86px;height:24px;transform:translateX(-50%) rotate(calc(var(--r) * -1.4));background:rgba(240,232,210,.62);box-shadow:0 1px 2px rgba(0,0,0,.18);z-index:2}
-.print img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;filter:contrast(1.03)}
-.pn{position:absolute;top:16px;right:18px;font:700 26px/1 "Caveat",cursive;color:var(--red);text-shadow:0 1px 0 rgba(0,0,0,.35);transform:rotate(-6deg)}
-.pc{position:absolute;left:14px;right:14px;bottom:10px;font:700 21px/1.05 "Caveat",cursive;color:#2a2622;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.print:hover,.print:focus-within{transform:rotate(0) scale(1.04);position:relative;z-index:3}
-.print:hover button,.print:focus-within button{box-shadow:0 2px 0 rgba(0,0,0,.25),0 28px 44px -14px rgba(0,0,0,.85)}
-/* drop onto the table as they scroll in */
-.js .print{opacity:0;transform:translateY(-40px) rotate(calc(var(--r) * 3)) scale(1.08)}
-.js .print.in{opacity:1;transform:rotate(var(--r));transition:opacity .45s ease var(--d),transform .7s cubic-bezier(.25,1.45,.5,1) var(--d)}
-.js .print.in:hover,.js .print.in:focus-within{transform:rotate(0) scale(1.04);transition-delay:0s}
-@media (prefers-reduced-motion:reduce){.js .print{opacity:1;transform:rotate(var(--r))}.print,.print button{transition:none}}
-/* phones: a swipeable row of prints */
+.bts .board-wrap{display:block;margin-top:clamp(24px,4vw,44px)}
+.board-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#8a6a45 transparent}
+.board-scroll:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+.board{position:relative;display:grid;grid-template-columns:repeat(24,minmax(0,1fr));grid-template-rows:repeat(39,minmax(0,1fr));aspect-ratio:1200/1720;min-width:840px;padding:34px 30px;
+  background-color:#b88b58;
+  background-image:radial-gradient(ellipse at 50% 0%,rgba(255,230,190,.35),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(40,20,5,.45),transparent 60%),radial-gradient(rgba(70,38,10,.45) 1px,transparent 1.6px),radial-gradient(rgba(255,236,205,.3) 1px,transparent 1.6px),radial-gradient(rgba(90,55,20,.25) 2px,transparent 2.6px);
+  background-size:100% 100%,100% 100%,7px 7px,11px 11px,23px 23px;background-position:0 0,0 0,0 0,3px 5px,9px 2px;
+  border:16px solid #2a211a;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25),inset 0 10px 30px rgba(0,0,0,.35),0 24px 50px -20px rgba(0,0,0,.55)}
+.wp,.wn{position:relative;margin:0;transform:rotate(var(--r));transition:transform .45s cubic-bezier(.3,1.35,.5,1),box-shadow .45s}
+.wp{display:block;width:100%;height:100%;padding:6px;border:0;background:#f6f3ec;cursor:zoom-in;box-shadow:0 1px 1px rgba(0,0,0,.3),0 10px 18px -8px rgba(30,15,0,.7)}
+.wp img{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.05)}
+.wp:hover,.wp:focus-visible{transform:rotate(0) scale(1.07);z-index:30;box-shadow:0 2px 2px rgba(0,0,0,.3),0 30px 40px -14px rgba(20,10,0,.8)}
+.wp:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.fix{position:absolute;z-index:3;pointer-events:none}
+.fix.pin{top:-7px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff7a6e 0 18%,#E2231A 22% 60%,#8e120c 100%);box-shadow:2px 4px 4px rgba(0,0,0,.45)}
+.fix.tape{top:-12px;left:50%;width:84px;height:26px;margin-left:-42px;background:rgba(238,228,200,.72);transform:rotate(calc(var(--r) * -1.6));box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.wl{position:absolute;left:-6px;bottom:14px;z-index:3;background:rgba(238,228,200,.9);padding:3px 10px 1px;font:700 20px/1 "Caveat",cursive;color:#1d1a17;transform:rotate(-5deg);box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.wn{display:flex;flex-direction:column;justify-content:center;padding:14px 16px 10px;font:700 26px/1.02 "Caveat",cursive;color:#1d1a17;box-shadow:0 1px 1px rgba(0,0,0,.25),0 8px 14px -8px rgba(30,15,0,.6);pointer-events:none}
+.wn.card{background:#fbf9f3 repeating-linear-gradient(180deg,transparent 0 23px,rgba(70,110,170,.22) 23px 24px);border-top:6px solid var(--red)}
+.wn.sticky{background:#f1df74;font-size:30px}
+.wn b{font:900 64px/.9 "Inter",sans-serif;letter-spacing:-0.06em;margin-bottom:6px}
+.wn span{display:block}
+#n4{font-size:22px}
+.strings{position:absolute;inset:0;width:100%;height:100%;z-index:20;pointer-events:none;overflow:visible}
+.strings path{fill:none;stroke:#c41e16;stroke-width:2;stroke-linecap:round;filter:drop-shadow(1px 3px 2px rgba(0,0,0,.4))}
+/* pinned up one by one when the wall scrolls into view */
+.js .board:not(.measure) .wp,.js .board:not(.measure) .wn{opacity:0;transform:translateY(-26px) rotate(calc(var(--r) * 2.5)) scale(1.08)}
+.js .board.in .wp,.js .board.in .wn{opacity:1;transform:rotate(var(--r));transition:opacity .35s ease var(--d),transform .6s cubic-bezier(.25,1.5,.5,1) var(--d)}
+.js .board.in .wp:hover,.js .board.in .wp:focus-visible{transform:rotate(0) scale(1.07);transition-delay:0s}
+.js .strings path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.js .board.in .strings path{stroke-dashoffset:0;transition:stroke-dashoffset 1.1s ease 1.2s}
+@media (prefers-reduced-motion:reduce){.js .board .wp,.js .board .wn{opacity:1;transform:rotate(var(--r));transition:none}.js .strings path{stroke-dashoffset:0;transition:none}}
 @media (max-width:719px){
   .bts-hint{display:inline}
-  .table{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:18px 16px 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .table::-webkit-scrollbar{display:none}
-  .print,.table .print:nth-child(n){flex:0 0 74%;margin:0;scroll-snap-align:center}
-  .js .print{opacity:1;transform:rotate(var(--r))}
+  .bts .board-wrap{padding:0}
+  .board-scroll{padding:6px 16px 18px}
 }
 footer{padding-block:28px 40px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
@@ -218,27 +229,35 @@ footer a:hover{color:var(--red)}
   <section class="block bts" id="bts">
     <div class="wrap">
       <h2><small>03</small>Behind the scenes</h2>
-      <div>
-        <p class="bts-lede">Wayanad, early 2026. Paddy fields, a football ground and a lot of sun.<span class="bts-hint"> Swipe through the prints.</span></p>
-        <ol class="table">
-        <li class="print" style="--r:-3deg;--d:60ms"><button type="button" data-full="/bts/bts-01.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Checking the monitor" aria-label="View behind-the-scenes photo: Checking the monitor"><img src="/bts/bts-01-t.jpg" alt="Checking the monitor" width="560" height="996" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">01</span><span class="pc">Checking the monitor</span></button></li>
-        <li class="print" style="--r:2deg;--d:120ms"><button type="button" data-full="/bts/bts-02.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Everyone on one frame" aria-label="View behind-the-scenes photo: Everyone on one frame"><img src="/bts/bts-02-t.jpg" alt="Everyone on one frame" width="560" height="996" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">02</span><span class="pc">Everyone on one frame</span></button></li>
-        <li class="print" style="--r:-1.5deg;--d:180ms"><button type="button" data-full="/bts/bts-03.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · The crew, paddy field" aria-label="View behind-the-scenes photo: The crew, paddy field"><img src="/bts/bts-03-t.jpg" alt="The crew, paddy field" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">03</span><span class="pc">The crew, paddy field</span></button></li>
-        <li class="print" style="--r:3.5deg;--d:240ms"><button type="button" data-full="/bts/bts-04.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Act II · Backyard" aria-label="View behind-the-scenes photo: Act II · Backyard"><img src="/bts/bts-04-t.jpg" alt="Act II · Backyard" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">04</span><span class="pc">Act II · Backyard</span></button></li>
-        <li class="print" style="--r:-2.5deg;--d:300ms"><button type="button" data-full="/bts/bts-05.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Monitor, waiting" aria-label="View behind-the-scenes photo: Monitor, waiting"><img src="/bts/bts-05-t.jpg" alt="Monitor, waiting" width="560" height="996" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">05</span><span class="pc">Monitor, waiting</span></button></li>
-        <li class="print" style="--r:1.5deg;--d:0ms"><button type="button" data-full="/bts/bts-06.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Sound, listening in" aria-label="View behind-the-scenes photo: Sound, listening in"><img src="/bts/bts-06-t.jpg" alt="Sound, listening in" width="560" height="996" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">06</span><span class="pc">Sound, listening in</span></button></li>
-        <li class="print" style="--r:-3.5deg;--d:60ms"><button type="button" data-full="/bts/bts-07.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Between takes" aria-label="View behind-the-scenes photo: Between takes"><img src="/bts/bts-07-t.jpg" alt="Between takes" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">07</span><span class="pc">Between takes</span></button></li>
-        <li class="print" style="--r:2.5deg;--d:120ms"><button type="button" data-full="/bts/bts-08.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · The boy, in the long grass" aria-label="View behind-the-scenes photo: The boy, in the long grass"><img src="/bts/bts-08-t.jpg" alt="The boy, in the long grass" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">08</span><span class="pc">The boy, in the long grass</span></button></li>
-        <li class="print" style="--r:-1deg;--d:180ms"><button type="button" data-full="/bts/bts-09.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Shade for the monitor" aria-label="View behind-the-scenes photo: Shade for the monitor"><img src="/bts/bts-09-t.jpg" alt="Shade for the monitor" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">09</span><span class="pc">Shade for the monitor</span></button></li>
-        <li class="print" style="--r:3deg;--d:240ms"><button type="button" data-full="/bts/bts-10.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Scene 17 · Playground" aria-label="View behind-the-scenes photo: Scene 17 · Playground"><img src="/bts/bts-10-t.jpg" alt="Scene 17 · Playground" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">10</span><span class="pc">Scene 17 · Playground</span></button></li>
-        <li class="print" style="--r:-2deg;--d:300ms"><button type="button" data-full="/bts/bts-11.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Grins on set" aria-label="View behind-the-scenes photo: Grins on set"><img src="/bts/bts-11-t.jpg" alt="Grins on set" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">11</span><span class="pc">Grins on set</span></button></li>
-        <li class="print" style="--r:1deg;--d:0ms"><button type="button" data-full="/bts/bts-12.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Rigged and ready" aria-label="View behind-the-scenes photo: Rigged and ready"><img src="/bts/bts-12-t.jpg" alt="Rigged and ready" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">12</span><span class="pc">Rigged and ready</span></button></li>
-        <li class="print" style="--r:-3deg;--d:60ms"><button type="button" data-full="/bts/bts-13.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Tracking the walk" aria-label="View behind-the-scenes photo: Tracking the walk"><img src="/bts/bts-13-t.jpg" alt="Tracking the walk" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">13</span><span class="pc">Tracking the walk</span></button></li>
-        <li class="print" style="--r:2.2deg;--d:120ms"><button type="button" data-full="/bts/bts-14.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Steering the operator" aria-label="View behind-the-scenes photo: Steering the operator"><img src="/bts/bts-14-t.jpg" alt="Steering the operator" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">14</span><span class="pc">Steering the operator</span></button></li>
-        <li class="print" style="--r:-1.8deg;--d:180ms"><button type="button" data-full="/bts/bts-15.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Hiding from the sun" aria-label="View behind-the-scenes photo: Hiding from the sun"><img src="/bts/bts-15-t.jpg" alt="Hiding from the sun" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">15</span><span class="pc">Hiding from the sun</span></button></li>
-        <li class="print" style="--r:2.8deg;--d:240ms"><button type="button" data-full="/bts/bts-16.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Ronin in the Wayanad sun" aria-label="View behind-the-scenes photo: Ronin in the Wayanad sun"><img src="/bts/bts-16-t.jpg" alt="Ronin in the Wayanad sun" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">16</span><span class="pc">Ronin in the Wayanad sun</span></button></li>
-        <li class="print" style="--r:-2.6deg;--d:300ms"><button type="button" data-full="/bts/bts-17.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Rehearsing the fall" aria-label="View behind-the-scenes photo: Rehearsing the fall"><img src="/bts/bts-17-t.jpg" alt="Rehearsing the fall" width="560" height="747" loading="lazy" decoding="async"><span class="pn" aria-hidden="true">17</span><span class="pc">Rehearsing the fall</span></button></li>
-        </ol>
+      <p class="bts-lede">The director's wall from the shoot: Wayanad, early 2026. Paddy fields, a football ground and a lot of sun. Tap any photo to see it big.<span class="bts-hint"> Drag across the wall to look around.</span></p>
+    </div>
+    <div class="wrap board-wrap">
+      <div class="board-scroll" tabindex="0" aria-label="Behind-the-scenes wall, scroll sideways to see all of it">
+        <div class="board" id="board">
+          <svg class="strings" id="strings" aria-hidden="true"></svg>
+          <button class="wp" id="wp3" type="button" style="grid-area:2/1/span 9/span 7;--r:-2deg;--d:0ms" data-full="/bts/bts-03.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · The crew, paddy field" aria-label="View behind-the-scenes photo: The crew, paddy field"><img src="/bts/bts-03-t.jpg" alt="The crew, paddy field" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp10" type="button" style="grid-area:6/9/span 8/span 6;--r:2deg;--d:55ms" data-full="/bts/bts-10.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Scene 17 · Playground" aria-label="View behind-the-scenes photo: Scene 17 · Playground"><img src="/bts/bts-10-t.jpg" alt="Scene 17 · Playground" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i><span class="wl">sc. 17</span></button>
+          <button class="wp" id="wp1" type="button" style="grid-area:1/15/span 9/span 5;--r:-3deg;--d:110ms" data-full="/bts/bts-01.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Checking the monitor" aria-label="View behind-the-scenes photo: Checking the monitor"><img src="/bts/bts-01-t.jpg" alt="Checking the monitor" width="560" height="996" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp8" type="button" style="grid-area:3/19/span 8/span 6;--r:3deg;--d:165ms" data-full="/bts/bts-08.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · The boy, in the long grass" aria-label="View behind-the-scenes photo: The boy, in the long grass"><img src="/bts/bts-08-t.jpg" alt="The boy, in the long grass" width="560" height="747" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i><span class="wl">the boy</span></button>
+          <button class="wp" id="wp17" type="button" style="grid-area:11/2/span 8/span 6;--r:3deg;--d:220ms" data-full="/bts/bts-17.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Rehearsing the fall" aria-label="View behind-the-scenes photo: Rehearsing the fall"><img src="/bts/bts-17-t.jpg" alt="Rehearsing the fall" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i><span class="wl">the fall</span></button>
+          <button class="wp" id="wp4" type="button" style="grid-area:13/8/span 6/span 5;--r:-4deg;--d:275ms" data-full="/bts/bts-04.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Act II · Backyard" aria-label="View behind-the-scenes photo: Act II · Backyard"><img src="/bts/bts-04-t.jpg" alt="Act II · Backyard" width="560" height="747" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i></button>
+          <button class="wp" id="wp13" type="button" style="grid-area:12/15/span 8/span 6;--r:-1.5deg;--d:330ms" data-full="/bts/bts-13.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Tracking the walk" aria-label="View behind-the-scenes photo: Tracking the walk"><img src="/bts/bts-13-t.jpg" alt="Tracking the walk" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp16" type="button" style="grid-area:15/20/span 7/span 5;--r:2deg;--d:385ms" data-full="/bts/bts-16.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Ronin in the Wayanad sun" aria-label="View behind-the-scenes photo: Ronin in the Wayanad sun"><img src="/bts/bts-16-t.jpg" alt="Ronin in the Wayanad sun" width="560" height="747" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i></button>
+          <button class="wp" id="wp15" type="button" style="grid-area:20/6/span 8/span 6;--r:-2deg;--d:440ms" data-full="/bts/bts-15.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Hiding from the sun" aria-label="View behind-the-scenes photo: Hiding from the sun"><img src="/bts/bts-15-t.jpg" alt="Hiding from the sun" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp9" type="button" style="grid-area:19/12/span 7/span 5;--r:3deg;--d:495ms" data-full="/bts/bts-09.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Shade for the monitor" aria-label="View behind-the-scenes photo: Shade for the monitor"><img src="/bts/bts-09-t.jpg" alt="Shade for the monitor" width="560" height="747" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i></button>
+          <button class="wp" id="wp7" type="button" style="grid-area:21/17/span 7/span 5;--r:-3deg;--d:550ms" data-full="/bts/bts-07.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Between takes" aria-label="View behind-the-scenes photo: Between takes"><img src="/bts/bts-07-t.jpg" alt="Between takes" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp2" type="button" style="grid-area:21/21/span 8/span 4;--r:2deg;--d:605ms" data-full="/bts/bts-02.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Everyone on one frame" aria-label="View behind-the-scenes photo: Everyone on one frame"><img src="/bts/bts-02-t.jpg" alt="Everyone on one frame" width="560" height="996" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i></button>
+          <button class="wp" id="wp5" type="button" style="grid-area:23/1/span 7/span 5;--r:-2.5deg;--d:660ms" data-full="/bts/bts-05.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Monitor, waiting" aria-label="View behind-the-scenes photo: Monitor, waiting"><img src="/bts/bts-05-t.jpg" alt="Monitor, waiting" width="560" height="996" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i></button>
+          <button class="wp" id="wp11" type="button" style="grid-area:29/4/span 7/span 6;--r:2deg;--d:715ms" data-full="/bts/bts-11.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Grins on set" aria-label="View behind-the-scenes photo: Grins on set"><img src="/bts/bts-11-t.jpg" alt="Grins on set" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp6" type="button" style="grid-area:28/10/span 8/span 4;--r:-3deg;--d:770ms" data-full="/bts/bts-06.jpg" data-w="720" data-h="1280" data-cap="DIRT · Behind the scenes · Sound, listening in" aria-label="View behind-the-scenes photo: Sound, listening in"><img src="/bts/bts-06-t.jpg" alt="Sound, listening in" width="560" height="996" loading="lazy" decoding="async"><i class="fix tape" aria-hidden="true"></i></button>
+          <button class="wp" id="wp12" type="button" style="grid-area:28/15/span 7/span 5;--r:1.5deg;--d:825ms" data-full="/bts/bts-12.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Rigged and ready" aria-label="View behind-the-scenes photo: Rigged and ready"><img src="/bts/bts-12-t.jpg" alt="Rigged and ready" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <button class="wp" id="wp14" type="button" style="grid-area:29/20/span 8/span 5;--r:-2deg;--d:880ms" data-full="/bts/bts-14.jpg" data-w="960" data-h="1280" data-cap="DIRT · Behind the scenes · Steering the operator" aria-label="View behind-the-scenes photo: Steering the operator"><img src="/bts/bts-14-t.jpg" alt="Steering the operator" width="560" height="747" loading="lazy" decoding="async"><i class="fix pin" aria-hidden="true"></i></button>
+          <div class="wn card" id="n1" aria-hidden="true" style="grid-area:1/8/span 5/span 6;--r:2.5deg;--d:935ms"><i class="fix pin"></i><b>DIRT</b><span>behind the scenes</span><span>Wayanad · 2026</span></div>
+          <div class="wn card" id="n2" aria-hidden="true" style="grid-area:10/21/span 3/span 4;--r:-4deg;--d:990ms"><i class="fix pin"></i><span>Sc. 17 —</span><span>Playground</span></div>
+          <div class="wn card" id="n3" aria-hidden="true" style="grid-area:12/13/span 3/span 4;--r:4deg;--d:1045ms"><i class="fix pin"></i><span>Act II —</span><span>Backyard</span></div>
+          <div class="wn sticky" id="n5" aria-hidden="true" style="grid-area:19/1/span 4/span 5;--r:-5deg;--d:1100ms"><i class="fix pin"></i><span>the fistful</span><span>of dirt.</span></div>
+          <div class="wn card" id="n4" aria-hidden="true" style="grid-area:36/3/span 3/span 7;--r:-2deg;--d:1155ms"><i class="fix pin"></i><span>Dir. Roddick Vincent</span><span>Cam. Job T Sunil</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -331,10 +350,25 @@ footer a:hover{color:var(--red)}
 <script>
 (function(){
   document.documentElement.classList.add('js');
-  var ps=document.querySelectorAll('.print');
-  if(!('IntersectionObserver' in window)){ ps.forEach(function(p){p.classList.add('in')}); return; }
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -8% 0px',threshold:.15});
-  ps.forEach(function(p){ io.observe(p); });
+  var board=document.getElementById('board'), svg=document.getElementById('strings'); if(!board) return;
+  var links=[['n2','wp10'],['wp10','wp7'],['n3','wp4'],['n5','wp17']];
+  function pinPoint(el){ var f=el.querySelector('.fix'), b=board.getBoundingClientRect(), r=(f||el).getBoundingClientRect(); return [r.left+r.width/2-b.left, r.top+r.height/2-b.top]; }
+  function draw(){
+    var b=board.getBoundingClientRect(); svg.setAttribute('viewBox','0 0 '+b.width+' '+b.height); svg.innerHTML='';
+    links.forEach(function(l){
+      var a=document.getElementById(l[0]), c=document.getElementById(l[1]); if(!a||!c) return;
+      var p=pinPoint(a), q=pinPoint(c), mx=(p[0]+q[0])/2, my=Math.max(p[1],q[1])+Math.abs(q[0]-p[0])*0.12+18;
+      var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M'+p[0]+' '+p[1]+' Q'+mx+' '+my+' '+q[0]+' '+q[1]);
+      svg.appendChild(path); var len=path.getTotalLength(); path.style.setProperty('--len',len);
+    });
+  }
+  // measure the strings with the pieces at rest, before the pin-up animation moves them
+  board.classList.add('measure'); draw(); board.classList.remove('measure');
+  var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(draw,150); });
+  if(!('IntersectionObserver' in window)){ board.classList.add('in'); return; }
+  var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ board.classList.add('in'); io.disconnect(); setTimeout(draw,2600); } },{threshold:.12});
+  io.observe(board);
 })();
 </script>
 </body>
