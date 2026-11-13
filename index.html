@@ -1168,13 +1168,26 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:none)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)) return;
   var sel=[".brand", ".count", ".dirt-stage", ".half", ".join", ".join-cta", ".lockup", ".member", ".member.open", ".wordmark", ".work-card", ".work-card.dirt", ".work-card.track", ".work-open", ".make > div", ".beliefs li"].join(',');
-  // Wake blocks up as they come into view, in step with the finger: changes are batched into the next frame
-  var want=new Map(), queued=false;
-  function flush(){ queued=false; want.forEach(function(on,el){ el.classList.toggle('live',on); }); want.clear(); }
-  function later(){ if(!queued){ queued=true; requestAnimationFrame(flush); } }
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ want.set(e.target,e.isIntersecting); }); later(); },{rootMargin:'-22% 0px -22% 0px',threshold:0});
-  function watch(){ document.querySelectorAll(sel).forEach(function(el){ if(!el.__live){ el.__live=1; io.observe(el); } }); }
-  watch(); setTimeout(watch,1500);
+  // Wake blocks up while the finger is still moving: positions are measured once, then every scroll
+  // frame only compares numbers (no layout reads), so this keeps up even during momentum scrolling
+  var els=[], vh=innerHeight, ticking=false;
+  function measure(){
+    els=[].slice.call(document.querySelectorAll(sel)); vh=innerHeight; var y=scrollY;
+    els.forEach(function(el){ var r=el.getBoundingClientRect(); el.__t=r.top+y; el.__b=r.bottom+y; });
+    update();
+  }
+  function update(){
+    ticking=false; var y=scrollY, lo=y+vh*0.18, hi=y+vh*0.82;
+    for(var i=0;i<els.length;i++){ var el=els[i], on=el.__b>lo && el.__t<hi; if(on!==!!el.__on){ el.__on=on; el.classList.toggle('live',on); } }
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('touchmove',onScroll,{passive:true});
+  addEventListener('resize',function(){ clearTimeout(measure.t); measure.t=setTimeout(measure,150); });
+  addEventListener('load',measure);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
+  if('ResizeObserver' in window){ var ro=new ResizeObserver(function(){ clearTimeout(measure.r); measure.r=setTimeout(measure,200); }); ro.observe(document.body); }
+  measure(); setTimeout(measure,1500);
 })();
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
