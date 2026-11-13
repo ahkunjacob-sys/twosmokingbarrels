@@ -145,8 +145,9 @@ li:hover .g-credit circle:nth-child(3){transition-delay:.08s} li:hover .g-credit
 .count{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,72px);align-items:center}
 @media (min-width:860px){ .count{grid-template-columns:auto 1fr} }
 .big{font-weight:700;font-size:clamp(150px,30vw,380px);line-height:.8;letter-spacing:-0.06em;color:var(--red)}
-.seats{display:flex;gap:clamp(10px,2vw,18px);flex-wrap:wrap;margin-bottom:22px}
-.seats svg{width:clamp(44px,7vw,72px);height:auto;aspect-ratio:1}
+/* the symbol row shrinks as the movement grows: one line up to 20 symbols, then it wraps */
+.seats{--cols:6;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,clamp(44px,7vw,72px)));gap:calc(clamp(10px,2vw,18px) * var(--g,1));margin-bottom:22px;max-width:100%}
+.seats svg{width:100%;height:auto;aspect-ratio:1;display:block}
 .count h2{font-size:clamp(30px,4.4vw,54px);line-height:1;font-weight:700;margin-bottom:16px}
 .count p{max-width:48ch;color:var(--muted)}
 svg.seat{animation:turn 14s linear infinite;will-change:transform}
@@ -1372,7 +1373,8 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   if(seats){ var NS='http://www.w3.org/2000/svg', XL='http://www.w3.org/1999/xlink'; seats.textContent='';
     cards.forEach(function(c){ var u=c.querySelector('.m-glyph use'); var href=u&&(u.getAttribute('href')||u.getAttributeNS(XL,'href')); if(!href) return;
       var sv=document.createElementNS(NS,'svg'), us=document.createElementNS(NS,'use'); us.setAttribute('href',href); sv.appendChild(us); seats.appendChild(sv); });
-    var sv=document.createElementNS(NS,'svg'), us=document.createElementNS(NS,'use'); sv.setAttribute('class','seat'); us.setAttribute('href','#seat'); sv.appendChild(us); seats.appendChild(sv); }
+    var sv=document.createElementNS(NS,'svg'), us=document.createElementNS(NS,'use'); sv.setAttribute('class','seat'); us.setAttribute('href','#seat'); sv.appendChild(us); seats.appendChild(sv);
+    var total=cards.length+1, cols=Math.min(total,20); seats.style.setProperty('--cols',cols); seats.style.setProperty('--g',Math.max(.3,Math.min(1,7/total)).toFixed(2)); }
   document.querySelectorAll('.jb-num,.jc-num').forEach(function(el){ el.textContent=pad(n+1); });
 })();
 </script>
