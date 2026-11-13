@@ -1018,16 +1018,17 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 
   <section>
     <div class="wrap count">
-      <div class="big num" id="member-count" aria-hidden="true">04</div>
+      <div class="big num" id="member-count" aria-hidden="true">05</div>
       <div>
         <div class="seats" aria-hidden="true">
           <svg><use href="#reel"/></svg>
           <svg><use href="#record"/></svg>
           <svg><use href="#aperture"/></svg>
           <svg><use href="#camera"/></svg>
+          <svg><use href="#clap"/></svg>
           <svg class="seat"><use href="#seat"/></svg>
         </div>
-        <h2><span id="member-words">Four members</span> today. The next number is yours.</h2>
+        <h2><span id="member-words">Five members</span> today. The next number is yours.</h2>
         <p>Every person who joins gets the next number. It is how we will watch this grow from two barrels into a movement.</p>
       </div>
     </div>
@@ -1068,7 +1069,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <div class="wrap">
       <h2>Open for collaboration.</h2>
       <a class="join-cta" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" data-cursor="Join">
-        <span class="jc-num num">05</span>
+        <span class="jc-num num">06</span>
         <span class="jc-body"><strong>Join the movement</strong><span>Tell us your name, your craft, show us your work and what you want to make with us. Two minutes.</span></span>
         <span class="jc-arrow" aria-hidden="true">→</span>
       </a>
@@ -1103,7 +1104,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     </div>
   </section>
 </main>
-<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">05</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
+<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">06</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
 <div class="cur" id="cur" aria-hidden="true"><div class="cur-dot"><span id="cur-txt"></span></div></div>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="close-poster">Close ✕</button><button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous still" data-cursor="Prev" hidden>←</button><button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next still" data-cursor="Next" hidden>→</button><figure><img id="lb-img" alt="" width="1333" height="2000"><figcaption id="lb-cap"></figcaption></figure></div>
 
@@ -1117,7 +1118,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         <div class="lockup-label">Film and Music Atelier</div>
       </div>
     </div>
-    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 04</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
+    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 05</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
   </div>
 </footer>
 
@@ -1354,6 +1355,12 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   set('member-words',(n<words.length?words[n]:String(n))+(n===1?' member':' members'));
   set('member-foot','Members: '+pad(n));
   set('member-next',pad(n+1));
+  // the row of little symbols: one per member card, then the empty seat
+  var seats=document.querySelector('.count .seats');
+  if(seats){ var NS='http://www.w3.org/2000/svg', XL='http://www.w3.org/1999/xlink'; seats.textContent='';
+    cards.forEach(function(c){ var u=c.querySelector('.m-glyph use'); var href=u&&(u.getAttribute('href')||u.getAttributeNS(XL,'href')); if(!href) return;
+      var sv=document.createElementNS(NS,'svg'), us=document.createElementNS(NS,'use'); us.setAttribute('href',href); sv.appendChild(us); seats.appendChild(sv); });
+    var sv=document.createElementNS(NS,'svg'), us=document.createElementNS(NS,'use'); sv.setAttribute('class','seat'); us.setAttribute('href','#seat'); sv.appendChild(us); seats.appendChild(sv); }
   document.querySelectorAll('.jb-num,.jc-num').forEach(function(el){ el.textContent=pad(n+1); });
 })();
 </script>
