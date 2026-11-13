@@ -373,9 +373,15 @@ button.t-play:focus-visible,.t-bar:focus-visible,.t-yt:focus-visible{outline:3px
 @keyframes df-lit{to{opacity:1}}
 /* phones: keep scrolling light */
 @media (hover:none){
+  /* animated drawings get their own layer, so their frames never repaint the rest of the page */
+  svg.o,svg.deck,svg.glyph,svg.t-deck,#dirt-art,.dirt-stage .work-art,.geo .work-art svg,.m-glyph,.count .seats svg,.ticker-track,.strip-track,.eq,.ty-sl{will-change:transform}
+  /* effects fire mid-scroll, so only transform/opacity animate; colours and shadows switch in one step */
+  .member,.join-cta,.work-card,.work-card .work-art,.dirt-stage .work-art,.beliefs li,.work-open .open-box,.make div h3,.t-play,.count .seat,.count .big,.join h2,.jc-num,.member .m-name span,.member .m-glyph,.member .m-num{transition-property:transform,opacity!important}
+  .count.live .big,.join.live h2{letter-spacing:normal}
+  .count.live .seat{scale:1}
   .df-syn .w{opacity:1!important;animation:none!important}
   .df-bg img{animation:none!important}
-  main > section:not(:first-child){content-visibility:auto;contain-intrinsic-size:auto 900px}
+
 }
 /* filmstrip */
 .filmstrip-wrap{min-width:0;display:grid;gap:10px}
@@ -1162,12 +1168,11 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 (function(){
   if(!window.matchMedia||!matchMedia('(hover:none)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)) return;
   var sel=[".brand", ".count", ".dirt-stage", ".half", ".join", ".join-cta", ".lockup", ".member", ".member.open", ".wordmark", ".work-card", ".work-card.dirt", ".work-card.track", ".work-open", ".make > div", ".beliefs li"].join(',');
-  // Wake blocks up only once scrolling settles, so no effect runs while the finger is moving
-  var want=new Map(), idle=0;
-  function flush(){ want.forEach(function(on,el){ el.classList.toggle('live',on); }); want.clear(); }
-  function later(){ clearTimeout(idle); idle=setTimeout(flush,160); }
-  window.addEventListener('scroll',later,{passive:true});
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ want.set(e.target,e.isIntersecting); }); later(); },{rootMargin:'-28% 0px -28% 0px',threshold:0});
+  // Wake blocks up as they come into view, in step with the finger: changes are batched into the next frame
+  var want=new Map(), queued=false;
+  function flush(){ queued=false; want.forEach(function(on,el){ el.classList.toggle('live',on); }); want.clear(); }
+  function later(){ if(!queued){ queued=true; requestAnimationFrame(flush); } }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ want.set(e.target,e.isIntersecting); }); later(); },{rootMargin:'-22% 0px -22% 0px',threshold:0});
   function watch(){ document.querySelectorAll(sel).forEach(function(el){ if(!el.__live){ el.__live=1; io.observe(el); } }); }
   watch(); setTimeout(watch,1500);
 })();
