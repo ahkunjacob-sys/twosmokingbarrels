@@ -118,61 +118,39 @@ section.block{padding-block:clamp(48px,7vw,96px);border-bottom:1px solid color-m
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
 .btn.ghost:hover,.btn.ghost:focus-visible{box-shadow:inset 0 0 0 2px var(--ink),4px 4px 0 var(--red)}
 
-/* behind the scenes: a salon hang on an oxblood wall, with a room guide */
-section.bts{border-bottom:0;padding-bottom:0}
-.bts-lede{font-size:clamp(18px,1.9vw,22px);color:var(--muted);max-width:44ch}
-.bts-by{margin-top:14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.bts-by b{color:var(--ink)}
-.salon{margin-top:clamp(28px,4vw,48px);position:relative;background:#5a1a16;
-  background-image:radial-gradient(ellipse 40% 26% at 22% 0%,rgba(255,214,160,.22),transparent 70%),radial-gradient(ellipse 40% 26% at 62% 0%,rgba(255,214,160,.2),transparent 70%),radial-gradient(ellipse 120% 80% at 50% 40%,transparent 50%,rgba(0,0,0,.35)),repeating-linear-gradient(90deg,rgba(0,0,0,.035) 0 2px,transparent 2px 5px);
-  border-top:14px solid #2a0d0b;box-shadow:inset 0 10px 18px -8px rgba(0,0,0,.6)}
-/* picture rail and dado rail */
-.salon::before{content:"";position:absolute;left:0;right:0;top:18px;height:5px;background:linear-gradient(#b48a45,#6d4f22);box-shadow:0 3px 4px rgba(0,0,0,.4)}
-.salon::after{content:"";display:block;height:84px;background:linear-gradient(180deg,#3a100d 0 10px,#e2d9c6 10px 14px,#3e120f 14px);box-shadow:inset 0 10px 10px -8px rgba(0,0,0,.6)}
-.salon-in{max-width:calc(var(--max) + 64px);margin:0 auto;padding:clamp(56px,6vw,84px) max(16px,3vw) clamp(40px,5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:clamp(28px,4vw,56px);align-items:start}
-.sw-box{container-type:inline-size;min-width:0}
-.sw-wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:calc((100cqw - 11 * 1.6cqw) / 12);gap:1.6cqw}
-.sw{position:relative;grid-area:var(--ga)}
-.sw-f{position:absolute;inset:0;display:block;width:100%;height:100%;padding:var(--fw,9px);border:0;cursor:zoom-in;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s;box-shadow:0 2px 2px rgba(0,0,0,.4),0 18px 26px -12px rgba(0,0,0,.75)}
-.sw-in{display:block;width:100%;height:100%;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
-.sw-in img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);filter:contrast(1.05) sepia(.08)}
-.sw.mat .sw-in{background:#f3efe4;padding:9%;box-shadow:inset 1px 1px 3px rgba(0,0,0,.25)}
-.sw.mat .sw-in img{box-shadow:0 0 0 1px rgba(0,0,0,.2)}
-.sw.gilt .sw-f{--fw:12px;background:linear-gradient(135deg,#7a5a1f,#e9cf86 18%,#a47b2c 34%,#f3dc98 52%,#8a6424 70%,#d8b766 86%,#6f4f18);box-shadow:inset 0 0 0 2px rgba(60,40,8,.6),inset 0 0 0 5px rgba(255,236,170,.35),inset 0 0 0 7px rgba(80,55,15,.5),0 2px 2px rgba(0,0,0,.45),0 20px 28px -12px rgba(0,0,0,.8)}
-.sw.black .sw-f{--fw:8px;background:#121110;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 2px 2px rgba(0,0,0,.45),0 18px 26px -12px rgba(0,0,0,.75)}
-.sw.walnut .sw-f{--fw:10px;background:linear-gradient(90deg,#3d2416,#6b4128 30%,#4a2c1b 60%,#7a4b2e 85%,#3d2416);box-shadow:inset 0 0 0 2px rgba(0,0,0,.4),inset 0 0 0 4px rgba(210,160,110,.18),0 2px 2px rgba(0,0,0,.45),0 18px 26px -12px rgba(0,0,0,.75)}
-.sw-f:hover,.sw-f:focus-visible,.sw.lit .sw-f{transform:translateY(-3px) scale(1.015);z-index:5}
-.sw.lit .sw-f{outline:2px solid #f1d58d;outline-offset:5px}
-.sw-f:focus-visible{outline:2px solid #f1d58d;outline-offset:5px}
-.sw-no{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);z-index:6;min-width:22px;padding:3px 6px 2px;background:linear-gradient(#e8cf8c,#a98238);color:#2a1a06;font:700 10px/1 var(--sans);letter-spacing:.05em;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.5);pointer-events:none}
-/* room guide card */
-.guide{position:sticky;top:24px;background:#f5f1e6;color:#1d1a17;padding:22px 20px 18px;box-shadow:0 2px 2px rgba(0,0,0,.35),0 22px 30px -16px rgba(0,0,0,.7)}
-.g-kick{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin:0}
-.g-t{margin:8px 0 0;font-weight:900;font-size:34px;line-height:.9;letter-spacing:-0.05em}
-.g-t em{display:block;font-style:italic;font-weight:500;font-size:18px;letter-spacing:0;color:#5b5751;margin-top:4px}
-.g-by{margin:12px 0 0;font-size:12px;line-height:1.5;color:#5b5751;padding-bottom:12px;border-bottom:1px solid rgba(0,0,0,.18)}
-.g-list{list-style:none;margin:8px 0 0;padding:0;counter-reset:none}
-.g-list a{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:baseline;padding:5px 2px;text-decoration:none;font-size:12.5px;line-height:1.3;border-bottom:1px dotted rgba(0,0,0,.16)}
-.g-list span{font-weight:700;color:#8a6424;font-size:11px}
-.g-list i{font-style:normal}
-.g-list small{font-size:10px;color:#8a857d;letter-spacing:.04em}
-.g-list a:hover,.g-list a.lit{background:rgba(226,35,26,.08)}
-.g-list a:hover i,.g-list a.lit i{color:var(--red)}
-.g-note{margin:12px 0 0;font-size:11px;color:#8a857d}
-@media (max-width:899px){
-  .salon-in{grid-template-columns:1fr}
-  .guide{position:relative;top:auto}
-  .g-list{columns:2;column-gap:18px}
-  .g-list li{break-inside:avoid}
-}
-@media (max-width:599px){
-  .sw-wall{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:calc((100cqw - 5 * 2.6cqw) / 6);gap:2.6cqw}
-  .sw-wall{grid-auto-flow:row dense}
-  .sw{grid-area:auto;grid-column:span var(--pc);grid-row:span var(--pr)}
-  .sw.gilt .sw-f{--fw:8px}.sw.black .sw-f{--fw:6px}.sw.walnut .sw-f{--fw:7px}
-  .g-list{columns:1}
-  .salon::after{height:56px}
-}
+/* behind the scenes: glass-plate negatives that turn positive on the lightbox */
+section.bts{background:#16130f;color:#F0EEE9;border-bottom:0}
+.bts h2 small{color:#ff6a5f}
+.bts-lede{font-size:clamp(18px,1.9vw,22px);color:#cfcac2;max-width:46ch}
+.gp-how-t{display:none}
+@media (hover:none),(pointer:coarse){.gp-how-d{display:none}.gp-how-t{display:inline}}
+.bts-by{margin-top:14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#a8a39b}
+.bts-by b{color:#F0EEE9}
+.bts .gp-wrap{display:block;margin-top:clamp(28px,4vw,48px)}
+.gp-table{position:relative;padding:clamp(22px,3vw,40px);background:#1f1a14;background-image:radial-gradient(ellipse 80% 70% at 50% 45%,rgba(255,206,140,.07),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 2px,transparent 2px 9px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),inset 0 20px 50px rgba(0,0,0,.5)}
+.gp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(22px,2.6vw,36px) clamp(14px,2vw,26px)}
+@media (max-width:1000px){.gp-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:600px){.gp-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 14px}.gp-table{margin-inline:-6px;padding:16px 12px}}
+.gp{transform:rotate(var(--r))}
+.gp-h{position:relative;display:block;width:100%;padding:9px;border:0;cursor:zoom-in;background:linear-gradient(135deg,#4a2e1c,#7a4e30 30%,#5a3822 60%,#87593a 85%,#4a2e1c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.5),inset 0 0 0 3px rgba(210,160,110,.16),0 3px 3px rgba(0,0,0,.5),0 18px 26px -14px rgba(0,0,0,.85);transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
+.gp-glass{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#0c0b09;padding:5%;box-shadow:inset 0 0 0 1px rgba(170,215,185,.42),inset 0 0 0 3px rgba(0,0,0,.6);transition:background .7s,box-shadow .7s}
+.gp-glass::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.16) 0 8%,transparent 22% 60%,rgba(255,255,255,.07) 72%,transparent 82%);mix-blend-mode:screen}
+.gp-glass img{display:block;width:100%;height:100%;object-fit:cover;filter:invert(1) sepia(.65) saturate(.9) contrast(1.15) brightness(.82);transition:filter .9s cubic-bezier(.4,.1,.3,1)}
+.gp-glass.chip-tr{clip-path:polygon(0 0,86% 0,100% 9%,100% 100%,0 100%)}
+.gp-glass.chip-bl{clip-path:polygon(0 0,100% 0,100% 100%,13% 100%,0 92%)}
+.gp-glass.chip-tl{clip-path:polygon(10% 0,100% 0,100% 100%,0 100%,0 7%)}
+.gp-glass.chip-br{clip-path:polygon(0 0,100% 0,100% 90%,88% 100%,0 100%)}
+.gp-tag{position:absolute;left:-6px;top:16px;padding:3px 7px 2px;background:#efe6cf;color:#2a2117;font:700 10px/1 "Courier New",monospace;letter-spacing:.06em;transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.45)}
+.gp-cap{margin:12px 2px 0;font:400 12px/1.35 "Courier New",monospace;color:#a8a39b}
+.gp-cap b{color:#e9c98c;font-weight:700}
+.gp-cap span{display:block;color:#7a746b}
+/* on the lightbox: lifted, back-lit, positive */
+.gp-h:hover,.gp-h:focus-visible,.gp.on .gp-h{transform:translateY(-8px) rotate(calc(var(--r) * -1));box-shadow:inset 0 0 0 1px rgba(0,0,0,.5),inset 0 0 0 3px rgba(210,160,110,.16),0 0 0 1px rgba(255,220,160,.25),0 0 46px 6px rgba(255,214,150,.32),0 28px 36px -16px rgba(0,0,0,.9)}
+.gp-h:hover .gp-glass,.gp-h:focus-visible .gp-glass,.gp.on .gp-glass{background:#fff3d9;box-shadow:inset 0 0 0 1px rgba(170,215,185,.5),inset 0 0 24px rgba(255,230,180,.9)}
+.gp-h:hover img,.gp-h:focus-visible img,.gp.on img{filter:invert(0) sepia(.12) saturate(1) contrast(1.05) brightness(1)}
+.gp-h:focus-visible{outline:2px solid #e9c98c;outline-offset:4px}
+.gp-foot{display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;margin:clamp(24px,3vw,36px) 0 0;font:400 11px/1.4 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase;color:#7a746b}
+@media (prefers-reduced-motion:reduce){.gp-h,.gp-glass,.gp-glass img{transition:none}}
 footer{padding-block:28px 40px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
 footer a{text-underline-offset:3px}
@@ -242,58 +220,33 @@ footer a:hover{color:var(--red)}
     <div class="wrap">
       <h2><small>03</small>Behind the scenes</h2>
       <div>
-        <p class="bts-lede">Hung salon-style: eighteen photographs from four days in Wayanad, 30 January to 3 February 2026.</p>
+        <p class="bts-lede">Eighteen photographs from four days in Wayanad, 30 January to 3 February 2026, kept as glass-plate negatives. <span class="gp-how-d">Hover a plate to lay it on the lightbox.</span><span class="gp-how-t">Each plate turns positive as it passes over the light.</span></p>
         <p class="bts-by">Photographs by <b>Alan Jose</b></p>
       </div>
     </div>
-    <div class="salon">
-      <div class="salon-in">
-        <div class="sw-box"><ol class="sw-wall" id="sw-wall">
-          <li class="sw black" id="sw1" style="--ga:1/1/span 4/span 2;--c:2;--r:4;--pc:2;--pr:4"><button class="sw-f" type="button" data-n="1" data-full="/bts/bts-06.jpg" data-w="720" data-h="1280" data-cap="No. 1 · Sound, listening in · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="No. 1: Sound, listening in"><span class="sw-in"><img src="/bts/bts-06-t.jpg" alt="Sound, listening in" width="560" height="996" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">1</span></li>
-          <li class="sw gilt" id="sw2" style="--ga:1/3/span 5/span 4;--c:4;--r:5;--pc:3;--pr:4"><button class="sw-f" type="button" data-n="2" data-full="/bts/bts-08.jpg" data-w="960" data-h="1280" data-cap="No. 2 · The boy, in the long grass · Day 1, Football ground · Photograph by Alan Jose" aria-label="No. 2: The boy, in the long grass"><span class="sw-in"><img src="/bts/bts-08-t.jpg" alt="The boy, in the long grass" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">2</span></li>
-          <li class="sw walnut" id="sw3" style="--ga:1/7/span 2/span 2;--c:2;--r:2;--pc:2;--pr:2"><button class="sw-f" type="button" data-n="3" data-full="/bts/bts-04.jpg" data-w="960" data-h="1280" data-cap="No. 3 · Act II, the backyard slate · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="No. 3: Act II, the backyard slate"><span class="sw-in"><img src="/bts/bts-04-t.jpg" alt="Act II, the backyard slate" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">3</span></li>
-          <li class="sw black mat" id="sw4" style="--ga:1/9/span 4/span 4;--c:3;--r:4;--pc:3;--pr:4"><button class="sw-f" type="button" data-n="4" data-full="/bts/bts-10.jpg" data-w="960" data-h="1280" data-cap="No. 4 · Scene 17, the playground · Day 1, Football ground · Photograph by Alan Jose" aria-label="No. 4: Scene 17, the playground"><span class="sw-in"><img src="/bts/bts-10-t.jpg" alt="Scene 17, the playground" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">4</span></li>
-          <li class="sw gilt" id="sw5" style="--ga:3/7/span 3/span 2;--c:2;--r:3;--pc:2;--pr:3"><button class="sw-f" type="button" data-n="5" data-full="/bts/bts-05.jpg" data-w="720" data-h="1280" data-cap="No. 5 · Monitor, waiting · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="No. 5: Monitor, waiting"><span class="sw-in"><img src="/bts/bts-05-t.jpg" alt="Monitor, waiting" width="560" height="996" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">5</span></li>
-          <li class="sw gilt mat" id="sw6" style="--ga:5/9/span 5/span 4;--c:3;--r:5;--pc:3;--pr:5"><button class="sw-f" type="button" data-n="6" data-full="/bts/bts-18.jpg" data-w="720" data-h="1280" data-cap="No. 6 · The boy, laughing · Day 4, Paddy field · Photograph by Alan Jose" aria-label="No. 6: The boy, laughing"><span class="sw-in"><img src="/bts/bts-18-t.jpg" alt="The boy, laughing" width="560" height="996" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">6</span></li>
-          <li class="sw walnut" id="sw7" style="--ga:5/1/span 4/span 2;--c:2;--r:4;--pc:2;--pr:4"><button class="sw-f" type="button" data-n="7" data-full="/bts/bts-01.jpg" data-w="720" data-h="1280" data-cap="No. 7 · Checking the monitor · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="No. 7: Checking the monitor"><span class="sw-in"><img src="/bts/bts-01-t.jpg" alt="Checking the monitor" width="560" height="996" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">7</span></li>
-          <li class="sw black" id="sw8" style="--ga:6/3/span 4/span 3;--c:3;--r:4;--pc:3;--pr:4"><button class="sw-f" type="button" data-n="8" data-full="/bts/bts-17.jpg" data-w="960" data-h="1280" data-cap="No. 8 · Rehearsing the fall · Day 1, Football ground · Photograph by Alan Jose" aria-label="No. 8: Rehearsing the fall"><span class="sw-in"><img src="/bts/bts-17-t.jpg" alt="Rehearsing the fall" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">8</span></li>
-          <li class="sw gilt" id="sw9" style="--ga:6/6/span 3/span 3;--c:3;--r:3;--pc:3;--pr:3"><button class="sw-f" type="button" data-n="9" data-full="/bts/bts-09.jpg" data-w="960" data-h="1280" data-cap="No. 9 · Shade for the monitor · Day 1, Football ground · Photograph by Alan Jose" aria-label="No. 9: Shade for the monitor"><span class="sw-in"><img src="/bts/bts-09-t.jpg" alt="Shade for the monitor" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">9</span></li>
-          <li class="sw black mat" id="sw10" style="--ga:9/6/span 5/span 3;--c:3;--r:5;--pc:3;--pr:5"><button class="sw-f" type="button" data-n="10" data-full="/bts/bts-02.jpg" data-w="720" data-h="1280" data-cap="No. 10 · Everyone on one frame · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="No. 10: Everyone on one frame"><span class="sw-in"><img src="/bts/bts-02-t.jpg" alt="Everyone on one frame" width="560" height="996" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">10</span></li>
-          <li class="sw walnut mat" id="sw11" style="--ga:10/3/span 4/span 3;--c:3;--r:4;--pc:3;--pr:4"><button class="sw-f" type="button" data-n="11" data-full="/bts/bts-07.jpg" data-w="960" data-h="1280" data-cap="No. 11 · Between takes · Day 1, Football ground · Photograph by Alan Jose" aria-label="No. 11: Between takes"><span class="sw-in"><img src="/bts/bts-07-t.jpg" alt="Between takes" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">11</span></li>
-          <li class="sw gilt" id="sw12" style="--ga:10/9/span 4/span 4;--c:3;--r:4;--pc:3;--pr:4;--op:50% 45%"><button class="sw-f" type="button" data-n="12" data-full="/bts/bts-13.jpg" data-w="960" data-h="1280" data-cap="No. 12 · Tracking the walk · Day 3, Paddy field · Photograph by Alan Jose" aria-label="No. 12: Tracking the walk"><span class="sw-in"><img src="/bts/bts-13-t.jpg" alt="Tracking the walk" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">12</span></li>
-          <li class="sw black" id="sw13" style="--ga:9/1/span 5/span 2;--c:2;--r:3;--pc:2;--pr:3"><button class="sw-f" type="button" data-n="13" data-full="/bts/bts-12.jpg" data-w="960" data-h="1280" data-cap="No. 13 · Rigged and ready · Day 3, Paddy field · Photograph by Alan Jose" aria-label="No. 13: Rigged and ready"><span class="sw-in"><img src="/bts/bts-12-t.jpg" alt="Rigged and ready" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">13</span></li>
-          <li class="sw gilt mat" id="sw14" style="--ga:14/1/span 3/span 4;--c:4;--r:3;--pc:3;--pr:2"><button class="sw-f" type="button" data-n="14" data-full="/bts/bts-03.jpg" data-w="960" data-h="1280" data-cap="No. 14 · The crew, paddy field · Day 4, Paddy field · Photograph by Alan Jose" aria-label="No. 14: The crew, paddy field"><span class="sw-in"><img src="/bts/bts-03-t.jpg" alt="The crew, paddy field" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">14</span></li>
-          <li class="sw black" id="sw15" style="--ga:14/5/span 6/span 4;--c:3;--r:4;--pc:3;--pr:4"><button class="sw-f" type="button" data-n="15" data-full="/bts/bts-16.jpg" data-w="960" data-h="1280" data-cap="No. 15 · The Ronin, midday · Day 3, Paddy field · Photograph by Alan Jose" aria-label="No. 15: The Ronin, midday"><span class="sw-in"><img src="/bts/bts-16-t.jpg" alt="The Ronin, midday" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">15</span></li>
-          <li class="sw walnut" id="sw16" style="--ga:14/9/span 3/span 4;--c:3;--r:3;--pc:3;--pr:3;--op:50% 60%"><button class="sw-f" type="button" data-n="16" data-full="/bts/bts-14.jpg" data-w="960" data-h="1280" data-cap="No. 16 · Steering the operator · Day 3, Paddy field · Photograph by Alan Jose" aria-label="No. 16: Steering the operator"><span class="sw-in"><img src="/bts/bts-14-t.jpg" alt="Steering the operator" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">16</span></li>
-          <li class="sw black mat" id="sw17" style="--ga:17/1/span 3/span 4;--c:4;--r:3;--pc:3;--pr:2"><button class="sw-f" type="button" data-n="17" data-full="/bts/bts-15.jpg" data-w="960" data-h="1280" data-cap="No. 17 · Hiding from the sun · Day 3, Paddy field · Photograph by Alan Jose" aria-label="No. 17: Hiding from the sun"><span class="sw-in"><img src="/bts/bts-15-t.jpg" alt="Hiding from the sun" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">17</span></li>
-          <li class="sw gilt" id="sw18" style="--ga:17/9/span 3/span 4;--c:3;--r:4;--pc:3;--pr:4;--op:50% 22%"><button class="sw-f" type="button" data-n="18" data-full="/bts/bts-11.jpg" data-w="960" data-h="1280" data-cap="No. 18 · Grins on set · Day 4, Paddy field · Photograph by Alan Jose" aria-label="No. 18: Grins on set"><span class="sw-in"><img src="/bts/bts-11-t.jpg" alt="Grins on set" width="560" height="747" loading="lazy" decoding="async"></span></button><span class="sw-no" aria-hidden="true">18</span></li>
-        </ol></div>
-        <aside class="guide" aria-label="Room guide">
-          <p class="g-kick">Room guide</p>
-          <p class="g-t">DIRT<em>On Set</em></p>
-          <p class="g-by">Photographs by Alan Jose<br>Wayanad, Kerala · 2026</p>
-          <ol class="g-list" id="g-list">
-            <li><a href="#sw1" data-n="1"><span>1</span><i>Sound, listening in</i><small>Day 2</small></a></li>
-            <li><a href="#sw2" data-n="2"><span>2</span><i>The boy, in the long grass</i><small>Day 1</small></a></li>
-            <li><a href="#sw3" data-n="3"><span>3</span><i>Act II, the backyard slate</i><small>Day 2</small></a></li>
-            <li><a href="#sw4" data-n="4"><span>4</span><i>Scene 17, the playground</i><small>Day 1</small></a></li>
-            <li><a href="#sw5" data-n="5"><span>5</span><i>Monitor, waiting</i><small>Day 2</small></a></li>
-            <li><a href="#sw6" data-n="6"><span>6</span><i>The boy, laughing</i><small>Day 4</small></a></li>
-            <li><a href="#sw7" data-n="7"><span>7</span><i>Checking the monitor</i><small>Day 2</small></a></li>
-            <li><a href="#sw8" data-n="8"><span>8</span><i>Rehearsing the fall</i><small>Day 1</small></a></li>
-            <li><a href="#sw9" data-n="9"><span>9</span><i>Shade for the monitor</i><small>Day 1</small></a></li>
-            <li><a href="#sw10" data-n="10"><span>10</span><i>Everyone on one frame</i><small>Day 2</small></a></li>
-            <li><a href="#sw11" data-n="11"><span>11</span><i>Between takes</i><small>Day 1</small></a></li>
-            <li><a href="#sw12" data-n="12"><span>12</span><i>Tracking the walk</i><small>Day 3</small></a></li>
-            <li><a href="#sw13" data-n="13"><span>13</span><i>Rigged and ready</i><small>Day 3</small></a></li>
-            <li><a href="#sw14" data-n="14"><span>14</span><i>The crew, paddy field</i><small>Day 4</small></a></li>
-            <li><a href="#sw15" data-n="15"><span>15</span><i>The Ronin, midday</i><small>Day 3</small></a></li>
-            <li><a href="#sw16" data-n="16"><span>16</span><i>Steering the operator</i><small>Day 3</small></a></li>
-            <li><a href="#sw17" data-n="17"><span>17</span><i>Hiding from the sun</i><small>Day 3</small></a></li>
-            <li><a href="#sw18" data-n="18"><span>18</span><i>Grins on set</i><small>Day 4</small></a></li>
-          </ol>
-          <p class="g-note">Click any work to see it full size.</p>
-        </aside>
+    <div class="wrap gp-wrap">
+      <div class="gp-table">
+        <ol class="gp-grid" id="gp-grid">
+          <li class="gp" style="--r:-0.8deg"><button class="gp-h" type="button" data-full="/bts/bts-10.jpg" data-w="960" data-h="1280" data-cap="Plate 01 · Scene 17, the playground · Day 1, Football ground · Photograph by Alan Jose" aria-label="Plate 1: Scene 17, the playground"><span class="gp-glass"><img src="/bts/bts-10-t.jpg" alt="Scene 17, the playground" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/01</span></button><p class="gp-cap"><b>01</b> Scene 17, the playground <span>Day 1</span></p></li>
+          <li class="gp" style="--r:0.6deg"><button class="gp-h" type="button" data-full="/bts/bts-08.jpg" data-w="960" data-h="1280" data-cap="Plate 02 · The boy, in the long grass · Day 1, Football ground · Photograph by Alan Jose" aria-label="Plate 2: The boy, in the long grass"><span class="gp-glass chip-tr"><img src="/bts/bts-08-t.jpg" alt="The boy, in the long grass" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/02</span></button><p class="gp-cap"><b>02</b> The boy, in the long grass <span>Day 1</span></p></li>
+          <li class="gp" style="--r:-0.4deg"><button class="gp-h" type="button" data-full="/bts/bts-17.jpg" data-w="960" data-h="1280" data-cap="Plate 03 · Rehearsing the fall · Day 1, Football ground · Photograph by Alan Jose" aria-label="Plate 3: Rehearsing the fall"><span class="gp-glass"><img src="/bts/bts-17-t.jpg" alt="Rehearsing the fall" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/03</span></button><p class="gp-cap"><b>03</b> Rehearsing the fall <span>Day 1</span></p></li>
+          <li class="gp" style="--r:0.9deg"><button class="gp-h" type="button" data-full="/bts/bts-07.jpg" data-w="960" data-h="1280" data-cap="Plate 04 · Between takes · Day 1, Football ground · Photograph by Alan Jose" aria-label="Plate 4: Between takes"><span class="gp-glass"><img src="/bts/bts-07-t.jpg" alt="Between takes" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/04</span></button><p class="gp-cap"><b>04</b> Between takes <span>Day 1</span></p></li>
+          <li class="gp" style="--r:-0.6deg"><button class="gp-h" type="button" data-full="/bts/bts-09.jpg" data-w="960" data-h="1280" data-cap="Plate 05 · Shade for the monitor · Day 1, Football ground · Photograph by Alan Jose" aria-label="Plate 5: Shade for the monitor"><span class="gp-glass"><img src="/bts/bts-09-t.jpg" alt="Shade for the monitor" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/05</span></button><p class="gp-cap"><b>05</b> Shade for the monitor <span>Day 1</span></p></li>
+          <li class="gp" style="--r:0.3deg"><button class="gp-h" type="button" data-full="/bts/bts-04.jpg" data-w="960" data-h="1280" data-cap="Plate 06 · Act II, the backyard slate · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="Plate 6: Act II, the backyard slate"><span class="gp-glass"><img src="/bts/bts-04-t.jpg" alt="Act II, the backyard slate" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/06</span></button><p class="gp-cap"><b>06</b> Act II, the backyard slate <span>Day 2</span></p></li>
+          <li class="gp" style="--r:0.7deg"><button class="gp-h" type="button" data-full="/bts/bts-01.jpg" data-w="720" data-h="1280" data-cap="Plate 07 · Checking the monitor · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="Plate 7: Checking the monitor"><span class="gp-glass chip-bl"><img src="/bts/bts-01-t.jpg" alt="Checking the monitor" width="560" height="996" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/07</span></button><p class="gp-cap"><b>07</b> Checking the monitor <span>Day 2</span></p></li>
+          <li class="gp" style="--r:-0.9deg"><button class="gp-h" type="button" data-full="/bts/bts-02.jpg" data-w="720" data-h="1280" data-cap="Plate 08 · Everyone on one frame · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="Plate 8: Everyone on one frame"><span class="gp-glass"><img src="/bts/bts-02-t.jpg" alt="Everyone on one frame" width="560" height="996" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/08</span></button><p class="gp-cap"><b>08</b> Everyone on one frame <span>Day 2</span></p></li>
+          <li class="gp" style="--r:0.4deg"><button class="gp-h" type="button" data-full="/bts/bts-05.jpg" data-w="720" data-h="1280" data-cap="Plate 09 · Monitor, waiting · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="Plate 9: Monitor, waiting"><span class="gp-glass"><img src="/bts/bts-05-t.jpg" alt="Monitor, waiting" width="560" height="996" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/09</span></button><p class="gp-cap"><b>09</b> Monitor, waiting <span>Day 2</span></p></li>
+          <li class="gp" style="--r:-0.3deg"><button class="gp-h" type="button" data-full="/bts/bts-06.jpg" data-w="720" data-h="1280" data-cap="Plate 10 · Sound, listening in · Day 2, Forest &amp; backyard · Photograph by Alan Jose" aria-label="Plate 10: Sound, listening in"><span class="gp-glass"><img src="/bts/bts-06-t.jpg" alt="Sound, listening in" width="560" height="996" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/10</span></button><p class="gp-cap"><b>10</b> Sound, listening in <span>Day 2</span></p></li>
+          <li class="gp" style="--r:0.8deg"><button class="gp-h" type="button" data-full="/bts/bts-13.jpg" data-w="960" data-h="1280" data-cap="Plate 11 · Tracking the walk · Day 3, Paddy field · Photograph by Alan Jose" aria-label="Plate 11: Tracking the walk"><span class="gp-glass chip-tl"><img src="/bts/bts-13-t.jpg" alt="Tracking the walk" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/11</span></button><p class="gp-cap"><b>11</b> Tracking the walk <span>Day 3</span></p></li>
+          <li class="gp" style="--r:-0.5deg"><button class="gp-h" type="button" data-full="/bts/bts-14.jpg" data-w="960" data-h="1280" data-cap="Plate 12 · Steering the operator · Day 3, Paddy field · Photograph by Alan Jose" aria-label="Plate 12: Steering the operator"><span class="gp-glass"><img src="/bts/bts-14-t.jpg" alt="Steering the operator" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/12</span></button><p class="gp-cap"><b>12</b> Steering the operator <span>Day 3</span></p></li>
+          <li class="gp" style="--r:0.5deg"><button class="gp-h" type="button" data-full="/bts/bts-16.jpg" data-w="960" data-h="1280" data-cap="Plate 13 · The Ronin, midday · Day 3, Paddy field · Photograph by Alan Jose" aria-label="Plate 13: The Ronin, midday"><span class="gp-glass"><img src="/bts/bts-16-t.jpg" alt="The Ronin, midday" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/13</span></button><p class="gp-cap"><b>13</b> The Ronin, midday <span>Day 3</span></p></li>
+          <li class="gp" style="--r:-0.7deg"><button class="gp-h" type="button" data-full="/bts/bts-12.jpg" data-w="960" data-h="1280" data-cap="Plate 14 · Rigged and ready · Day 3, Paddy field · Photograph by Alan Jose" aria-label="Plate 14: Rigged and ready"><span class="gp-glass"><img src="/bts/bts-12-t.jpg" alt="Rigged and ready" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/14</span></button><p class="gp-cap"><b>14</b> Rigged and ready <span>Day 3</span></p></li>
+          <li class="gp" style="--r:0.2deg"><button class="gp-h" type="button" data-full="/bts/bts-15.jpg" data-w="960" data-h="1280" data-cap="Plate 15 · Hiding from the sun · Day 3, Paddy field · Photograph by Alan Jose" aria-label="Plate 15: Hiding from the sun"><span class="gp-glass"><img src="/bts/bts-15-t.jpg" alt="Hiding from the sun" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/15</span></button><p class="gp-cap"><b>15</b> Hiding from the sun <span>Day 3</span></p></li>
+          <li class="gp" style="--r:-0.4deg"><button class="gp-h" type="button" data-full="/bts/bts-03.jpg" data-w="960" data-h="1280" data-cap="Plate 16 · The crew, paddy field · Day 4, Paddy field · Photograph by Alan Jose" aria-label="Plate 16: The crew, paddy field"><span class="gp-glass chip-br"><img src="/bts/bts-03-t.jpg" alt="The crew, paddy field" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/16</span></button><p class="gp-cap"><b>16</b> The crew, paddy field <span>Day 4</span></p></li>
+          <li class="gp" style="--r:0.6deg"><button class="gp-h" type="button" data-full="/bts/bts-11.jpg" data-w="960" data-h="1280" data-cap="Plate 17 · Grins on set · Day 4, Paddy field · Photograph by Alan Jose" aria-label="Plate 17: Grins on set"><span class="gp-glass"><img src="/bts/bts-11-t.jpg" alt="Grins on set" width="560" height="747" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/17</span></button><p class="gp-cap"><b>17</b> Grins on set <span>Day 4</span></p></li>
+          <li class="gp" style="--r:-0.2deg"><button class="gp-h" type="button" data-full="/bts/bts-18.jpg" data-w="720" data-h="1280" data-cap="Plate 18 · The boy, laughing · Day 4, Paddy field · Photograph by Alan Jose" aria-label="Plate 18: The boy, laughing"><span class="gp-glass"><img src="/bts/bts-18-t.jpg" alt="The boy, laughing" width="560" height="996" loading="lazy" decoding="async"></span><span class="gp-tag" aria-hidden="true">DIRT/18</span></button><p class="gp-cap"><b>18</b> The boy, laughing <span>Day 4</span></p></li>
+        </ol>
+        <p class="gp-foot"><span>Glass plates · DIRT · Wayanad, 2026</span><span>Photographs by Alan Jose · Click a plate to see the print</span></p>
       </div>
     </div>
   </section>
@@ -384,15 +337,12 @@ footer a:hover{color:var(--red)}
 })();
 </script>
 <script>
-/* salon: hovering a work lights its line in the room guide, and the other way round */
+/* glass plates: on touch screens, a plate turns positive as it passes the middle of the screen */
 (function(){
-  var wall=document.getElementById('sw-wall'), list=document.getElementById('g-list'); if(!wall||!list) return;
-  function lit(n,on){ var w=document.getElementById('sw'+n), g=list.querySelector('a[data-n="'+n+'"]'); if(w) w.classList.toggle('lit',on); if(g) g.classList.toggle('lit',on); }
-  wall.querySelectorAll('.sw-f').forEach(function(b){ var n=b.dataset.n; b.addEventListener('mouseenter',function(){lit(n,true)}); b.addEventListener('mouseleave',function(){lit(n,false)}); b.addEventListener('focus',function(){lit(n,true)}); b.addEventListener('blur',function(){lit(n,false)}); });
-  list.querySelectorAll('a').forEach(function(a){ var n=a.dataset.n;
-    a.addEventListener('mouseenter',function(){lit(n,true)}); a.addEventListener('mouseleave',function(){lit(n,false)});
-    a.addEventListener('click',function(e){ e.preventDefault(); var w=document.getElementById('sw'+n); w.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'}); lit(n,true); setTimeout(function(){lit(n,false)},1600); });
-  });
+  var grid=document.getElementById('gp-grid'); if(!grid||!('IntersectionObserver' in window)) return;
+  if(!matchMedia('(hover:none),(pointer:coarse)').matches) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('on',e.isIntersecting); }); },{rootMargin:'-38% 0px -38% 0px'});
+  grid.querySelectorAll('.gp').forEach(function(g){ io.observe(g); });
 })();
 </script>
 </body>
