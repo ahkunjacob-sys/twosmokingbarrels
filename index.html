@@ -697,6 +697,13 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
       <circle cx="31" cy="35" r="3" fill="#fff"/><circle cx="53" cy="35" r="3" fill="#fff"/>
       <path d="M62 52 L80 44 L80 74 L62 66 Z" fill="#000"/>
     </mask>
+    <mask id="m-eye" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <circle cx="50" cy="50" r="50" fill="#fff"/>
+      <path d="M16 50 Q50 16 84 50 Q50 84 16 50 Z" fill="#000"/>
+      <circle cx="50" cy="50" r="14" fill="#fff"/>
+      <circle cx="50" cy="50" r="6" fill="#000"/>
+      <circle cx="55" cy="45" r="2.6" fill="#fff"/>
+    </mask>
     <mask id="m-masks" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
       <circle cx="50" cy="50" r="50" fill="#fff"/>
       <g transform="translate(60 52) rotate(16) translate(-18 -24)">
@@ -735,6 +742,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
   </symbol>
   <symbol id="aperture" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-aperture)"/></symbol>
   <symbol id="camera" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-camera)"/></symbol>
+  <symbol id="eye" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-eye)"/></symbol>
   <symbol id="masks" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-masks)"/></symbol>
   <symbol id="clap" viewBox="0 0 100 100"><rect width="100" height="100" fill="currentColor" mask="url(#m-clap)"/></symbol>
   <symbol id="seat" viewBox="0 0 100 100"><circle class="dash" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="9 9"/></symbol>
@@ -1043,7 +1051,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
 
   <section>
     <div class="wrap count">
-      <div class="big num" id="member-count" aria-hidden="true">05</div>
+      <div class="big num" id="member-count" aria-hidden="true">06</div>
       <div>
         <div class="seats" aria-hidden="true">
           <svg><use href="#reel"/></svg>
@@ -1051,9 +1059,10 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <svg><use href="#aperture"/></svg>
           <svg><use href="#camera"/></svg>
           <svg><use href="#masks"/></svg>
+          <svg><use href="#eye"/></svg>
           <svg class="seat"><use href="#seat"/></svg>
         </div>
-        <h2><span id="member-words">Five members</span> today. The next number is yours.</h2>
+        <h2><span id="member-words">Six members</span> today. The next number is yours.</h2>
         <p>Every person who joins gets the next number. It is how we will watch this grow from two barrels into a movement.</p>
       </div>
     </div>
@@ -1080,9 +1089,13 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
           <div class="m-top"><span class="m-num num">05</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#masks"/></svg></div>
           <div class="m-name"><strong>Shaun Saji</strong><span>Director · Actor</span></div>
         </li>
+        <li class="member">
+          <div class="m-top"><span class="m-num num">06</span><svg class="m-glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#eye"/></svg></div>
+          <div class="m-name"><strong>Anson Jinmon</strong><span>Actor · Visual ideas</span></div>
+        </li>
         <li class="member open">
           <a href="#collaborate">
-            <div class="m-top"><span class="m-num num" id="member-next">06</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
+            <div class="m-top"><span class="m-num num" id="member-next">07</span><svg class="m-glyph seat" viewBox="0 0 100 100" aria-hidden="true"><use href="#seat"/></svg></div>
             <div class="m-name"><strong>Your name here</strong><span>Any craft · Join us →</span></div>
           </a>
         </li>
@@ -1094,7 +1107,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     <div class="wrap">
       <h2>Open for collaboration.</h2>
       <a class="join-cta" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" data-cursor="Join">
-        <span class="jc-num num">06</span>
+        <span class="jc-num num">07</span>
         <span class="jc-body"><strong>Join the movement</strong><span>Tell us your name, your craft, show us your work and what you want to make with us. Two minutes.</span></span>
         <span class="jc-arrow" aria-hidden="true">→</span>
       </a>
@@ -1129,7 +1142,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
     </div>
   </section>
 </main>
-<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">06</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
+<a class="joinbar" id="joinbar" href="https://tally.so/r/GeK9DQ" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span class="jb-num num">07</span><span class="jb-txt">Join the movement</span><span aria-hidden="true">→</span></a>
 <div class="cur" id="cur" aria-hidden="true"><div class="cur-dot"><span id="cur-txt"></span></div></div>
 <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="close-poster">Close ✕</button><button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous still" data-cursor="Prev" hidden>←</button><button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next still" data-cursor="Next" hidden>→</button><figure><img id="lb-img" alt="" width="1333" height="2000"><figcaption id="lb-cap"></figcaption></figure></div>
 
@@ -1143,7 +1156,7 @@ li.live .g-credit circle:nth-child(5){transition-delay:.24s}
         <div class="lockup-label">Film and Music Atelier</div>
       </div>
     </div>
-    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 05</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
+    <span>Founded by Roddick Vincent and Ricky Reji · <span class="num" id="member-foot">Members: 06</span> · <a class="foot-mail" href="mailto:hello@twosmokingbarrels.co">hello@twosmokingbarrels.co</a></span>
   </div>
 </footer>
 
